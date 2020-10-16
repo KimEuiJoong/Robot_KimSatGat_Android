@@ -10,4 +10,7 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_rcmlist">추천 목록</string>
+    <string name="menu_likelist">좋아요 목록</string>
+    <string name="menu_mypoem">내가 쓴 시</string>
 </resources>
