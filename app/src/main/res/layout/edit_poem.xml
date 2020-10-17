@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="여기에 입력하세요"
+        android:hint="여기에 시를 입력하세요"
         android:inputType="textMultiLine" />
 
     <Button
