@@ -16,8 +16,8 @@
         android:id="@+id/imageButton"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:background="@drawable/like"
-        android:layout_gravity="right"/>
+        android:layout_gravity="right"
+        android:background="@drawable/like" />
 
     <LinearLayout
         android:layout_width="match_parent"
