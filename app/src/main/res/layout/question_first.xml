@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/first_question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="지금 당신의 기분은 어떻습니까?"
+        android:textSize="30dp"
+        android:gravity="center"/>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <RadioButton
+            android:id="@+id/positive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="긍정적입니다"
+            android:layout_gravity="center"/>
+
+        <RadioButton
+            android:id="@+id/middle_way"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="중립적입니다"
+            android:layout_gravity="center"/>
+
+        <RadioButton
+            android:id="@+id/negative"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="부정적입니다."
+            android:layout_gravity="center"/>
+    </RadioGroup>
+</LinearLayout>
