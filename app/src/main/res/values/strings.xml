@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">Robot_KimSatGat_Android</string>
+    <string name="server_client_id">607479431956-e9r2gdgjqfd8bhnfn3e5o9o6ohsia5qq.apps.googleusercontent.com</string>
+
+    <string name="app_name">로봇 김삿갓</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>

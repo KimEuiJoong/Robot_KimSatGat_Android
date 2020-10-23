@@ -1,4 +1,4 @@
-package com.example.robot_kimsatgat_android.ui.slideshow;
+package com.example.robot_kimsatgat_android.UI.Like_List;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
