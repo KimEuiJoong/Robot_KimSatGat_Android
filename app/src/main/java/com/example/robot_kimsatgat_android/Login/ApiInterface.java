@@ -10,8 +10,7 @@ public interface ApiInterface {
 
 
     // base_url + "api/login" 으로 POST 통신
-    @POST("/socialligin/login")
-    //    @POST("/sociallogin/glogintoken")
+    @POST("/sociallogin/glogintoken")
     Call<ResLoginData> requestPostLogin(@Body ReqLoginData reqLoginData );   // @Body : request 파라미터
 
     // base_url + "api/users" 으로 GET 통신

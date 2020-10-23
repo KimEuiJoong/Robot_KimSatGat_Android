@@ -19,7 +19,6 @@ public class HttpClient {
         if(retrofit == null){
             Retrofit.Builder builder = new Retrofit.Builder();
             builder.baseUrl("https://rest.robotkimsatgat.p-e.kr");
-            //builder.baseUrl("https://10.0.2.2:8000");
             builder.addConverterFactory(GsonConverterFactory.create());
             builder.client(client);
 
