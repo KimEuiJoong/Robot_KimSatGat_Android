@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.robot_kimsatgat_android.R;
 
-public class AfterLogin extends AppCompatActivity {
+public class Login_After extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

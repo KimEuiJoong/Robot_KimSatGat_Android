@@ -4,16 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.View_Suggested_Poem.GalleryFragment">
+    tools:context=".UI.Poem_Written_By_Me.HomeFragment">
 
     <TextView
-        android:id="@+id/text_gallery"
+        android:id="@+id/textview_poem_written_by_me"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:textAlignment="center"
+        android:gravity="clip_horizontal|center"
+        android:text="여기에 내가 쓴 시보기"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

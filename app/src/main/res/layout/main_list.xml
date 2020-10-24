@@ -5,62 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/drawerLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-
-        <ImageButton
-            android:id="@+id/menu_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@android:drawable/ic_menu_sort_by_size" />
-
-        <ImageButton
-            android:id="@+id/write_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@android:drawable/ic_menu_edit" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
     <LinearLayout
         android:id="@+id/drawer"
         android:layout_width="80dp"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/User_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:text="사용자 이름" />
-
         <Button
-            android:id="@+id/rcm_list"
+            android:id="@+id/btn_rcm_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="추천 목록" />
 
         <Button
-            android:id="@+id/like_list"
+            android:id="@+id/btn_like_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="좋아요 목록" />
 
         <Button
-            android:id="@+id/close_menu"
+            android:id="@+id/btn_close_menu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
