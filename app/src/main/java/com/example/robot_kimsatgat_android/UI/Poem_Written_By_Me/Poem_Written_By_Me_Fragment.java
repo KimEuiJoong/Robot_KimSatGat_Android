@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.robot_kimsatgat_android.R;
 
-public class HomeFragment extends Fragment {
+public class Poem_Written_By_Me_Fragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
+    private Poem_Written_By_Me_ViewModel poemWrittenByMeViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        poemWrittenByMeViewModel =
+                new ViewModelProvider(this).get(Poem_Written_By_Me_ViewModel.class);
         View root = inflater.inflate(R.layout.fragment_view_mypoem, container, false);
         final TextView textView = root.findViewById(R.id.textview_poem_written_by_me);
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        poemWrittenByMeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

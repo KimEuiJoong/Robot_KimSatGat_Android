@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.robot_kimsatgat_android.UI.Poem_Written_By_Me.HomeFragment"
+        android:name="com.example.robot_kimsatgat_android.UI.Poem_Written_By_Me.Poem_Written_By_Me_Fragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_view_mypoem" />
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.example.robot_kimsatgat_android.UI.View_Suggested_Poem.GalleryFragment"
+        android:name="com.example.robot_kimsatgat_android.UI.View_Suggested_Poem.View_Suggested_Poem_Fragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_view_suggestedpoem" />
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.example.robot_kimsatgat_android.UI.Like_List.SlideshowFragment"
+        android:name="com.example.robot_kimsatgat_android.UI.Like_List.Like_List_Fragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_view_likelist" />
 </navigation>

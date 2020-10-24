@@ -32,6 +32,7 @@
 <!--        <activity android:name=".Questionnaire1" />-->
 <!--        <activity android:name=".Questionnaire2" />-->
         <activity android:name=".View.View_LikeList" />
+        <activity android:name=".View.View_MyPoem" />
         <activity android:name=".View.View_Suggested_Poem" />
 
 

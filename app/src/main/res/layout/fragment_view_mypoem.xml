@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.Poem_Written_By_Me.HomeFragment">
+    tools:context=".UI.Poem_Written_By_Me.Poem_Written_By_Me_Fragment">
 
     <TextView
         android:id="@+id/textview_poem_written_by_me"

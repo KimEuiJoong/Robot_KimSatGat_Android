@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.robot_kimsatgat_android.R;
 
-public class SlideshowFragment extends Fragment {
+public class Like_List_Fragment extends Fragment {
 
-    private SlideshowViewModel slideshowViewModel;
+    private Like_List_ViewModel Like_List_Fragment1;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel =
-                new ViewModelProvider(this).get(SlideshowViewModel.class);
+        Like_List_Fragment1 =
+                new ViewModelProvider(this).get(Like_List_ViewModel.class);
         View root = inflater.inflate(R.layout.fragment_view_likelist, container, false);
         final TextView textView = root.findViewById(R.id.textview_like_list);
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        Like_List_Fragment1.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
