@@ -10,8 +10,6 @@
         android:roundIcon="@mipmap/ic_logo_robot_kimsatgat_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Robot_KimSatGat_Android">
-        <activity android:name=".Login.AfterLogin">
-        </activity>
         <activity
             android:name=".Login.Login"
             android:label="@string/app_name"
@@ -21,7 +19,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Login.AfterLogin">
+        </activity>
     </application>
+
     <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
