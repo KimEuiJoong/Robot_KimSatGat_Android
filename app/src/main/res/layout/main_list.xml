@@ -24,11 +24,11 @@
             android:text="좋아요 목록" />
 
         <Button
-            android:id="@+id/btn_close_menu"
+            android:id="@+id/btn_mypoem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:text="메뉴 닫기" />
+            android:text="내가 쓴 시" />
 
     </LinearLayout>
 

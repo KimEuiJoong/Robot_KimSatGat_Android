@@ -11,6 +11,7 @@ import android.widget.Button;
 import com.example.robot_kimsatgat_android.DB.Poem_Write;
 
 import com.example.robot_kimsatgat_android.View.View_LikeList;
+import com.example.robot_kimsatgat_android.View.View_MyPoem;
 import com.example.robot_kimsatgat_android.View.View_Suggested_Poem;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -108,11 +109,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btn_close_menu = findViewById(R.id.btn_close_menu);
+        btn_close_menu = findViewById(R.id.btn_mypoem);
         btn_close_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent = new Intent(MainActivity.this, View_MyPoem.class);
+                startActivity(intent);
             }
         });
 
