@@ -39,12 +39,7 @@
         android:id="@+id/btn_login_temp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="btn_login_temp" />
+        android:text="임시 테스트 로그인 버튼" />
 
-    <Button
-        android:id="@+id/btn_viewpoem_temp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="btn_viewpoem_temp" />
 
 </LinearLayout>

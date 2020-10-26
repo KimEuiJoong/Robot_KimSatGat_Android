@@ -35,6 +35,7 @@
 
         <!--        <activity android:name=".DB_Read" />-->
         <!--        <activity android:name=".DB_Write" />-->
+        <activity android:name=".DB.Poem_Write"/>
 
         <activity android:name=".View.View_LikeList" />
         <activity android:name=".View.View_MyPoem" />
