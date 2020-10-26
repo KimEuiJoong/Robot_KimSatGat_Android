@@ -15,22 +15,27 @@
             android:name=".Login.Login"
             android:label="@string/app_name"
             android:theme="@style/Theme.Robot_KimSatGat_Android.NoActionBar">
-        </activity>
-        <activity
-            android:name=".Login.Login_After">
-        </activity>
-
-        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Login.Login_After">
+        </activity>
 
-<!--        <activity android:name=".DB_Read" />-->
-<!--        <activity android:name=".DB_Write" />-->
-<!--        <activity android:name=".Questionnaire1" />-->
-<!--        <activity android:name=".Questionnaire2" />-->
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Robot_KimSatGat_Android.NoActionBar">>
+        </activity>
+
+        <activity android:name=".Questionnaire.Questionnaire1" />
+        <activity android:name=".Questionnaire.Questionnaire2" />
+
+        <!--        <activity android:name=".DB_Read" />-->
+        <!--        <activity android:name=".DB_Write" />-->
+
         <activity android:name=".View.View_LikeList" />
         <activity android:name=".View.View_MyPoem" />
         <activity android:name=".View.View_Suggested_Poem" />

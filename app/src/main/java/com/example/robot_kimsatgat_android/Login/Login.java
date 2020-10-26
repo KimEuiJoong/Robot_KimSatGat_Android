@@ -4,12 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.robot_kimsatgat_android.MainActivity;
+import com.example.robot_kimsatgat_android.Questionnaire.Questionnaire1;
 import com.example.robot_kimsatgat_android.R;
+import com.example.robot_kimsatgat_android.View.View_Suggested_Poem;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -70,6 +74,24 @@ public class Login extends AppCompatActivity {
 
         api = HttpClient.getRetrofit().create(ApiInterface.class);
         //Code for GoogleSignIn Ends
+
+        Button btn_login_temp= findViewById(R.id.btn_login_temp);
+        btn_login_temp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Login.this, Questionnaire1.class);
+                startActivity(intent);
+            }
+        });
+
+        Button btn_viewpoem_temp= findViewById(R.id.btn_viewpoem_temp);
+        btn_viewpoem_temp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Login.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
     }
