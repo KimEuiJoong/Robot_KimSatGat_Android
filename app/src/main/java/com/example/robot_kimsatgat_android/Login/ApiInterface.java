@@ -17,4 +17,5 @@ public interface ApiInterface {
     @GET("api/users")
     Call<ResUsersData> requestGetUsersDetail(@Query(value = "page", encoded = true) String page );   // @Query : url에 쿼리 파라미터 추가, encoded - true
 
+
 }

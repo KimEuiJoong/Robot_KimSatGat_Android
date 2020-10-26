@@ -84,16 +84,6 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        Button btn_viewpoem_temp= findViewById(R.id.btn_viewpoem_temp);
-        btn_viewpoem_temp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Login.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
     }
     private void signIn(){
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();

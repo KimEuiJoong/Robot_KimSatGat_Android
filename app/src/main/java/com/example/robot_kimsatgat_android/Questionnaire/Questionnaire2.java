@@ -1,5 +1,6 @@
 package com.example.robot_kimsatgat_android.Questionnaire;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,10 +14,15 @@ import com.example.robot_kimsatgat_android.View.View_Suggested_Poem;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Questionnaire2 extends AppCompatActivity {
+
+    public static Activity _Questionnaire2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question_second);
+        _Questionnaire2 = Questionnaire2.this;
 
         RadioGroup RadioGroup_Tag;
         Button submit_button;
