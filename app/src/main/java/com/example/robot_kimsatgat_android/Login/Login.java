@@ -1,6 +1,7 @@
 package com.example.robot_kimsatgat_android.Login;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,15 +23,28 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Login extends AppCompatActivity {
-    GoogleSignInClient mGoogleSignInClient;
-    ApiInterface api;
 
+    //
+    private FirebaseAuth mAuth = null;
+    private GoogleSignInClient mGoogleSignInClient_firebase;
+    private static final int RC_SIGN_IN_firebase = 9001;
+    private SignInButton signInButton_firebase;
+
+    //
+    ApiInterface api;
+    private GoogleSignInClient mGoogleSignInClient;
     int RC_SIGN_IN = 99;
 
     @Override
@@ -48,7 +62,6 @@ public class Login extends AppCompatActivity {
         //if you need additional scope to access google apis, specify them with requestScopes
         // Build a GoogleSignInClient with the options specified by gso.
         //check if the user has already signed in to our app using google, on this device of another device
-
 
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
@@ -75,6 +88,33 @@ public class Login extends AppCompatActivity {
         api = HttpClient.getRetrofit().create(ApiInterface.class);
         //Code for GoogleSignIn Ends
 
+        // Code for firebase login
+        //////////////////////////////////////////
+
+        mAuth = FirebaseAuth.getInstance();
+        if (mAuth.getCurrentUser() != null) {
+            Intent intent = new Intent(getApplication(), Questionnaire1.class);
+            startActivity(intent);
+            finish();
+        }
+
+        GoogleSignInOptions gso_firebase = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        mGoogleSignInClient_firebase = GoogleSignIn.getClient(this, gso_firebase);
+        signInButton_firebase = findViewById(R.id.signInButton_firebase);
+        signInButton_firebase.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                signIn();
+            }
+        });
+        signInButton_firebase.setSize(SignInButton.SIZE_STANDARD);
+
+        //////////////////////////////////////////
+        // Code for firebase login
+
         Button btn_login_temp= findViewById(R.id.btn_login_temp);
         btn_login_temp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,9 +125,18 @@ public class Login extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        updateUI(account);
+    }
+
+
     private void signIn(){
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent,RC_SIGN_IN);
+        startActivityForResult(signInIntent,RC_SIGN_IN_firebase);
     }
 
     private void signOut(){
@@ -109,16 +158,22 @@ public class Login extends AppCompatActivity {
                 });
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        updateUI(account);
-    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
         super.onActivityResult(requestCode, resultCode, data);
+
+        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN_firebase) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                // Google Sign In was successful, authenticate with Firebase
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                firebaseAuthWithGoogle(account);
+            } catch (ApiException e) {
+            }
+        }
 
         // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
@@ -176,6 +231,36 @@ public class Login extends AppCompatActivity {
             Toast.makeText(this,"signed successfully",Toast.LENGTH_LONG).show();
         }else{
             Toast.makeText(this,"sign failed",Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
+
+        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+//                            Snackbar.make(findViewById(R.id.layout_main), "Authentication Successed.", Snackbar.LENGTH_SHORT).show();
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI_firebase(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+//                            Snackbar.make(findViewById(R.id.layout_main), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
+                            updateUI_firebase(null);
+                        }
+                    }
+                });
+
+    }
+
+    private void updateUI_firebase(FirebaseUser user) { //update ui code here
+        if (user != null) {
+            Intent intent = new Intent(this, Questionnaire1.class);
+            startActivity(intent);
+            finish();
         }
     }
 }

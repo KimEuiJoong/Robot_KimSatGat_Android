@@ -4,8 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/background_drawable">
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -27,8 +26,6 @@
             <TextView
                 android:id="@+id/toolbar_title"
                 android:text="로봇 김삿갓"
-                android:textColor="@color/black"
-                android:fontFamily="@font/humanarmy"
                 android:textSize="36sp"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
@@ -113,17 +110,13 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/poem_write"
+            android:layout_below="@+id/poem_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/poem_view"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="26dp"
-            android:layout_marginEnd="26dp"
-            android:layout_marginRight="26dp"
-            android:layout_marginBottom="@dimen/fab_margin"
-            android:contentDescription="TODO"
-            app:srcCompat="@android:drawable/ic_menu_edit" />
+            android:layout_gravity="right"
+            android:layout_margin="@dimen/fab_margin"
+            app:srcCompat="@android:drawable/ic_menu_edit"
+            android:contentDescription="TODO" />
 
     </RelativeLayout>
 

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/layout_view_suggestedpoem"
     tools:context=".UI.View_Suggested_Poem.View_Suggested_Poem_Fragment">
 
     <TextView
