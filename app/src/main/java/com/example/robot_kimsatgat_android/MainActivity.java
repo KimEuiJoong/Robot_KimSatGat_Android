@@ -29,11 +29,6 @@ import androidx.navigation.ui.NavigationUI;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static Activity _MainActivity;
-
-    Questionnaire1 Q1 = (Questionnaire1)Questionnaire1._Questionnaire1;
-    Questionnaire2 Q2 = (Questionnaire2)Questionnaire2._Questionnaire2;
-
     private DrawerLayout mDrawerLayout;
     private Context context = this;
 
@@ -43,10 +38,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        _MainActivity = MainActivity.this;
-
-        Q1.finish();
-        Q2.finish();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -59,11 +50,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-//        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-//        mAppBarConfiguration = new AppBarConfiguration.Builder(
-//                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
-//                .setDrawerLayout(drawer)
-//                .build();
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        mAppBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                .setDrawerLayout(drawer)
+                .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);

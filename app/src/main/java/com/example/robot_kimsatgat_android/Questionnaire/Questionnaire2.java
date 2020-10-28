@@ -15,14 +15,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Questionnaire2 extends AppCompatActivity {
 
-    public static Activity _Questionnaire2;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question_second);
-        _Questionnaire2 = Questionnaire2.this;
 
         RadioGroup RadioGroup_Tag;
         Button submit_button;
@@ -34,6 +31,7 @@ public class Questionnaire2 extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Questionnaire2.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
