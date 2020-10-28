@@ -25,6 +25,10 @@ public class Sample_Poem_Data {
     public String getMain_text(){
         return main_text;
     }
+
+    public String getLike(){
+        return like;
+    }
 }
 
 */
