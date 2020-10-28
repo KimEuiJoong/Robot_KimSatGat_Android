@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background_drawable">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -26,6 +27,8 @@
             <TextView
                 android:id="@+id/toolbar_title"
                 android:text="로봇 김삿갓"
+                android:textColor="@color/black"
+                android:fontFamily="@font/humanarmy"
                 android:textSize="36sp"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"

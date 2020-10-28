@@ -2,13 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_drawable"
     android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/first_question"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:visibility="visible">
 
@@ -18,18 +19,24 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="지금 당신의 기분은 어떻습니까?"
-            android:textSize="30dp" />
+            android:fontFamily="@font/sixtwofivesevenzero"
+            android:textColor="@color/black"
+            android:textSize="28dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginBottom="50dp"/>
 
         <RadioGroup
             android:id="@+id/RadioGroup_feeling"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <RadioButton
                 android:id="@+id/positive"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginBottom="30dp"
+                android:fontFamily="@font/nexonlv1gothicbold"
                 android:text="긍정적입니다" />
 
             <RadioButton
@@ -37,6 +44,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginBottom="30dp"
+                android:fontFamily="@font/nexonlv1gothicbold"
                 android:text="중립적입니다" />
 
             <RadioButton
@@ -44,6 +53,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginBottom="30dp"
+                android:fontFamily="@font/nexonlv1gothicbold"
                 android:text="부정적입니다." />
 
         </RadioGroup>
@@ -53,6 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="81dp"
             android:text="다음으로" />
 
     </LinearLayout>
