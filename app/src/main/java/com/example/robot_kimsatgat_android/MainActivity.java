@@ -93,6 +93,18 @@ public class MainActivity extends AppCompatActivity {
         NetworkTask networkTask = new NetworkTask(url, null);
         networkTask.execute();
 
+
+//        String url_post = "https://rest.robotkimsatgat.p-e.kr/poems/2";
+//        try {
+//            jsonObject = new JSONObject();
+//            jsonObject.accumulate("condt", "SET ");
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//
+//        NetworkTask_POST networkTask_POST = new NetworkTask_POST(url_post,jsonObject.toString());
+//        networkTask_POST.execute();
+
     }
 
     // Navi
