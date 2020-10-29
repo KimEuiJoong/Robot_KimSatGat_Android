@@ -1,20 +1,19 @@
 package com.example.robot_kimsatgat_android;
 
+import android.content.ContentValues;
 import android.content.Context;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.robot_kimsatgat_android.DB.Poem_Write;
-import com.example.robot_kimsatgat_android.Login.Login;
-import com.example.robot_kimsatgat_android.Questionnaire.Questionnaire1;
-import com.example.robot_kimsatgat_android.Questionnaire.Questionnaire2;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,10 +21,19 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
     private Context context = this;
+
+    private TextView textView_poem_title;
+    private TextView textView_poet;
+    private TextView textview_poet_View;
+
+    private JSONObject jsonObject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,12 +60,15 @@ public class MainActivity extends AppCompatActivity {
                 String title = menuItem.getTitle().toString();
 
                 if(id == R.id.nav_suggestionlist){
+                    // 화면 전환 코드
                     Toast.makeText(context, title + "클릭 : nav_suggestionlist", Toast.LENGTH_SHORT).show();
                 }
                 else if(id == R.id.nav_likelist){
+                    // 화면 전환 코드
                     Toast.makeText(context, title + "클릭 : nav_likelist", Toast.LENGTH_SHORT).show();
                 }
                 else if(id == R.id.nav_writtedlist){
+                    // 화면 전환 코드
                     Toast.makeText(context, title + "클릭 :nav_writtedlist", Toast.LENGTH_SHORT).show();
                 }
 
@@ -74,8 +85,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        textView_poem_title = (TextView) findViewById(R.id.textView_poem_title);
+        textView_poet = (TextView) findViewById(R.id.textView_poet);
+        textview_poet_View = (TextView) findViewById(R.id.textview_poet_View);
+
+        String url = "https://rest.robotkimsatgat.p-e.kr/poems/2?format=json";
+        NetworkTask networkTask = new NetworkTask(url, null);
+        networkTask.execute();
+
     }
 
+    // Navi
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
@@ -86,6 +106,83 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    // NetworkTask
+    public class NetworkTask extends AsyncTask<Void, Void, String> {
+
+        private String url;
+        private ContentValues values;
+
+
+        public NetworkTask(String url, ContentValues values) {
+
+            this.url = url;
+            this.values = values;
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+
+            String result; // 요청 결과를 저장할 변수.
+            RequestHttpURLConnection requestHttpURLConnection = new RequestHttpURLConnection();
+            result = requestHttpURLConnection.request(url, values); // 해당 URL로 부터 결과물을 얻어온다.
+
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            try {
+                JSONObject json = new JSONObject(s);
+                textView_poem_title.setText(json.getString("title"));
+                textView_poet.setText(json.getString("writer"));
+                textview_poet_View.setText(json.getString("content"));
+
+
+                Toast.makeText(getApplicationContext(), "시 데이터를 불러오는데 성공했습니다.", Toast.LENGTH_SHORT).show();
+            } catch (JSONException e) {
+                Toast.makeText(getApplicationContext(), "시 데이터를 불러오는데 실패했습니다.", Toast.LENGTH_SHORT).show();
+
+                e.printStackTrace();
+            }
+        }
+
+    } //NetworkTask
+
+    // 값을 수정할때
+    public class NetworkTask_POST extends AsyncTask<Void, Void, String> {
+
+        private String url;
+        private String json;
+
+        public NetworkTask_POST(String url, String json) {
+            this.url = url;
+            this.json = json;
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+
+            String result; // 요청 결과를 저장할 변수.
+            RequestHttpURLConnection_POST requestHttpURLConnection = new RequestHttpURLConnection_POST();
+            //RequestHttpURLCoonnection_POST 클래스를 통해 POST방식 사용
+            result = requestHttpURLConnection.request(url, json); // 해당 URL로 부터 결과물을 얻어온다.
+
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            //doInBackground()로 부터 리턴된 값이 onPostExecute()의 매개변수로 넘어오므로 s를 출력한다.\
+        }
+
+    } //NetworkTask_POST
+
+
+} // MainActivity
+
 
 //    private AppBarConfiguration mAppBarConfiguration;
 //
@@ -133,5 +230,3 @@ public class MainActivity extends AppCompatActivity {
 //        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
 //                || super.onSupportNavigateUp();
 //    }
-
-}
