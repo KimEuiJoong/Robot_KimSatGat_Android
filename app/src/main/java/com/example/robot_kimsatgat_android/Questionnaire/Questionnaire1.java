@@ -1,17 +1,14 @@
 package com.example.robot_kimsatgat_android.Questionnaire;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
 
-import com.example.robot_kimsatgat_android.MainActivity;
-import com.example.robot_kimsatgat_android.R;
-import com.example.robot_kimsatgat_android.View.View_Suggested_Poem;
-
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.robot_kimsatgat_android.R;
 
 public class Questionnaire1 extends AppCompatActivity {
 

@@ -28,28 +28,13 @@
         android:layout_marginTop="50dp"
         android:layout_marginBottom="80dp"/>
 
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/sign_in_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageButton
+        android:id="@+id/LoginButton"
+        android:layout_width="192dp"
+        android:layout_height="54dp"
         android:layout_gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/signInButton_firebase"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" />
-
-
-    <Button
-        android:id="@+id/btn_login_temp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="임시 테스트 로그인 버튼" />
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/kakao_login_medium_narrow" />
 
 
 </LinearLayout>

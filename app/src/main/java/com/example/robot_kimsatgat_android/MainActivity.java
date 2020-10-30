@@ -1,21 +1,11 @@
 package com.example.robot_kimsatgat_android;
 
-import android.app.Activity;
 import android.content.Context;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-
-import com.example.robot_kimsatgat_android.DB.Poem_Write;
-import com.example.robot_kimsatgat_android.Login.Login;
-import com.example.robot_kimsatgat_android.Questionnaire.Questionnaire1;
-import com.example.robot_kimsatgat_android.Questionnaire.Questionnaire2;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +16,10 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
+import com.example.robot_kimsatgat_android.UI.Poem_Write.Poem_Write;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
 

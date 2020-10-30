@@ -1,6 +1,5 @@
-package com.example.robot_kimsatgat_android.DB;
+package com.example.robot_kimsatgat_android.UI.Poem_Write;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,8 +7,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.robot_kimsatgat_android.Login.Login;
-import com.example.robot_kimsatgat_android.Questionnaire.Questionnaire1;
 import com.example.robot_kimsatgat_android.R;
 
 public class Poem_Write extends AppCompatActivity {
