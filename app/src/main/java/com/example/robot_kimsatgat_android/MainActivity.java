@@ -4,10 +4,13 @@ import android.content.ContentValues;
 import android.content.Context;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView textView_poem_title;
     private TextView textView_poet;
     private TextView textview_poet_View;
+
+    private ImageButton Ibtn_poemlike;
+    private static int like_click;
 
     private JSONObject jsonObject;
 
@@ -92,6 +98,22 @@ public class MainActivity extends AppCompatActivity {
         String url = "https://rest.robotkimsatgat.p-e.kr/poems/2?format=json";
         NetworkTask networkTask = new NetworkTask(url, null);
         networkTask.execute();
+
+        Ibtn_poemlike = (ImageButton) findViewById(R.id.Ibtn_poemlike);
+        Ibtn_poemlike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(like_click ==0) {
+                    Ibtn_poemlike.setImageResource(R.drawable.heart_filled);
+                    Ibtn_poemlike.setScaleType(ImageView.ScaleType.FIT_XY);
+                    like_click=1;
+                }
+                else{
+                    Ibtn_poemlike.setImageResource(R.drawable.heart);
+                    like_click=0;
+                }
+            }
+        });
 
 
 //        String url_post = "https://rest.robotkimsatgat.p-e.kr/poems/2";

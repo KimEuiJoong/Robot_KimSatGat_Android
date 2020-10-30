@@ -72,7 +72,7 @@
 
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/Ibtn_poemlike"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="center"
