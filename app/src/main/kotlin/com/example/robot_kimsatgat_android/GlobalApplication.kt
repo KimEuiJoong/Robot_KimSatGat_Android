@@ -7,12 +7,15 @@ import com.kakao.sdk.auth.LoginClient
 import com.kakao.sdk.auth.TokenManager
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.KakaoSdk
+import com.kakao.sdk.user.UserApi
 import com.kakao.sdk.user.UserApiClient
 import java.lang.Exception
 
 class GlobalApplication :Application(){
     val TAG = "RobotSatgat_GlobalApp"
     var accessToken = ""
+    var name = ""
+
     override fun onCreate(){
         super.onCreate()
         KakaoSdk.init(this,getString(R.string.kakao_native_key))
@@ -26,6 +29,14 @@ class GlobalApplication :Application(){
             }
             else if (token != null){
                 Log.i(TAG,"로그인 성공 ${token.accessToken}")
+                UserApiClient.instance.me{ user, error->
+                    if(error != null){
+                        Log.e(TAG,"사용자 정보 요청 실패",error)
+                    }
+                    else if(user != null){
+                        name = "${user.kakaoAccount?.profile?.nickname}"
+                    }
+                }
                 accessToken = token.accessToken
                 after_login()
             }
@@ -36,4 +47,5 @@ class GlobalApplication :Application(){
             LoginClient.instance.loginWithKakaoAccount(context, callback = callback)
         }
     }
+
 }
