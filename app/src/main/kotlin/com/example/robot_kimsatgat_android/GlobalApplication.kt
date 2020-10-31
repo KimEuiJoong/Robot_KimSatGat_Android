@@ -35,10 +35,11 @@ class GlobalApplication :Application(){
                     }
                     else if(user != null){
                         name = "${user.kakaoAccount?.profile?.nickname}"
+                        Log.i(TAG,"사용자 정보 요청 성공 "+ name)
+                        accessToken = token.accessToken
+                        after_login()
                     }
                 }
-                accessToken = token.accessToken
-                after_login()
             }
         }
         if (LoginClient.instance.isKakaoTalkLoginAvailable(context)){
