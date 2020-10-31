@@ -43,7 +43,7 @@ public class Login extends AppCompatActivity {
             public Void invoke() {
                 Log.i(TAG,globalApplication.getAccessToken());
                 PoemServer poemServer = PoemServer.getPoemServer();
-                poemServer.Login(globalApplication.getAccessToken());
+                poemServer.Login(globalApplication.getAccessToken(),globalApplication.getName());
                 loginFinished();
                 return null;
             }

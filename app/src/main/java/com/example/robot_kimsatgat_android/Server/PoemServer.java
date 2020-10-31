@@ -74,8 +74,8 @@ public class PoemServer {
             }
         });
     }
-    public void Login(String idToken){
-        ReqLoginData reqLoginData = new ReqLoginData(idToken);
+    public void Login(String idToken,String name){
+        ReqLoginData reqLoginData = new ReqLoginData(idToken,name);
         Call<RecvLoginData> call = api.verifyLoginToken(reqLoginData);
         call.enqueue(new Callback<RecvLoginData>(){
             @Override
