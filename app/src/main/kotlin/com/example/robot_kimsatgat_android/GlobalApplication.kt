@@ -20,6 +20,7 @@ class GlobalApplication :Application(){
         super.onCreate()
         KakaoSdk.init(this,getString(R.string.kakao_native_key))
     }
+
     fun kakaoLogin(context: Context,after_login:()->Void){
         Log.i(TAG,"kakao login start")
         val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
