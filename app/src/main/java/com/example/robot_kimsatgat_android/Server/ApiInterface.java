@@ -16,20 +16,20 @@ import retrofit2.http.Path;
 public interface ApiInterface {
 
     @POST("/logintoken")
-    Call<RecvLoginData> verifyLoginToken(@Body ReqLoginData reqLoginData );   // @Body : request 파라미터
+    Call<RecvLoginData> verifyLoginToken(@Body ReqLoginData reqLoginData );
 
     @POST("/poems")
-    Call<Void> postPoem(@Body ReqPoemData reqPoemData );   // @Body : request 파라미터
+    Call<Void> postPoem(@Body ReqPoemData reqPoemData );
 
     @GET("/poems/{num}")
-    Call<RecvPoemData> getPoem(@Path("num") int poem_id);   // @Body : request 파라미터
+    Call<RecvPoemData> getPoem(@Path("num") int poem_id);
 
     @PUT("/poems/{num}")
-    Call<Void> putPoem(@Path("num") int poem_id);   // @Body : request 파라미터
+    Call<Void> putPoem(@Path("num") int poem_id,ReqPoemData reqPoemData);
 
     @DELETE("/poems/{num}")
-    Call<Void> deletePoem(@Path("num") int poem_id);   // @Body : request 파라미터
+    Call<Void> deletePoem(@Path("num") int poem_id);
 
     @GET("/poems/recommended")
-    Call<RecvPoemData> recommendPoem();   // @Body : request 파라미터
+    Call<RecvPoemData> recommendPoem();
 }

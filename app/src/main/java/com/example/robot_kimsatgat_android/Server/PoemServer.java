@@ -7,6 +7,7 @@ import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvPoemData;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.ReqLoginData;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.ReqPoemData;
 
+import kotlin.jvm.functions.Function1;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -42,12 +43,13 @@ public class PoemServer {
             }
         });
     }
-    public void getPoem(int poem_id){
+    public void getPoem(int poem_id, Function1<RecvPoemData,Void> func){
         Call<RecvPoemData> call = api.getPoem(poem_id);
         call.enqueue(new Callback<RecvPoemData>(){
             @Override
             public void onResponse(Call<RecvPoemData> call, Response<RecvPoemData> response){
                 Log.i(TAG, response.body().toString());
+                func.invoke(response.body());
             }
             @Override
             public void onFailure(Call<RecvPoemData> call, Throwable t){
@@ -81,6 +83,8 @@ public class PoemServer {
             @Override
             public void onResponse(Call<RecvLoginData> call, Response<RecvLoginData> response){
                 Log.i(TAG, "LoginRes: "+response.body().toString());
+                String token = response.body().toString();
+                setToken("Token "+token);
             }
             @Override
             public void onFailure(Call<RecvLoginData> call, Throwable t){

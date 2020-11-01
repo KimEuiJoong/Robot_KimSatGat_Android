@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
     <EditText
-        android:id="@+id/editText_edit_poem"
+        android:id="@+id/editText_edit_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -14,7 +14,7 @@
         android:inputType="textMultiLine" />
 
     <EditText
-        android:id="@+id/editText_edit_poem2"
+        android:id="@+id/editText_edit_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
