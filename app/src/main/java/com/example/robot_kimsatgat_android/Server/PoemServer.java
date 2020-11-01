@@ -63,12 +63,13 @@ public class PoemServer {
     public void deletePoem(int poem_id){
 
     }
-    public void recommendPoem(){
+    public void recommendPoem(Function1<RecvPoemData,Void> func){
         Call<RecvPoemData> call = api.recommendPoem();
         call.enqueue(new Callback<RecvPoemData>(){
             @Override
             public void onResponse(Call<RecvPoemData> call, Response<RecvPoemData> response){
                 Log.i(TAG, response.body().toString());
+                func.invoke(response.body());
             }
             @Override
             public void onFailure(Call<RecvPoemData> call, Throwable t){

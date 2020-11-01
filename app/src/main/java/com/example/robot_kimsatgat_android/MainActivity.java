@@ -15,9 +15,13 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.ui.AppBarConfiguration;
 
+import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvPoemData;
+import com.example.robot_kimsatgat_android.Server.PoemServer;
 import com.example.robot_kimsatgat_android.UI.Poem_Write.Poem_Write;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+
+import kotlin.jvm.functions.Function1;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,6 +36,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main);
         GlobalApplication globalApplication = (GlobalApplication)getApplication();
         String user_name = globalApplication.getName();
+        TextView tv_poemTitle = findViewById(R.id.textView_poem_title);
+        TextView tv_poemWriter = findViewById(R.id.textView_poet);
+        TextView tv_poemContent = findViewById(R.id.textView_poem_content);
+        PoemServer poemServer = PoemServer.getPoemServer();
+        poemServer.recommendPoem(new Function1<RecvPoemData, Void>() {
+            @Override
+            public Void invoke(RecvPoemData recvPoemData) {
+                tv_poemTitle.setText(recvPoemData.title);
+                tv_poemWriter.setText(recvPoemData.writer);
+                tv_poemContent.setText(recvPoemData.content);
+                return null;
+            }
+        });
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
