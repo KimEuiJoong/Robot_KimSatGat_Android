@@ -1,26 +1,23 @@
 package com.example.robot_kimsatgat_android;
 
 import android.content.Context;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.robot_kimsatgat_android.DB.Poem_Write;
-import com.example.robot_kimsatgat_android.Login.Login;
-import com.example.robot_kimsatgat_android.Questionnaire.Questionnaire1;
-import com.example.robot_kimsatgat_android.Questionnaire.Questionnaire2;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.example.robot_kimsatgat_android.DB.Poem_Write;
+import com.example.robot_kimsatgat_android.Questionnaire.Questionnaire1;
+import com.example.robot_kimsatgat_android.Questionnaire.Questionnaire2;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(false); // 기존 title 지우기
         actionBar.setDisplayHomeAsUpEnabled(true); // 뒤로가기 버튼 만들기
-        actionBar.setHomeAsUpIndicator(R.drawable.robotkim); //뒤로가기 버튼 이미지 지정
+        actionBar.setHomeAsUpIndicator(R.drawable.hamburger); //뒤로가기 버튼 이미지 지정
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
