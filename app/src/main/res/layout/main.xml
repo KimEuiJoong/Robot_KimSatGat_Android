@@ -46,7 +46,6 @@
             android:orientation="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-
             <TextView
                 android:id="@+id/textView_poem"
                 android:layout_width="match_parent"
@@ -56,58 +55,10 @@
                 android:textSize="32sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textView_poem_title"
+            <com.example.robot_kimsatgat_android.View.Poem_view
+                android:id="@+id/main_poem"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="시 제목" />
-
-            <TextView
-                android:id="@+id/textView_poet"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="시 작가" />
-
-            <TextView
-                android:id="@+id/textview_poet_View"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="시 내용" />
-
-
-            <ImageButton
-                android:id="@+id/imageButton"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center"
-                android:background="@drawable/like" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/comment_edit"
-                    android:layout_width="0dp"
-                    android:layout_weight="9"
-                    android:layout_height="wrap_content"
-
-                    android:hint="여기에 댓글을 씁니다." />
-
-                <ImageButton
-                    android:id="@+id/comment_send"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:srcCompat="@android:drawable/ic_menu_send" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="여기에 댓글 리스트가 보입니다." />
+                android:layout_height="match_parent"/>
 
         </LinearLayout>
 
