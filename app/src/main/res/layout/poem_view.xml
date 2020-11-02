@@ -17,19 +17,19 @@
         android:textStyle="bold" />-->
 
     <TextView
-        android:id="@+id/textView_poem_title"
+        android:id="@+id/poem_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="시 제목" />
 
     <TextView
-        android:id="@+id/textView_poet"
+        android:id="@+id/poem_writer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="시 작가" />
 
     <TextView
-        android:id="@+id/textview_poet_View"
+        android:id="@+id/poem_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="시 내용" />
