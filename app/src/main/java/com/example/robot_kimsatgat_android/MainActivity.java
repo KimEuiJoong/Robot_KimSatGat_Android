@@ -3,8 +3,10 @@ package com.example.robot_kimsatgat_android;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,19 +17,27 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.ui.AppBarConfiguration;
 
+import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvCommentData;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvPoemData;
 import com.example.robot_kimsatgat_android.Server.PoemServer;
 import com.example.robot_kimsatgat_android.UI.Poem_Write.Poem_Write;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.List;
+
+import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
 
     private DrawerLayout mDrawerLayout;
     private Context context = this;
 
+    RecvPoemData recommendedPoem;
+    int recom_poem_like_num;
+    List<RecvCommentData> commentList;
     private AppBarConfiguration mAppBarConfiguration;
 
     @Override
@@ -36,19 +46,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main);
         GlobalApplication globalApplication = (GlobalApplication)getApplication();
         String user_name = globalApplication.getName();
-        TextView tv_poemTitle = findViewById(R.id.textView_poem_title);
-        TextView tv_poemWriter = findViewById(R.id.textView_poet);
-        TextView tv_poemContent = findViewById(R.id.textView_poem_content);
-        PoemServer poemServer = PoemServer.getPoemServer();
-        poemServer.recommendPoem(new Function1<RecvPoemData, Void>() {
-            @Override
-            public Void invoke(RecvPoemData recvPoemData) {
-                tv_poemTitle.setText(recvPoemData.title);
-                tv_poemWriter.setText(recvPoemData.writer);
-                tv_poemContent.setText(recvPoemData.content);
-                return null;
-            }
-        });
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -57,6 +54,79 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true); // 뒤로가기 버튼 만들기
         actionBar.setHomeAsUpIndicator(R.drawable.robotkim); //뒤로가기 버튼 이미지 지정
 
+        TextView poemTitleTv = findViewById(R.id.textView_poem_title);
+        TextView poemWriterTv = findViewById(R.id.textView_poet);
+        TextView poemContentTv = findViewById(R.id.textView_poem_content);
+        TextView commentWriterTv = findViewById(R.id.textview_comment_writer);
+        TextView commentContentTv = findViewById(R.id.textview_comment_content);
+
+        PoemServer poemServer = PoemServer.getPoemServer();
+        poemServer.recommendPoem(new Function1<RecvPoemData, Void>() {
+            @Override
+            public Void invoke(RecvPoemData recvPoemData) {
+                try {
+                    recommendedPoem = (RecvPoemData)recvPoemData.clone();
+                    poemTitleTv.setText(recommendedPoem.title);
+                    poemWriterTv.setText(recommendedPoem.writer);
+                    poemContentTv.setText(recommendedPoem.content);
+                    poemServer.getComments(recommendedPoem.id, new Function1<List<RecvCommentData>, Void>() {
+                        @Override
+                        public Void invoke(List<RecvCommentData> recvCommentData) {
+                            commentList = recvCommentData;
+                            Log.i(TAG,"getcommentinvoke:"+Integer.toString(commentList.size()));
+                            try {
+                                RecvCommentData cmt = commentList.get(0);
+                                commentWriterTv.setText(cmt.writer);
+                                commentContentTv.setText(cmt.content);
+                            }catch(Exception e){
+                                Log.e(TAG,e.getMessage());
+                            }
+                            return null;
+                        }
+                    });
+                }catch(Exception e){
+                    Log.i(TAG,"poem clone failed");
+                }
+                return null;
+            }
+        });
+
+        ImageButton commentSendBtn = findViewById(R.id.comment_send);
+        TextView commentEditTv = findViewById(R.id.comment_edit);
+        commentSendBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                try {
+                    //postComment(댓글을 달 시의 번호(id), 댓글의 내용)
+                    poemServer.postComment(recommendedPoem.id, commentEditTv.getText().toString(), new Function0<Void>() {
+                        @Override
+                        public Void invoke() {
+                            //시를 달고나서, 새로고침.
+                            poemServer.getComments(recommendedPoem.id, new Function1<List<RecvCommentData>, Void>() {
+                                @Override
+                                public Void invoke(List<RecvCommentData> recvCommentData) {
+                                    commentList = recvCommentData;
+                                    Log.i(TAG,"getcommentinvoke:"+Integer.toString(commentList.size()));
+                                    try {
+                                        RecvCommentData cmt = commentList.get(0);
+                                        commentWriterTv.setText(cmt.writer);
+                                        commentContentTv.setText(cmt.content);
+                                    }catch(Exception e){
+                                        Log.e(TAG,e.getMessage());
+                                    }
+
+                                    return null;
+                                }
+                            });
+                            return null;
+                        }
+                    });
+                }catch(Exception e){
+                    //시가 아직 추천되지 않았을 경우, recommendedPoem가 null이므로 NullPointerException이 뜰것.
+                    Log.e(TAG,e.getMessage());
+                }
+            }
+        });
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
