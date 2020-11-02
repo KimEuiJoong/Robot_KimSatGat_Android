@@ -35,7 +35,7 @@ public class PoemServer {
         call.enqueue(new Callback<Void>(){
             @Override
             public void onResponse(Call<Void> call, Response<Void> response){
-                Log.i(TAG, response.body().toString());
+                Log.i(TAG, "posted, Auth:"+HttpClient.token);
             }
             @Override
             public void onFailure(Call<Void> call, Throwable t){

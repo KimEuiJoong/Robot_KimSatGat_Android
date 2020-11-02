@@ -16,11 +16,10 @@ public class HttpClient {
 
     private static Retrofit retrofit;
     private static OkHttpClient client;
-    private static String token;
+    public static String token = "";
 
     public static void setToken(String t){token = t;}
     public static Retrofit getRetrofit(){
-        token = "";
         if(client == null){
             client = new OkHttpClient.Builder()
                     .addInterceptor(tokenInterceptor())
