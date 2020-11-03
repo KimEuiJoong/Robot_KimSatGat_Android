@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/poemview_background_drawable"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <!--<TextView
@@ -16,80 +15,97 @@
         android:textSize="32sp"
         android:textStyle="bold" />-->
 
-    <TextView
-        android:id="@+id/textView_poem_title"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="시 제목" />
+        android:layout_height="match_parent"
+        app:cardBackgroundColor="#FBE5D6"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true">
 
-    <TextView
-        android:id="@+id/textView_poet"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="시 작가" />
 
-    <TextView
-        android:id="@+id/textview_poet_View"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="시 내용" />
-
-    <LinearLayout
-        android:id="@+id/like_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center">
-
-        <FrameLayout
-            android:id="@+id/like_button_frame"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center">
-            <ImageButton
-                android:id="@+id/like_button"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center"
-                android:background="@drawable/heart"
-                android:visibility="visible"/>
-            <ImageButton
-                android:id="@+id/not_like_button"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center"
-                android:background="@drawable/heart_filled"
-                android:visibility="invisible"/>
-        </FrameLayout>
-        <TextView
-            android:id="@+id/like_count"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="좋아요 수"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/comment_edit"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:hint="여기에 댓글을 씁니다." />
+            <TextView
+                android:id="@+id/poem_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="시 제목" />
 
-        <ImageButton
-            android:id="@+id/comment_send"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@android:drawable/ic_menu_send" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/poem_writer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="시 작가" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="여기에 댓글 리스트가 보입니다." />
+            <TextView
+                android:id="@+id/poem_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="시 내용" />
 
+            <LinearLayout
+                android:id="@+id/like_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <FrameLayout
+                    android:id="@+id/like_button_frame"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <ImageButton
+                        android:id="@+id/like_button"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/heart"
+                        android:visibility="visible" />
+
+                    <ImageButton
+                        android:id="@+id/not_like_button"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/heart_filled"
+                        android:visibility="invisible" />
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/like_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="좋아요 수" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/comment_edit"
+                    android:layout_width="350dp"
+                    android:layout_height="wrap_content"
+                    android:hint="여기에 댓글을 씁니다." />
+
+                <ImageButton
+                    android:id="@+id/comment_send"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:srcCompat="@android:drawable/ic_menu_send" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="여기에 댓글 리스트가 보입니다." />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 </LinearLayout>

@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background_drawable">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,6 +19,7 @@
             android:layout_below="@+id/toolbar"/>
 
         <androidx.appcompat.widget.Toolbar
+            xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -25,6 +27,8 @@
             <TextView
                 android:id="@+id/toolbar_title"
                 android:text="로봇 김삿갓"
+                android:textColor="@color/black"
+                android:fontFamily="@font/humanarmy"
                 android:textSize="36sp"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
@@ -42,7 +46,6 @@
             android:orientation="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-
             <TextView
                 android:id="@+id/textView_poem"
                 android:layout_width="match_parent"
@@ -52,64 +55,10 @@
                 android:textSize="32sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textView_poem_title"
+            <com.example.robot_kimsatgat_android.View.Poem_view
+                android:id="@+id/main_poem"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="시 제목" />
-
-            <TextView
-                android:id="@+id/textView_poet"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="시 작가" />
-
-            <TextView
-                android:id="@+id/textView_poem_content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="시 내용" />
-
-
-            <ImageButton
-                android:id="@+id/Ibtn_poemlike"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center"
-                android:background="@drawable/like" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/comment_edit"
-                    android:layout_width="0dp"
-                    android:layout_weight="9"
-                    android:layout_height="wrap_content"
-
-                    android:hint="여기에 댓글을 씁니다." />
-
-                <ImageButton
-                    android:id="@+id/comment_send"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:srcCompat="@android:drawable/ic_menu_send" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/textview_comment_writer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="첫번째 댓글 작성자" />
-
-            <TextView
-                android:id="@+id/textview_comment_content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="첫번째 댓글 내용" />
+                android:layout_height="match_parent"/>
 
         </LinearLayout>
 
@@ -120,12 +69,9 @@
             android:layout_below="@+id/poem_view"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_gravity="right"
-            android:layout_marginStart="@dimen/fab_margin"
-            android:layout_marginLeft="@dimen/fab_margin"
-            android:layout_marginTop="107dp"
-            android:layout_marginEnd="74dp"
-            android:layout_marginRight="74dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="26dp"
+            android:layout_marginRight="26dp"
             android:layout_marginBottom="@dimen/fab_margin"
             android:contentDescription="TODO"
             app:srcCompat="@android:drawable/ic_menu_edit" />

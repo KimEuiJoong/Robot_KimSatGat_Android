@@ -10,6 +10,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.robot_kimsatgat_android.Questionnaire.Questionnaire1;
+import com.example.robot_kimsatgat_android.Questionnaire.Questionnaire2;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -29,8 +35,18 @@ import java.util.List;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 
+import com.example.robot_kimsatgat_android.Questionnaire.Questionnaire1;
+import com.example.robot_kimsatgat_android.Questionnaire.Questionnaire2;
+import com.example.robot_kimsatgat_android.View.Poem_view;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
+
 public class MainActivity extends AppCompatActivity {
+
     private static final String TAG = "MainActivity";
+
+    Questionnaire1 Q1 = (Questionnaire1)Questionnaire1._Questionnaire1;
+    Questionnaire2 Q2 = (Questionnaire2)Questionnaire2._Questionnaire2;
 
     private DrawerLayout mDrawerLayout;
     private Context context = this;
@@ -40,19 +56,24 @@ public class MainActivity extends AppCompatActivity {
     List<RecvCommentData> commentList;
     private AppBarConfiguration mAppBarConfiguration;
 
+    Poem_view main_poem;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
         GlobalApplication globalApplication = (GlobalApplication)getApplication();
         String user_name = globalApplication.getName();
+        Q1.finish();
+        Q2.finish();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(false); // 기존 title 지우기
         actionBar.setDisplayHomeAsUpEnabled(true); // 뒤로가기 버튼 만들기
-        actionBar.setHomeAsUpIndicator(R.drawable.robotkim); //뒤로가기 버튼 이미지 지정
+        actionBar.setHomeAsUpIndicator(R.drawable.hamburger); //뒤로가기 버튼 이미지 지정
 
         TextView poemTitleTv = findViewById(R.id.textView_poem_title);
         TextView poemWriterTv = findViewById(R.id.textView_poet);
@@ -174,6 +195,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        main_poem = findViewById(R.id.main_poem);
+        main_poem.setPoem_title("서시");
+        main_poem.setPoem_writer("윤동주");
+        main_poem.setPoem_main_view("죽는 날까지 하늘을 우러러\n한 점 부끄럼이 없기를\n잎새에 이는 바람에도\n나는 괴로워했다\n별을 노래하는 마음으로\n모든 죽어가는 것을 사랑해야지\n그리고 나한테 주어진 길을\n걸어가야겠다\n\n오늘 밤에도 별이 바람에 스치운다");
     }
 
     @Override
