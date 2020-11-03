@@ -10,12 +10,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.robot_kimsatgat_android.Questionnaire.Questionnaire1;
-import com.example.robot_kimsatgat_android.Questionnaire.Questionnaire2;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -23,23 +17,19 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.ui.AppBarConfiguration;
 
+import com.example.robot_kimsatgat_android.Questionnaire.Questionnaire1;
+import com.example.robot_kimsatgat_android.Questionnaire.Questionnaire2;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvCommentData;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvPoemData;
 import com.example.robot_kimsatgat_android.Server.PoemServer;
 import com.example.robot_kimsatgat_android.UI.Poem_Write.Poem_Write;
+import com.example.robot_kimsatgat_android.View.Poem_view;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
 
-import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
-
-import com.example.robot_kimsatgat_android.Questionnaire.Questionnaire1;
-import com.example.robot_kimsatgat_android.Questionnaire.Questionnaire2;
-import com.example.robot_kimsatgat_android.View.Poem_view;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -75,11 +65,9 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true); // 뒤로가기 버튼 만들기
         actionBar.setHomeAsUpIndicator(R.drawable.hamburger); //뒤로가기 버튼 이미지 지정
 
-        TextView poemTitleTv = findViewById(R.id.textView_poem_title);
-        TextView poemWriterTv = findViewById(R.id.textView_poet);
-        TextView poemContentTv = findViewById(R.id.textView_poem_content);
-        TextView commentWriterTv = findViewById(R.id.textview_comment_writer);
-        TextView commentContentTv = findViewById(R.id.textview_comment_content);
+        //TextView commentWriterTv = findViewById(R.id.textview_comment_writer);
+        //TextView commentContentTv = findViewById(R.id.textview_comment_content);
+        main_poem = findViewById(R.id.main_poem);
 
         PoemServer poemServer = PoemServer.getPoemServer();
         poemServer.recommendPoem(new Function1<RecvPoemData, Void>() {
@@ -87,9 +75,10 @@ public class MainActivity extends AppCompatActivity {
             public Void invoke(RecvPoemData recvPoemData) {
                 try {
                     recommendedPoem = (RecvPoemData)recvPoemData.clone();
-                    poemTitleTv.setText(recommendedPoem.title);
-                    poemWriterTv.setText(recommendedPoem.writer);
-                    poemContentTv.setText(recommendedPoem.content);
+                    main_poem.setPoem_title(recommendedPoem.title);
+                    main_poem.setPoem_writer(recommendedPoem.writer);
+                    main_poem.setPoem_main_view(recommendedPoem.content);
+                    main_poem.setPoem_likenum(Integer.toString(recommendedPoem.likenum));
                     poemServer.getComments(recommendedPoem.id, new Function1<List<RecvCommentData>, Void>() {
                         @Override
                         public Void invoke(List<RecvCommentData> recvCommentData) {
@@ -97,8 +86,8 @@ public class MainActivity extends AppCompatActivity {
                             Log.i(TAG,"getcommentinvoke:"+Integer.toString(commentList.size()));
                             try {
                                 RecvCommentData cmt = commentList.get(0);
-                                commentWriterTv.setText(cmt.writer);
-                                commentContentTv.setText(cmt.content);
+                                //commentWriterTv.setText(cmt.writer);
+                                //commentContentTv.setText(cmt.content);
                             }catch(Exception e){
                                 Log.e(TAG,e.getMessage());
                             }
@@ -115,38 +104,27 @@ public class MainActivity extends AppCompatActivity {
         ImageButton commentSendBtn = findViewById(R.id.comment_send);
         TextView commentEditTv = findViewById(R.id.comment_edit);
 
-        commentSendBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                try {
-                    //postComment(댓글을 달 시의 번호(id), 댓글의 내용)
-                    poemServer.postComment(recommendedPoem.id, commentEditTv.getText().toString(), new Function0<Void>() {
-                        @Override
-                        public Void invoke() {
-                            //시를 달고나서, 새로고침.
-                            poemServer.getComments(recommendedPoem.id, new Function1<List<RecvCommentData>, Void>() {
-                                @Override
-                                public Void invoke(List<RecvCommentData> recvCommentData) {
-                                    commentList = recvCommentData;
-                                    Log.i(TAG,"getcommentinvoke:"+Integer.toString(commentList.size()));
-                                    try {
-                                        RecvCommentData cmt = commentList.get(0);
-                                        commentWriterTv.setText(cmt.writer);
-                                        commentContentTv.setText(cmt.content);
-                                    }catch(Exception e){
-                                        Log.e(TAG,e.getMessage());
-                                    }
-
-                                    return null;
-                                }
-                            });
-                            return null;
+        commentSendBtn.setOnClickListener(v->{
+            try {
+                //postComment(댓글을 달 시의 번호(id), 댓글의 내용)
+                poemServer.postComment(recommendedPoem.id, commentEditTv.getText().toString(), ()-> {
+                    //댓글을 단 후 시에 달린 댓글 목록을 새로 가져온다.
+                    poemServer.getComments(recommendedPoem.id,(recvCommentData)->{
+                        commentList = recvCommentData;
+                        Log.i(TAG,"getcommentinvoke:"+Integer.toString(commentList.size()));
+                        try {
+                            RecvCommentData cmt = commentList.get(0);
+                            //commentWriterTv.setText(cmt.writer);
+                            //commentContentTv.setText(cmt.content);
+                        }catch(Exception e){
+                            Log.e(TAG,e.getMessage());
                         }
+                        return null;
                     });
-                }catch(Exception e){
-                    //시가 아직 추천되지 않았을 경우, recommendedPoem가 null이므로 NullPointerException이 뜰것.
-                    Log.e(TAG,e.getMessage());
-                }
+                    return null;
+                });
+            }catch(Exception e){
+                Log.e(TAG,e.getMessage());
             }
         });
 
@@ -195,10 +173,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        main_poem = findViewById(R.id.main_poem);
-        main_poem.setPoem_title("서시");
-        main_poem.setPoem_writer("윤동주");
-        main_poem.setPoem_main_view("죽는 날까지 하늘을 우러러\n한 점 부끄럼이 없기를\n잎새에 이는 바람에도\n나는 괴로워했다\n별을 노래하는 마음으로\n모든 죽어가는 것을 사랑해야지\n그리고 나한테 주어진 길을\n걸어가야겠다\n\n오늘 밤에도 별이 바람에 스치운다");
     }
 
     @Override

@@ -15,6 +15,7 @@ public class Poem_view extends LinearLayout {
     TextView poem_title_view;
     TextView poem_writer_view;
     TextView poem_main_view;
+    TextView poem_likenum_view;
 
     public Poem_view(Context context) {
         super(context);
@@ -33,9 +34,11 @@ public class Poem_view extends LinearLayout {
         poem_title_view = findViewById(R.id.poem_title);
         poem_writer_view = findViewById(R.id.poem_writer);
         poem_main_view = findViewById(R.id.poem_main);
+        poem_likenum_view = findViewById(R.id.like_count);
     }
 
     public void setPoem_title(String title) {poem_title_view.setText(title);}
     public void setPoem_writer(String writer) {poem_writer_view.setText(writer);}
     public void setPoem_main_view(String main) {poem_main_view.setText(main);}
+    public void setPoem_likenum(String likenum){poem_likenum_view.setText(likenum);}
 }
