@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
         ImageButton commentSendBtn = findViewById(R.id.comment_send);
         TextView commentEditTv = findViewById(R.id.comment_edit);
+
         commentSendBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){

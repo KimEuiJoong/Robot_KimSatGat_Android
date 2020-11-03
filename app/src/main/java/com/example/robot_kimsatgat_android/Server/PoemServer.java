@@ -2,6 +2,7 @@ package com.example.robot_kimsatgat_android.Server;
 
 import android.util.Log;
 
+import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvLikeData;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvPoemBriefData;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.ReqCommentData;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvCommentData;
@@ -54,12 +55,21 @@ public class PoemServer {
     }
 
     public void postPoem(String title,String content){
+        postPoem(title, content, new Function0<Void>() {
+            @Override
+            public Void invoke() {
+                return null;
+            }
+        });
+    }
+    public void postPoem(String title,String content,Function0<Void> func){
         ReqPoemData reqPoemData = new ReqPoemData(title,content);
         Call<Void> call = api.postPoem(reqPoemData);
         call.enqueue(new Callback<Void>(){
             @Override
             public void onResponse(Call<Void> call, Response<Void> response){
                 Log.i(TAG, "posted, Auth:"+HttpClient.token);
+                func.invoke();
             }
             @Override
             public void onFailure(Call<Void> call, Throwable t){
@@ -108,7 +118,6 @@ public class PoemServer {
             public void onResponse(Call<ArrayList<RecvPoemBriefData>> call, Response<ArrayList<RecvPoemBriefData>> response) {
                 func.invoke(response.body());
             }
-
             @Override
             public void onFailure(Call<ArrayList<RecvPoemBriefData>> call, Throwable t) {
                 Log.e(TAG,"getMyPoemList Failed");
@@ -172,10 +181,31 @@ public class PoemServer {
                 func.invoke();
                 Log.i(TAG, "posted like, Auth:"+HttpClient.token);
             }
-
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 Log.e(TAG,"post like Failed");
+            }
+        });
+    }
+    public void getLike(int poem_id){
+        getLike(poem_id, new Function1<RecvLikeData, Void>() {
+            @Override
+            public Void invoke(RecvLikeData recvLikeData) {
+                return null;
+            }
+        });
+    }
+    public void getLike(int poem_id,Function1<RecvLikeData,Void> func){
+        Call<RecvLikeData> call = api.getLike(poem_id);
+        call.enqueue(new Callback<RecvLikeData>() {
+            @Override
+            public void onResponse(Call<RecvLikeData> call, Response<RecvLikeData> response) {
+                func.invoke(response.body());
+                Log.i(TAG, "got likenum, Auth:"+HttpClient.token);
+            }
+            @Override
+            public void onFailure(Call<RecvLikeData> call, Throwable t) {
+                Log.e(TAG, "getting likenum failed");
             }
         });
     }
@@ -210,11 +240,11 @@ public class PoemServer {
             public void onResponse(Call<ArrayList<RecvPoemBriefData>> call, Response<ArrayList<RecvPoemBriefData>> response) {
                 func.invoke(response.body());
             }
-
             @Override
             public void onFailure(Call<ArrayList<RecvPoemBriefData>> call, Throwable t) {
                 Log.e(TAG,"getMyLikeList Failed");
             }
         });
     }
+
 }

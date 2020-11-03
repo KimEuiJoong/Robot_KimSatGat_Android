@@ -1,6 +1,7 @@
 package com.example.robot_kimsatgat_android.Server;
 
 import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvCommentData;
+import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvLikeData;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvLoginData;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvPoemBriefData;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvPoemData;
@@ -47,9 +48,11 @@ public interface ApiInterface {
     @GET("/poems/{poem_id}/comments")
     Call<ArrayList<RecvCommentData>> getComments(@Path("poem_id") int poem_id);
 
-
     @POST("/poems/{poem_id}/like")
     Call<Void> postLike(@Path("poem_id") int poem_id);
+
+    @GET("/poems/{poem_id}/like")
+    Call<RecvLikeData> getLike(@Path("poem_id") int poem_id);
 
     @DELETE("/poems/{poem_id}/like")
     Call<Void> deleteLike(@Path("poem_id") int poem_id);
