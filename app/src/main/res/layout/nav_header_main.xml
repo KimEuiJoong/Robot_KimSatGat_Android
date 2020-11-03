@@ -21,15 +21,16 @@
         app:srcCompat="@drawable/robotkim_non_background" />
 
     <TextView
+        android:id="@+id/drawer_name_textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="여기에 사용자 ID"
+        android:text="여기에 이름"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/email_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="여기에 사용자 구글 이메일" />
+        android:text="시인" />
 </LinearLayout>

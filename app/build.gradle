@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.robot_kimsatgat_android"
-        minSdkVersion 21
+        minSdkVersion 19
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -17,13 +17,6 @@ android {
     }
 
     buildTypes {
-
-        debug {
-            splits.abi.enable = false
-            splits.density.enable = false
-            aaptOptions.cruncherEnabled = false
-        }
-
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -33,10 +26,13 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
+    sourceSets{
+        main.java.srcDirs += 'src/main/kotlin'
+    }
 
 }
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 apply plugin: 'com.google.gms.google-services'
 
 dependencies {
@@ -52,11 +48,6 @@ dependencies {
         force = true
     }
 
-    implementation platform('com.google.firebase:firebase-bom:25.12.0')
-    implementation 'com.google.firebase:firebase-analytics'
-    implementation 'com.google.firebase:firebase-auth:19.3.1'
-    implementation 'com.google.android.gms:play-services-auth:17.0.0'
-
     implementation 'com.github.bumptech.glide:glide:4.10.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
 
@@ -70,6 +61,9 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     implementation 'com.google.android.gms:play-services-auth:18.1.0'
+
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.4.10'
+    implementation "com.kakao.sdk:v2-user:2.0.5"
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

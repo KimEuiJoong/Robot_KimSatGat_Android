@@ -1,50 +1,51 @@
 package com.example.robot_kimsatgat_android;
 
-import android.content.ContentValues;
 import android.content.Context;
-
 import android.content.Intent;
-import android.media.Image;
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.example.robot_kimsatgat_android.DB.Poem_Write;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.navigation.NavigationView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.ui.AppBarConfiguration;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvCommentData;
+import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvPoemData;
+import com.example.robot_kimsatgat_android.Server.PoemServer;
+import com.example.robot_kimsatgat_android.UI.Poem_Write.Poem_Write;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
+
+import java.util.List;
+
+import kotlin.jvm.functions.Function0;
+import kotlin.jvm.functions.Function1;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
 
     private DrawerLayout mDrawerLayout;
     private Context context = this;
 
-    private TextView textView_poem_title;
-    private TextView textView_poet;
-    private TextView textview_poet_View;
-
-    private ImageButton Ibtn_poemlike;
-    private static int like_click;
-
-    private JSONObject jsonObject;
+    RecvPoemData recommendedPoem;
+    int recom_poem_like_num;
+    List<RecvCommentData> commentList;
+    private AppBarConfiguration mAppBarConfiguration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        GlobalApplication globalApplication = (GlobalApplication)getApplication();
+        String user_name = globalApplication.getName();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -53,9 +54,94 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true); // 뒤로가기 버튼 만들기
         actionBar.setHomeAsUpIndicator(R.drawable.robotkim); //뒤로가기 버튼 이미지 지정
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        TextView poemTitleTv = findViewById(R.id.textView_poem_title);
+        TextView poemWriterTv = findViewById(R.id.textView_poet);
+        TextView poemContentTv = findViewById(R.id.textView_poem_content);
+        TextView commentWriterTv = findViewById(R.id.textview_comment_writer);
+        TextView commentContentTv = findViewById(R.id.textview_comment_content);
 
+        PoemServer poemServer = PoemServer.getPoemServer();
+        poemServer.recommendPoem(new Function1<RecvPoemData, Void>() {
+            @Override
+            public Void invoke(RecvPoemData recvPoemData) {
+                try {
+                    recommendedPoem = (RecvPoemData)recvPoemData.clone();
+                    poemTitleTv.setText(recommendedPoem.title);
+                    poemWriterTv.setText(recommendedPoem.writer);
+                    poemContentTv.setText(recommendedPoem.content);
+                    poemServer.getComments(recommendedPoem.id, new Function1<List<RecvCommentData>, Void>() {
+                        @Override
+                        public Void invoke(List<RecvCommentData> recvCommentData) {
+                            commentList = recvCommentData;
+                            Log.i(TAG,"getcommentinvoke:"+Integer.toString(commentList.size()));
+                            try {
+                                RecvCommentData cmt = commentList.get(0);
+                                commentWriterTv.setText(cmt.writer);
+                                commentContentTv.setText(cmt.content);
+                            }catch(Exception e){
+                                Log.e(TAG,e.getMessage());
+                            }
+                            return null;
+                        }
+                    });
+                }catch(Exception e){
+                    Log.i(TAG,"poem clone failed");
+                }
+                return null;
+            }
+        });
+
+        ImageButton commentSendBtn = findViewById(R.id.comment_send);
+        TextView commentEditTv = findViewById(R.id.comment_edit);
+
+        commentSendBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                try {
+                    //postComment(댓글을 달 시의 번호(id), 댓글의 내용)
+                    poemServer.postComment(recommendedPoem.id, commentEditTv.getText().toString(), new Function0<Void>() {
+                        @Override
+                        public Void invoke() {
+                            //시를 달고나서, 새로고침.
+                            poemServer.getComments(recommendedPoem.id, new Function1<List<RecvCommentData>, Void>() {
+                                @Override
+                                public Void invoke(List<RecvCommentData> recvCommentData) {
+                                    commentList = recvCommentData;
+                                    Log.i(TAG,"getcommentinvoke:"+Integer.toString(commentList.size()));
+                                    try {
+                                        RecvCommentData cmt = commentList.get(0);
+                                        commentWriterTv.setText(cmt.writer);
+                                        commentContentTv.setText(cmt.content);
+                                    }catch(Exception e){
+                                        Log.e(TAG,e.getMessage());
+                                    }
+
+                                    return null;
+                                }
+                            });
+                            return null;
+                        }
+                    });
+                }catch(Exception e){
+                    //시가 아직 추천되지 않았을 경우, recommendedPoem가 null이므로 NullPointerException이 뜰것.
+                    Log.e(TAG,e.getMessage());
+                }
+            }
+        });
+
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        TextView drawerNameText = (TextView)headerView.findViewById(R.id.drawer_name_textView);
+        drawerNameText.setText(user_name);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        mAppBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                .setDrawerLayout(drawer)
+                .build();
+        //NavController navController = Navigation.findNavController(this, R.id.nav_view);
+        //NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+        //NavigationUI.setupWithNavController(navigationView, navController);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
@@ -66,15 +152,12 @@ public class MainActivity extends AppCompatActivity {
                 String title = menuItem.getTitle().toString();
 
                 if(id == R.id.nav_suggestionlist){
-                    // 화면 전환 코드
                     Toast.makeText(context, title + "클릭 : nav_suggestionlist", Toast.LENGTH_SHORT).show();
                 }
                 else if(id == R.id.nav_likelist){
-                    // 화면 전환 코드
                     Toast.makeText(context, title + "클릭 : nav_likelist", Toast.LENGTH_SHORT).show();
                 }
                 else if(id == R.id.nav_writtedlist){
-                    // 화면 전환 코드
                     Toast.makeText(context, title + "클릭 :nav_writtedlist", Toast.LENGTH_SHORT).show();
                 }
 
@@ -91,45 +174,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        textView_poem_title = (TextView) findViewById(R.id.textView_poem_title);
-        textView_poet = (TextView) findViewById(R.id.textView_poet);
-        textview_poet_View = (TextView) findViewById(R.id.textview_poet_View);
-
-        String url = "https://rest.robotkimsatgat.p-e.kr/poems/2?format=json";
-        NetworkTask networkTask = new NetworkTask(url, null);
-        networkTask.execute();
-
-        Ibtn_poemlike = (ImageButton) findViewById(R.id.Ibtn_poemlike);
-        Ibtn_poemlike.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(like_click ==0) {
-                    Ibtn_poemlike.setImageResource(R.drawable.heart_filled);
-                    Ibtn_poemlike.setScaleType(ImageView.ScaleType.FIT_XY);
-                    like_click=1;
-                }
-                else{
-                    Ibtn_poemlike.setImageResource(R.drawable.heart);
-                    like_click=0;
-                }
-            }
-        });
-
-
-//        String url_post = "https://rest.robotkimsatgat.p-e.kr/poems/2";
-//        try {
-//            jsonObject = new JSONObject();
-//            jsonObject.accumulate("condt", "SET ");
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//
-//        NetworkTask_POST networkTask_POST = new NetworkTask_POST(url_post,jsonObject.toString());
-//        networkTask_POST.execute();
-
     }
 
-    // Navi
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
@@ -140,83 +186,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-    // NetworkTask
-    public class NetworkTask extends AsyncTask<Void, Void, String> {
-
-        private String url;
-        private ContentValues values;
-
-
-        public NetworkTask(String url, ContentValues values) {
-
-            this.url = url;
-            this.values = values;
-        }
-
-        @Override
-        protected String doInBackground(Void... params) {
-
-            String result; // 요청 결과를 저장할 변수.
-            RequestHttpURLConnection requestHttpURLConnection = new RequestHttpURLConnection();
-            result = requestHttpURLConnection.request(url, values); // 해당 URL로 부터 결과물을 얻어온다.
-
-            return result;
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            try {
-                JSONObject json = new JSONObject(s);
-                textView_poem_title.setText(json.getString("title"));
-                textView_poet.setText(json.getString("writer"));
-                textview_poet_View.setText(json.getString("content"));
-
-
-                Toast.makeText(getApplicationContext(), "시 데이터를 불러오는데 성공했습니다.", Toast.LENGTH_SHORT).show();
-            } catch (JSONException e) {
-                Toast.makeText(getApplicationContext(), "시 데이터를 불러오는데 실패했습니다.", Toast.LENGTH_SHORT).show();
-
-                e.printStackTrace();
-            }
-        }
-
-    } //NetworkTask
-
-    // 값을 수정할때
-    public class NetworkTask_POST extends AsyncTask<Void, Void, String> {
-
-        private String url;
-        private String json;
-
-        public NetworkTask_POST(String url, String json) {
-            this.url = url;
-            this.json = json;
-        }
-
-        @Override
-        protected String doInBackground(Void... params) {
-
-            String result; // 요청 결과를 저장할 변수.
-            RequestHttpURLConnection_POST requestHttpURLConnection = new RequestHttpURLConnection_POST();
-            //RequestHttpURLCoonnection_POST 클래스를 통해 POST방식 사용
-            result = requestHttpURLConnection.request(url, json); // 해당 URL로 부터 결과물을 얻어온다.
-
-            return result;
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            //doInBackground()로 부터 리턴된 값이 onPostExecute()의 매개변수로 넘어오므로 s를 출력한다.\
-        }
-
-    } //NetworkTask_POST
-
-
-} // MainActivity
-
 
 //    private AppBarConfiguration mAppBarConfiguration;
 //
@@ -264,3 +233,5 @@ public class MainActivity extends AppCompatActivity {
 //        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
 //                || super.onSupportNavigateUp();
 //    }
+
+}
