@@ -2,79 +2,171 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/background_drawable">
+    android:background="@drawable/background_drawable"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/second_question"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="35dp"
-        android:layout_gravity="center"
-        android:text="이런 태그는 어떻습니까?"
-        android:fontFamily="@font/sixtwofivesevenzero"
-        android:textColor="@color/black"
-        android:layout_marginTop="80dp"/>
-
-    <RadioGroup
-        android:id="@+id/RadioGroup_Tag"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        >
-        <RadioButton
-            android:id="@+id/Tag_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:fontFamily="@font/nexonlv1gothicbold"
-            android:text="태그1" />
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:layout_marginTop="80dp"
+        android:fontFamily="@font/sixtwofivesevenzero"
+        android:text="이런 태그는 어떻습니까?"
+        android:textColor="@color/black"
+        android:textSize="35dp" />
 
-        <RadioButton
-            android:id="@+id/Tag_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:fontFamily="@font/nexonlv1gothicbold"
-            android:text="태그2" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <RadioButton
-            android:id="@+id/Tag_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:fontFamily="@font/nexonlv1gothicbold"
-            android:text="태그3" />
+        <RadioGroup
+            android:id="@+id/positive_Tag"
+            android:layout_width="match_parent"
+            android:layout_height="210dp"
+            android:layout_marginTop="50dp"
+            android:visibility="visible">
 
-        <RadioButton
-            android:id="@+id/Tag_4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:fontFamily="@font/nexonlv1gothicbold"
-            android:text="태그4" />
+            <RadioButton
+                android:id="@+id/positive_Tag_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/nexonlv1gothicbold"
+                android:text="기쁨" />
 
-        <RadioButton
-            android:id="@+id/Tag_5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:fontFamily="@font/nexonlv1gothicbold"
-            android:text="태그5" />
-    </RadioGroup>
+            <RadioButton
+                android:id="@+id/positive_Tag_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/nexonlv1gothicbold"
+                android:text="감사" />
+
+            <RadioButton
+                android:id="@+id/positive_Tag_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/nexonlv1gothicbold"
+                android:text="사랑" />
+
+            <RadioButton
+                android:id="@+id/positive_Tag_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/nexonlv1gothicbold"
+                android:text="반가움" />
+
+            <RadioButton
+                android:id="@+id/positive_Tag_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/nexonlv1gothicbold"
+                android:text="순수" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/middle_Tag"
+            android:layout_width="match_parent"
+            android:layout_height="210dp"
+            android:layout_marginTop="50dp"
+            android:visibility="invisible">
+
+            <RadioButton
+                android:id="@+id/middle_Tag_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="40dp"
+                android:fontFamily="@font/nexonlv1gothicbold"
+                android:text="심심" />
+
+            <RadioButton
+                android:id="@+id/middle_Tag_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="40dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/nexonlv1gothicbold"
+                android:text="그리움" />
+
+            <RadioButton
+                android:id="@+id/middle_Tag_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/nexonlv1gothicbold"
+                android:text="귀찮음" />
+
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/negative_Tag"
+            android:layout_width="match_parent"
+            android:layout_height="210dp"
+            android:layout_marginTop="50dp"
+            android:visibility="invisible">
+
+            <RadioButton
+                android:id="@+id/negative_Tag_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/nexonlv1gothicbold"
+                android:text="슬픔" />
+
+            <RadioButton
+                android:id="@+id/negative_Tag_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/nexonlv1gothicbold"
+                android:text="절망" />
+
+            <RadioButton
+                android:id="@+id/negative_Tag_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/nexonlv1gothicbold"
+                android:text="짜증" />
+
+            <RadioButton
+                android:id="@+id/negative_Tag_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nexonlv1gothicbold"
+                android:text="걱정" />
+        </RadioGroup>
+    </FrameLayout>
 
     <Button
         android:id="@+id/submit_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:onClick="submit_button_Clicked"
         android:layout_marginTop="50dp"
+        android:onClick="submit_button_Clicked"
         android:text="제출하기" />
 
 </LinearLayout>

@@ -37,30 +37,28 @@
 
         </androidx.appcompat.widget.Toolbar>
 
-
-        <LinearLayout
-            android:id="@+id/poem_view"
-            android:layout_below="@+id/view_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-            <TextView
-                android:id="@+id/textView_poem"
+            <LinearLayout
+                android:id="@+id/poem_view"
+                android:layout_below="@+id/view_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="추천된 시는 다음과 같습니다!"
-                android:textSize="32sp"
-                android:textStyle="bold" />
+                android:orientation="vertical"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <com.example.robot_kimsatgat_android.View.Poem_view
-                android:id="@+id/main_poem"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                <TextView
+                    android:id="@+id/textView_poem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="추천된 시는 다음과 같습니다!"
+                    android:textSize="32sp"
+                    android:textStyle="bold" />
 
-        </LinearLayout>
+                <com.example.robot_kimsatgat_android.View.Poem_view
+                    android:id="@+id/main_poem"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/poem_write"
