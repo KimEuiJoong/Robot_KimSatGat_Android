@@ -4,7 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_drawable"
     tools:context=".UI.View_Suggested_Poem.View_Suggested_Poem_Fragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/suggested_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <TextView
         android:id="@+id/textview_view_suggested_poem"

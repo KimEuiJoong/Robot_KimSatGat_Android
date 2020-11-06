@@ -35,6 +35,9 @@ public class Sample_poem_Adapter extends RecyclerView.Adapter<Sample_poem_Adapte
         return items.size();
     }
 
+    public void addPoem(Poem item) { items.add(item); }
+
+
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView poem_title_view;
         TextView poem_writer_view;

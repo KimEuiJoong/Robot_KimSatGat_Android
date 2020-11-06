@@ -4,20 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_drawable"
     tools:context=".UI.Poem_Written_By_Me.Poem_Written_By_Me_Fragment">
 
-    <TextView
-        android:id="@+id/textview_poem_written_by_me"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mypoem_recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:gravity="clip_horizontal|center"
-        android:text="여기에 내가 쓴 시보기"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

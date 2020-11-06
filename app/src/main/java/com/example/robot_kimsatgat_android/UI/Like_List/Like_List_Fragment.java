@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,11 +22,11 @@ public class Like_List_Fragment extends Fragment {
         Like_List_Fragment1 =
                 new ViewModelProvider(this).get(Like_List_ViewModel.class);
         View root = inflater.inflate(R.layout.fragment_view_likelist, container, false);
-        final TextView textView = root.findViewById(R.id.textview_like_list);
+        //final TextView textView = root.findViewById(R.id.textview_like_list);
         Like_List_Fragment1.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                textView.setText(s);
+                //textView.setText(s);
             }
         });
         return root;

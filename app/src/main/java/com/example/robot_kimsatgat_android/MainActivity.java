@@ -13,20 +13,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
 
 import com.example.robot_kimsatgat_android.DB.Poem_Write;
 import com.example.robot_kimsatgat_android.Questionnaire.Questionnaire1;
 import com.example.robot_kimsatgat_android.Questionnaire.Questionnaire2;
-import com.example.robot_kimsatgat_android.UI.FragmentCallback;
-import com.example.robot_kimsatgat_android.UI.Like_List.Like_List_Fragment;
-import com.example.robot_kimsatgat_android.UI.Poem_Written_By_Me.Poem_Written_By_Me_Fragment;
-import com.example.robot_kimsatgat_android.UI.View_Suggested_Poem.View_Suggested_Poem_Fragment;
+import com.example.robot_kimsatgat_android.SampleData.Sample_poem_Adapter;
 import com.example.robot_kimsatgat_android.View.Poem_view;
+import com.example.robot_kimsatgat_android.View.View_LikeList;
+import com.example.robot_kimsatgat_android.View.View_MyPoem;
+import com.example.robot_kimsatgat_android.View.View_Suggested_Poem;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, FragmentCallback {
+public class MainActivity extends AppCompatActivity{
 
     Questionnaire1 Q1 = (Questionnaire1)Questionnaire1._Questionnaire1;
     Questionnaire2 Q2 = (Questionnaire2)Questionnaire2._Questionnaire2;
@@ -38,9 +37,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     Poem_view main_poem;
 
-    View_Suggested_Poem_Fragment suggested_poem_fragment;
-    Like_List_Fragment like_list_fragment;
-    Poem_Written_By_Me_Fragment poem_written_by_me_fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,17 +60,39 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        //네비게이션
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        Sample_poem_Adapter adapter = new Sample_poem_Adapter();
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                menuItem.setChecked(true);
+                mDrawerLayout.closeDrawers();
 
-        suggested_poem_fragment = new View_Suggested_Poem_Fragment();
-        like_list_fragment = new Like_List_Fragment();
-        poem_written_by_me_fragment = new Poem_Written_By_Me_Fragment();
+                int id = menuItem.getItemId();
+                String title = menuItem.getTitle().toString();
 
-        getSupportFragmentManager().beginTransaction().add(R.id.poem_view, like_list_fragment).commit();
+                if(id == R.id.nav_suggestionlist){
+                    // 화면 전환 코드
+                    Intent intent = new Intent(MainActivity.this, View_Suggested_Poem.class);
+                    startActivity(intent);
+                    Toast.makeText(context, title + "클릭 : nav_suggestionlist", Toast.LENGTH_SHORT).show();
+                }
+                else if(id == R.id.nav_likelist){
+                    // 화면 전환 코드
+                    Intent intent = new Intent (MainActivity.this, View_LikeList.class);
+                    startActivity(intent);
+                    Toast.makeText(context, title + "클릭 : nav_likelist", Toast.LENGTH_SHORT).show();
+                }
+                else if(id == R.id.nav_writtedlist){
+                    // 화면 전환 코드
+                    Intent intent = new Intent (MainActivity.this, View_MyPoem.class);
+                    startActivity(intent);
+                    Toast.makeText(context, title + "클릭 :nav_writtedlist", Toast.LENGTH_SHORT).show();
+                }
 
-
+                return true;
+            }
+        });
 
         FloatingActionButton fab = findViewById(R.id.poem_write);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -91,59 +109,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         main_poem.setPoem_title("서시");
         main_poem.setPoem_writer("윤동주");
         main_poem.setPoem_main_view("죽는 날까지 하늘을 우러러\n한 점 부끄럼이 없기를\n잎새에 이는 바람에도\n나는 괴로워했다\n별을 노래하는 마음으로\n모든 죽어가는 것을 사랑해야지\n그리고 나한테 주어진 길을\n걸어가야겠다\n\n오늘 밤에도 별이 바람에 스치운다");
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
-            mDrawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(MenuItem menuItem) {
-        menuItem.setChecked(true);
-        mDrawerLayout.closeDrawers();
-
-        int id = menuItem.getItemId();
-        String title = menuItem.getTitle().toString();
-
-        if(id == R.id.nav_suggestionlist){
-            Toast.makeText(context, title + "클릭 : nav_suggestionlist", Toast.LENGTH_SHORT).show();
-            //onFragmentSelected(0,null);
-        }
-        else if(id == R.id.nav_likelist){
-            Toast.makeText(context, title + "클릭 : nav_likelist", Toast.LENGTH_SHORT).show();
-            //onFragmentSelected(1,null);
-        }
-        else if(id == R.id.nav_writtedlist){
-            Toast.makeText(context, title + "클릭 :nav_writtedlist", Toast.LENGTH_SHORT).show();
-            //onFragmentSelected(2,null);
-        }
-
-        mDrawerLayout.closeDrawer(GravityCompat.START);
-
-        return true;
-    }
-
-    @Override
-    public void onFragmentSelected(int position, Bundle bundle) {
-        Fragment curFragmnet = null;
-
-        if (position==0) {
-            curFragmnet = suggested_poem_fragment;
-            toolbar.setTitle("추천 목록");
-        } else if (position==1) {
-            curFragmnet = like_list_fragment;
-            toolbar.setTitle("좋아요 목록");
-        } else if (position==2) {
-            curFragmnet = poem_written_by_me_fragment;
-            toolbar.setTitle("내가 쓴 시");
-        }
-
-        getSupportFragmentManager().beginTransaction().replace(R.id.poem_view,curFragmnet).commit();
     }
 
     @Override
