@@ -29,12 +29,12 @@ public class Poem_view extends LinearLayout implements View.OnClickListener{
     public void onClick(View v)
     {
         if (v == heart_btn) {
-            heart_btn.setVisibility(View.INVISIBLE);
-            heart_filled_btn.setVisibility(View.VISIBLE);
+            heart_btn.setVisibility(View.VISIBLE);
+            heart_filled_btn.setVisibility(View.INVISIBLE);
             like = true;
         } else if (v == heart_filled_btn) {
-            heart_filled_btn.setVisibility(View.INVISIBLE);
-            heart_btn.setVisibility(View.VISIBLE);
+            heart_filled_btn.setVisibility(View.VISIBLE);
+            heart_btn.setVisibility(View.INVISIBLE);
             like = false;
         }
     }
