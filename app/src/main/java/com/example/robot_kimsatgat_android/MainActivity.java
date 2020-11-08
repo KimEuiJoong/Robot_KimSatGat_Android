@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -19,11 +20,15 @@ import androidx.navigation.ui.AppBarConfiguration;
 
 import com.example.robot_kimsatgat_android.Questionnaire.Questionnaire1;
 import com.example.robot_kimsatgat_android.Questionnaire.Questionnaire2;
+import com.example.robot_kimsatgat_android.SampleData.Sample_poem_Adapter;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvCommentData;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvPoemData;
 import com.example.robot_kimsatgat_android.Server.PoemServer;
 import com.example.robot_kimsatgat_android.UI.Poem_Write.Poem_Write;
 import com.example.robot_kimsatgat_android.View.Poem_view;
+import com.example.robot_kimsatgat_android.View.View_LikeList;
+import com.example.robot_kimsatgat_android.View.View_MyPoem;
+import com.example.robot_kimsatgat_android.View.View_Suggested_Poem;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
@@ -46,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
     List<RecvCommentData> commentList;
     private AppBarConfiguration mAppBarConfiguration;
 
+    Toolbar toolbar;
+
     Poem_view main_poem;
 
     @Override
@@ -58,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         Q1.finish();
         Q2.finish();
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(false); // 기존 title 지우기
@@ -129,6 +136,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this,mDrawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        mDrawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        Sample_poem_Adapter adapter = new Sample_poem_Adapter();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
         TextView drawerNameText = (TextView)headerView.findViewById(R.id.drawer_name_textView);
@@ -151,12 +164,21 @@ public class MainActivity extends AppCompatActivity {
                 String title = menuItem.getTitle().toString();
 
                 if(id == R.id.nav_suggestionlist){
+                    // 화면 전환 코드
+                    Intent intent = new Intent(MainActivity.this, View_Suggested_Poem.class);
+                    startActivity(intent);
                     Toast.makeText(context, title + "클릭 : nav_suggestionlist", Toast.LENGTH_SHORT).show();
                 }
                 else if(id == R.id.nav_likelist){
+                    // 화면 전환 코드
+                    Intent intent = new Intent (MainActivity.this, View_LikeList.class);
+                    startActivity(intent);
                     Toast.makeText(context, title + "클릭 : nav_likelist", Toast.LENGTH_SHORT).show();
                 }
                 else if(id == R.id.nav_writtedlist){
+                    // 화면 전환 코드
+                    Intent intent = new Intent (MainActivity.this, View_MyPoem.class);
+                    startActivity(intent);
                     Toast.makeText(context, title + "클릭 :nav_writtedlist", Toast.LENGTH_SHORT).show();
                 }
 

@@ -16,7 +16,7 @@
         <TextView
             android:id="@+id/first_question_text"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:gravity="center"
             android:text="지금 당신의 기분은 어떻습니까?"
             android:fontFamily="@font/sixtwofivesevenzero"
@@ -28,14 +28,14 @@
         <RadioGroup
             android:id="@+id/RadioGroup_feeling"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="210dp">
 
             <RadioButton
                 android:id="@+id/positive"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="40dp"
                 android:fontFamily="@font/nexonlv1gothicbold"
                 android:text="긍정적입니다" />
 
@@ -44,7 +44,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:fontFamily="@font/nexonlv1gothicbold"
                 android:text="중립적입니다" />
 
@@ -53,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="30dp"
+                android:layout_marginTop="40dp"
                 android:fontFamily="@font/nexonlv1gothicbold"
                 android:text="부정적입니다." />
 
@@ -64,7 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="81dp"
+            android:layout_marginTop="50dp"
             android:text="다음으로" />
 
     </LinearLayout>

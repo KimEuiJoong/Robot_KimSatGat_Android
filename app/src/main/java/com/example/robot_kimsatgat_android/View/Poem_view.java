@@ -3,6 +3,9 @@ package com.example.robot_kimsatgat_android.View;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -10,12 +13,32 @@ import androidx.annotation.Nullable;
 
 import com.example.robot_kimsatgat_android.R;
 
-public class Poem_view extends LinearLayout {
+public class Poem_view extends LinearLayout implements View.OnClickListener{
 
+    boolean like = false;
     TextView poem_title_view;
     TextView poem_writer_view;
     TextView poem_main_view;
     TextView poem_likenum_view;
+
+    Button heart_btn= (Button) findViewById(R.id.like_button);
+    Button heart_filled_btn = (Button) findViewById(R.id.not_like_button);
+
+    ImageButton comment_btn = (ImageButton) findViewById(R.id.comment_send);
+
+    @Override
+    public void onClick(View v)
+    {
+        if (v == heart_btn) {
+            heart_btn.setVisibility(View.VISIBLE);
+            heart_filled_btn.setVisibility(View.INVISIBLE);
+            like = true;
+        } else if (v == heart_filled_btn) {
+            heart_filled_btn.setVisibility(View.VISIBLE);
+            heart_btn.setVisibility(View.INVISIBLE);
+            like = false;
+        }
+    }
 
     public Poem_view(Context context) {
         super(context);

@@ -2,25 +2,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/note"
     android:orientation="vertical">
 
     <EditText
         android:id="@+id/editText_edit_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="25dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="여기에 시 제목을 입력하세요"
-        android:inputType="textMultiLine" />
+        android:inputType="textMultiLine"
+        android:layout_marginTop="62dp"/>
 
     <EditText
         android:id="@+id/editText_edit_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="25dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="여기에 시 내용를 입력하세요"
-        android:inputType="textMultiLine" />
+        android:inputType="textMultiLine"
+        android:layout_marginTop="2dp"/>
 
     <Button
         android:id="@+id/btn_poem_save"
