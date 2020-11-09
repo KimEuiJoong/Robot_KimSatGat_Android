@@ -1,4 +1,4 @@
-package com.example.robot_kimsatgat_android.Login;
+package com.example.robot_kimsatgat_android.UI;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,13 +9,12 @@ import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.robot_kimsatgat_android.GlobalApplication;
-import com.example.robot_kimsatgat_android.Questionnaire.Questionnaire1;
 import com.example.robot_kimsatgat_android.R;
 import com.example.robot_kimsatgat_android.Server.PoemServer;
 
 import kotlin.jvm.functions.Function0;
 
-public class Login extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "RobotSatgat_Login";
 

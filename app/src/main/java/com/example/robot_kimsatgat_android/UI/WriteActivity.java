@@ -1,4 +1,4 @@
-package com.example.robot_kimsatgat_android.UI.Poem_Write;
+package com.example.robot_kimsatgat_android.UI;
 
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.robot_kimsatgat_android.R;
 import com.example.robot_kimsatgat_android.Server.PoemServer;
 
-public class Poem_Write extends AppCompatActivity {
+public class WriteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,10 +25,10 @@ public class Poem_Write extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 poemServer.postPoem(editTitle.getText().toString(),editContent.getText().toString());
-                Toast.makeText(Poem_Write.this, "저장되었습니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(WriteActivity.this, "저장되었습니다.", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
-
     }
 
 

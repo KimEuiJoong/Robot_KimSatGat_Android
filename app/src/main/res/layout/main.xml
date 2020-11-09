@@ -2,80 +2,45 @@
 <androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_drawable">
+    android:background="@drawable/background_drawable"
+    >
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <View
-            android:id="@+id/view_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@android:color/black"
-            android:layout_below="@+id/toolbar"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
-            xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/toolbar_title"
-                android:text="로봇 김삿갓"
-                android:textColor="@color/black"
-                android:fontFamily="@font/humanarmy"
-                android:textSize="36sp"
-                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:fontFamily="@font/humanarmy"
+                android:text="로봇 김삿갓"
+                android:textColor="@color/black"
+                android:textSize="36sp"
+                android:textStyle="bold" />
 
         </androidx.appcompat.widget.Toolbar>
 
-            <LinearLayout
-                android:id="@+id/poem_view"
-                android:layout_below="@+id/view_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <fragment
+            android:id="@+id/nav_host_fragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/mobile_navigation" />
 
-                <TextView
-                    android:id="@+id/textView_poem"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="추천된 시는 다음과 같습니다!"
-                    android:textSize="32sp"
-                    android:textStyle="bold" />
+    </LinearLayout>
 
-                <com.example.robot_kimsatgat_android.View.Poem_view
-                    android:id="@+id/main_poem"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-            </LinearLayout>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/poem_write"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/poem_view"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="26dp"
-            android:layout_marginEnd="26dp"
-            android:layout_marginRight="26dp"
-            android:layout_marginBottom="@dimen/fab_margin"
-            android:contentDescription="TODO"
-            app:srcCompat="@android:drawable/ic_menu_edit" />
-
-    </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"

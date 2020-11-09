@@ -1,15 +1,23 @@
 package com.example.robot_kimsatgat_android.SampleData;
 
 public class Poem {
-    String main_text;
-    String editor;
-    String poem_name;
+    public Integer id;
+    public String main_text;
+    public String editor;
+    public String poem_name;
+    public Integer likenum;
+    public boolean like;
 
-    public Poem(String poem_name, String editor, String main_text) {
+    public Poem(int id,String poem_name, String editor, String main_text,int likenum,boolean like) {
+        this.id = id;
         this.poem_name = poem_name;
         this.editor = editor;
         this.main_text = main_text;
+        this.likenum = likenum;
+        this.like = like;
     }
+
+    public int getId(){return id;}
 
     public String getPoem_name(){
         return poem_name;
@@ -28,4 +36,12 @@ public class Poem {
     }
 
     public void setMain_text(String main_text) { this.main_text = main_text; }
+
+    public String getLikenum_text(){return Integer.toString(likenum);}
+
+    public void setLikenum(int likenum){this.likenum = likenum;}
+
+    public boolean getLike(){return like;}
+
+    public void setLike(boolean like){this.like= like;}
 }

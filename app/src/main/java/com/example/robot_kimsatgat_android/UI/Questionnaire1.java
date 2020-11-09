@@ -1,4 +1,4 @@
-package com.example.robot_kimsatgat_android.Questionnaire;
+package com.example.robot_kimsatgat_android.UI;
 
 import android.app.Activity;
 import android.content.Intent;

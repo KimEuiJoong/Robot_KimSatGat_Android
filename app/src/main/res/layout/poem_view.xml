@@ -53,32 +53,20 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center">
 
-                <FrameLayout
-                    android:id="@+id/like_button_frame"
+                <ImageButton
+                    android:id="@+id/likeIButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center">
-
-                    <Button
-                        android:id="@+id/like_button"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/heart_drawable"
-                        android:focusableInTouchMode="true"
-                        android:padding="0dp"
-                        android:visibility="visible" />
-
-                    <Button
-                        android:id="@+id/not_like_button"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/heart_filled_drawable"
-                        android:focusableInTouchMode="true"
-                        android:padding="0dp"
-                        android:visibility="invisible" />
-                </FrameLayout>
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:maxWidth="24dp"
+                    android:maxHeight="24dp"
+                    android:padding="0dp"
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    app:srcCompat="@drawable/heart"
+                    />
 
                 <TextView
                     android:id="@+id/like_count"

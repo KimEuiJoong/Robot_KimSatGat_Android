@@ -1,25 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@id/view_Main">
+
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.example.robot_kimsatgat_android.UI.Poem_Written_By_Me.Poem_Written_By_Me_Fragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_view_mypoem" />
-
+        android:id="@+id/view_Main"
+        android:name="com.example.robot_kimsatgat_android.UI.Views.View_Main"
+        android:label="View_Main" >
+        <action
+            android:id="@+id/action_view_Main_to_view_LikeList"
+            app:destination="@id/nav_likelist"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_view_Main_to_nav_mypoem"
+            app:destination="@id/nav_mypoem" />
+        <action
+            android:id="@+id/action_view_Main_to_nav_suggestionlist"
+            app:destination="@id/nav_suggestionlist" />
+    </fragment>
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.robot_kimsatgat_android.UI.View_Suggested_Poem.View_Suggested_Poem_Fragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_view_suggestedpoem" />
-
+        android:id="@+id/nav_likelist"
+        android:name="com.example.robot_kimsatgat_android.UI.Views.View_LikeList"
+        android:label="View_LikeList" />
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.robot_kimsatgat_android.UI.Like_List.Like_List_Fragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_view_likelist" />
+        android:id="@+id/nav_mypoem"
+        android:name="com.example.robot_kimsatgat_android.UI.Views.View_MyPoem"
+        android:label="View_MyPoem" />
+    <fragment
+        android:id="@+id/nav_suggestionlist"
+        android:name="com.example.robot_kimsatgat_android.UI.Views.View_Suggested_Poem"
+        android:label="View_Suggested_Poem" />
 </navigation>

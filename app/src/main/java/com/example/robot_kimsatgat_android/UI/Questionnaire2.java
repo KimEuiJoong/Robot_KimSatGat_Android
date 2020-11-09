@@ -1,4 +1,4 @@
-package com.example.robot_kimsatgat_android.Questionnaire;
+package com.example.robot_kimsatgat_android.UI;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,9 +10,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.robot_kimsatgat_android.MainActivity;
 import com.example.robot_kimsatgat_android.R;
 
 public class Questionnaire2 extends AppCompatActivity {

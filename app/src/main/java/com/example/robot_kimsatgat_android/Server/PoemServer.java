@@ -2,16 +2,18 @@ package com.example.robot_kimsatgat_android.Server;
 
 import android.util.Log;
 
-import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvLikeData;
-import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvPoemBriefData;
-import com.example.robot_kimsatgat_android.Server.ParamClasses.ReqCommentData;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvCommentData;
+import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvLikeData;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvLoginData;
+import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvPoemBriefData;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvPoemData;
+import com.example.robot_kimsatgat_android.Server.ParamClasses.ReqCommentData;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.ReqLoginData;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.ReqPoemData;
+import com.example.robot_kimsatgat_android.ViewModels.SingleLiveEvent;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import kotlin.jvm.functions.Function0;
@@ -111,6 +113,22 @@ public class PoemServer {
             }
         });
     }
+
+    private SingleLiveEvent<List<RecvPoemBriefData>> myPoemList = new SingleLiveEvent<>();
+    public SingleLiveEvent<List<RecvPoemBriefData>> getMyPoemList(){
+        Call<ArrayList<RecvPoemBriefData>> call = api.getMyPoemList();
+        call.enqueue(new Callback<ArrayList<RecvPoemBriefData>>() {
+            @Override
+            public void onResponse(Call<ArrayList<RecvPoemBriefData>> call, Response<ArrayList<RecvPoemBriefData>> response) {
+                myPoemList.setValue(response.body());
+            }
+            @Override
+            public void onFailure(Call<ArrayList<RecvPoemBriefData>> call, Throwable t) {
+                Log.e(TAG,"getMyPoemList Failed");
+            }
+        });
+        return myPoemList;
+    }
     public void getMyPoemList(Function1<List<RecvPoemBriefData>,Void> func){
         Call<ArrayList<RecvPoemBriefData>> call = api.getMyPoemList();
         call.enqueue(new Callback<ArrayList<RecvPoemBriefData>>() {
@@ -124,6 +142,7 @@ public class PoemServer {
             }
         });
     }
+
 
     public void postComment(int poem_id, String content){
         postComment(poem_id, content, new Function0<Void>() {
@@ -187,13 +206,24 @@ public class PoemServer {
             }
         });
     }
-    public void getLike(int poem_id){
-        getLike(poem_id, new Function1<RecvLikeData, Void>() {
+    private HashMap<Integer,SingleLiveEvent<RecvLikeData>> likeDatas = new HashMap<>();
+    public SingleLiveEvent<RecvLikeData> getLike(int poem_id){
+        if(!likeDatas.containsKey(poem_id)){
+            likeDatas.put(poem_id,new SingleLiveEvent<>());
+        }
+        Call<RecvLikeData> call = api.getLike(poem_id);
+        call.enqueue(new Callback<RecvLikeData>() {
             @Override
-            public Void invoke(RecvLikeData recvLikeData) {
-                return null;
+            public void onResponse(Call<RecvLikeData> call, Response<RecvLikeData> response) {
+                likeDatas.get(poem_id).setValue(response.body());
+                Log.i(TAG, "got likenum, Auth:"+HttpClient.token);
+            }
+            @Override
+            public void onFailure(Call<RecvLikeData> call, Throwable t) {
+                Log.e(TAG, "getting likenum failed");
             }
         });
+        return likeDatas.get(poem_id);
     }
     public void getLike(int poem_id,Function1<RecvLikeData,Void> func){
         Call<RecvLikeData> call = api.getLike(poem_id);
@@ -233,6 +263,21 @@ public class PoemServer {
         });
     }
 
+    private SingleLiveEvent<List<RecvPoemBriefData>> myLikeList = new SingleLiveEvent<>();
+    public SingleLiveEvent<List<RecvPoemBriefData>> getMyLikeList(){
+        Call<ArrayList<RecvPoemBriefData>> call = api.getMyLikeList();
+        call.enqueue(new Callback<ArrayList<RecvPoemBriefData>>() {
+            @Override
+            public void onResponse(Call<ArrayList<RecvPoemBriefData>> call, Response<ArrayList<RecvPoemBriefData>> response) {
+                myLikeList.setValue(response.body());
+            }
+            @Override
+            public void onFailure(Call<ArrayList<RecvPoemBriefData>> call, Throwable t) {
+                Log.e(TAG,"getMyLikeList Failed");
+            }
+        });
+        return myLikeList;
+    }
     public void getMyLikeList(Function1<List<RecvPoemBriefData>,Void> func){
         Call<ArrayList<RecvPoemBriefData>> call = api.getMyLikeList();
         call.enqueue(new Callback<ArrayList<RecvPoemBriefData>>() {

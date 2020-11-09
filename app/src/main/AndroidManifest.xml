@@ -22,7 +22,7 @@
         </activity>
 
         <activity
-            android:name=".Login.Login"
+            android:name=".UI.LoginActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.Robot_KimSatGat_Android.NoActionBar">
             <intent-filter>
@@ -32,21 +32,21 @@
         </activity>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".UI.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.Robot_KimSatGat_Android.NoActionBar">
         </activity>
 
-        <activity android:name=".Questionnaire.Questionnaire1" />
-        <activity android:name=".Questionnaire.Questionnaire2" />
+        <activity android:name=".UI.Questionnaire1" />
+        <activity android:name=".UI.Questionnaire2" />
 
         <!--        <activity android:name=".DB_Read" />-->
         <!--        <activity android:name=".DB_Write" />-->
-        <activity android:name=".UI.Poem_Write.Poem_Write"/>
+        <activity android:name=".UI.WriteActivity"/>
 
-        <activity android:name=".View.View_LikeList" />
-        <activity android:name=".View.View_MyPoem" />
-        <activity android:name=".View.View_Suggested_Poem" />
+        <!-- <activity android:name=".UI.Views.View_LikeList" /> -->
+        <!--<activity android:name=".UI.Views.View_MyPoem" />-->
+        <!--<activity android:name=".UI.Views.View_Suggested_Poem" />-->
 
 
 
