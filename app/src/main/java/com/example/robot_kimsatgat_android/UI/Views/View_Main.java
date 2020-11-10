@@ -125,44 +125,6 @@ public class View_Main extends Fragment {
                             }
                         }
                     });
-                    //ImageButton commentSendBtn = view.findViewById(R.id.comment_send);
-                    //TextView commentEditTv = view.findViewById(R.id.comment_edit);
-                    //commentSendBtn.setOnClickListener(v->{
-                    //    try {
-                    //        //postComment(댓글을 달 시의 번호(id), 댓글의 내용)
-                    //        poemServer.postComment(recommendedPoem.id, commentEditTv.getText().toString(), ()-> {
-                    //            //댓글을 단 후 시에 달린 댓글 목록을 새로 가져온다.
-                    //            poemServer.getComments(recommendedPoem.id,(recvCommentData)->{
-                    //                commentList = recvCommentData;
-                    //                Log.i(TAG,"getcommentinvoke:"+Integer.toString(commentList.size()));
-                    //                try {
-                    //                    RecvCommentData cmt = commentList.get(0);
-                    //                    //commentWriterTv.setText(cmt.writer);
-                    //                    //commentContentTv.setText(cmt.content);
-                    //                }catch(Exception e){
-                    //                    Log.e(TAG,e.getMessage());
-                    //                }
-                    //                return null;
-                    //            });
-                    //            return null;
-                    //        });
-                    //    }catch(Exception e){
-                    //        Log.e(TAG,e.getMessage());
-                    //    }
-                    //});
-                    //poemServer.getComments(recommendedPoem.id, new Function1<List<RecvCommentData>, Void>() {
-                    //    @Override
-                    //    public Void invoke(List<RecvCommentData> recvCommentData) {
-                    //        commentList = recvCommentData;
-                    //        Log.i(TAG,"getcommentinvoke:"+Integer.toString(commentList.size()));
-                    //        try {
-                    //            RecvCommentData cmt = commentList.get(0);
-                    //        }catch(Exception e){
-                    //            Log.e(TAG,e.getMessage());
-                    //        }
-                    //        return null;
-                    //    }
-                    //});
                 }catch(Exception e){
                     Log.e(TAG,e.getMessage());
                 }

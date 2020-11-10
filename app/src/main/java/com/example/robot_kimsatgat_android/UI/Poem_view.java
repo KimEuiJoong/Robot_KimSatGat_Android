@@ -24,7 +24,7 @@ public class Poem_view extends LinearLayout {
     TextView poem_writer_view;
     TextView poem_main_view;
     TextView poem_likenum_view;
-    ImageButton Ibtn_poemlike;
+    public ImageButton Ibtn_poemlike;
     PoemServer poemServer;
     ImageButton comment_btn = (ImageButton) findViewById(R.id.comment_send);
     View view;

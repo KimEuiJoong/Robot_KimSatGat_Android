@@ -23,6 +23,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
         ImageButton loginButton = (ImageButton) findViewById(R.id.LoginButton);
+        /* 스플래시 화면 후 자동 로그인*/
+        kakaoLogin();
+        /* 로그인이 실패한다면 버튼을 띄워주는것이 맞을텐데, 구현에 대해 조금 생각해봐야할듯.*/
         loginButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
