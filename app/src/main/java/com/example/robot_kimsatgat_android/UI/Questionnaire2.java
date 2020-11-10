@@ -19,14 +19,10 @@ public class Questionnaire2 extends AppCompatActivity {
     RadioGroup middle_radioGroup;
     RadioGroup negative_radioGroup;
     Button submit_button;
-
-    public static Activity _Questionnaire2;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question_second);
-        _Questionnaire2 = Questionnaire2.this;
 
         Intent intent = getIntent();
         int getfeel = intent.getExtras().getInt("feelingcheck");
@@ -56,6 +52,7 @@ public class Questionnaire2 extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Questionnaire2.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         positive_radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

@@ -17,13 +17,11 @@ public class Questionnaire1 extends AppCompatActivity {
     int feelingcheck = 0;
     RadioGroup first_radioGroup;
     Button next_to_second_question_button;
-    public static Activity _Questionnaire1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question_first);
-        _Questionnaire1 = Questionnaire1.this;
 
         first_radioGroup = (RadioGroup) findViewById(R.id.RadioGroup_feeling);
 
@@ -33,9 +31,9 @@ public class Questionnaire1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Questionnaire1.this, Questionnaire2.class);
-
                 intent.putExtra("feelingcheck",feelingcheck);
                 startActivity(intent);
+                finish();
             }
         });
         first_radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

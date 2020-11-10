@@ -9,8 +9,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import kotlin.jvm.functions.Function0;
+import kotlin.jvm.functions.Function1;
 
 import com.example.robot_kimsatgat_android.R;
+import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvLikeData;
 import com.example.robot_kimsatgat_android.Server.PoemServer;
 
 public class Poem_view extends LinearLayout {
@@ -32,7 +35,6 @@ public class Poem_view extends LinearLayout {
 
     public Poem_view(Context context) {
         super(context);
-
         init(context);
     }
 
@@ -42,7 +44,6 @@ public class Poem_view extends LinearLayout {
     }
 
     private void init(Context context) {
-
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         view = inflater.inflate(R.layout.poem_view,this,true);
         poemServer = PoemServer.getPoemServer();
@@ -50,10 +51,15 @@ public class Poem_view extends LinearLayout {
         poem_writer_view = findViewById(R.id.poem_writer);
         poem_main_view = findViewById(R.id.poem_main);
         poem_likenum_view = findViewById(R.id.like_count);
+
+        Ibtn_poemlike = findViewById(R.id.likeIButton);
+
+
     }
 
     public void setPoem_title(String title) {poem_title_view.setText(title);}
     public void setPoem_writer(String writer) {poem_writer_view.setText(writer);}
     public void setPoem_main_view(String main) {poem_main_view.setText(main);}
     public void setPoem_likenum(String likenum){poem_likenum_view.setText(likenum);}
+
 }

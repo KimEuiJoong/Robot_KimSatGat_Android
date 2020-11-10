@@ -39,14 +39,7 @@
 
         <activity android:name=".UI.Questionnaire1" />
         <activity android:name=".UI.Questionnaire2" />
-
-        <!--        <activity android:name=".DB_Read" />-->
-        <!--        <activity android:name=".DB_Write" />-->
         <activity android:name=".UI.WriteActivity"/>
-
-        <!-- <activity android:name=".UI.Views.View_LikeList" /> -->
-        <!--<activity android:name=".UI.Views.View_MyPoem" />-->
-        <!--<activity android:name=".UI.Views.View_Suggested_Poem" />-->
 
 
 
