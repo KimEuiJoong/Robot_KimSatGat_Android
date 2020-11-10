@@ -5,10 +5,13 @@ public class Poem {
     String editor;
     String poem_name;
 
-    public Poem(String poem_name, String editor, String main_text) {
+    boolean like;
+
+    public Poem(String poem_name, String editor, String main_text, boolean like) {
         this.poem_name = poem_name;
         this.editor = editor;
         this.main_text = main_text;
+        this.like = like;
     }
 
     public String getPoem_name(){
@@ -28,4 +31,8 @@ public class Poem {
     }
 
     public void setMain_text(String main_text) { this.main_text = main_text; }
+
+    public boolean getLike() { return like; }
+
+    public void setLike(boolean like) { this.like = like; }
 }

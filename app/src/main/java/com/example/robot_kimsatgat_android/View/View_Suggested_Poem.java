@@ -26,16 +26,16 @@ public class View_Suggested_Poem extends AppCompatActivity {
 
         suggested_adapter = new Sample_poem_Adapter();
 
-        suggested_adapter.addPoem(new Poem("시1","류준현","이런\n저런\n시"));
-        suggested_adapter.addPoem(new Poem("시2","류준현","이런\n저런\n시"));
-        suggested_adapter.addPoem(new Poem("시3","류준현","이런\n저런\n시"));
-        suggested_adapter.addPoem(new Poem("시4","류준현","이런\n저런\n시"));
-        suggested_adapter.addPoem(new Poem("시5","류준현","이런\n저런\n시"));
-        suggested_adapter.addPoem(new Poem("시6","류준현","이런\n저런\n시"));
-        suggested_adapter.addPoem(new Poem("시7","류준현","이런\n저런\n시"));
-        suggested_adapter.addPoem(new Poem("시8","류준현","이런\n저런\n시"));
-        suggested_adapter.addPoem(new Poem("시9","류준현","이런\n저런\n시"));
-        suggested_adapter.addPoem(new Poem("시10","류준현","이런\n저런\n시"));
+        suggested_adapter.addPoem(new Poem("시1","류준현","이런\n저런\n시",false));
+        suggested_adapter.addPoem(new Poem("시2","류준현","이런\n저런\n시",false));
+        suggested_adapter.addPoem(new Poem("시3","류준현","이런\n저런\n시",false));
+        suggested_adapter.addPoem(new Poem("시4","류준현","이런\n저런\n시",false));
+        suggested_adapter.addPoem(new Poem("시5","류준현","이런\n저런\n시",false));
+        suggested_adapter.addPoem(new Poem("시6","류준현","이런\n저런\n시",false));
+        suggested_adapter.addPoem(new Poem("시7","류준현","이런\n저런\n시",false));
+        suggested_adapter.addPoem(new Poem("시8","류준현","이런\n저런\n시",false));
+        suggested_adapter.addPoem(new Poem("시9","류준현","이런\n저런\n시",false));
+        suggested_adapter.addPoem(new Poem("시10","류준현","이런\n저런\n시",false));
 
         suggested_recyclerView.setAdapter(suggested_adapter);
     }

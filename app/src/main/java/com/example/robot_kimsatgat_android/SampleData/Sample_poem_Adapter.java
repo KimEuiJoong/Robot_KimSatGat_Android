@@ -3,6 +3,7 @@ package com.example.robot_kimsatgat_android.SampleData;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -43,6 +44,11 @@ public class Sample_poem_Adapter extends RecyclerView.Adapter<Sample_poem_Adapte
         TextView poem_writer_view;
         TextView poem_main_view;
 
+        boolean like;
+
+        Button Like_btn;
+        Button Not_Like_btn;
+
         public ViewHolder(View itemView)
         {
             super (itemView);
@@ -50,6 +56,9 @@ public class Sample_poem_Adapter extends RecyclerView.Adapter<Sample_poem_Adapte
             poem_title_view = itemView.findViewById(R.id.poem_title);
             poem_writer_view = itemView.findViewById(R.id.poem_writer);
             poem_main_view = itemView.findViewById(R.id.poem_main);
+
+            Like_btn = itemView.findViewById(R.id.like_button);
+            Not_Like_btn = itemView.findViewById(R.id.not_like_button);
         }
 
         public void setItem(Poem item)
@@ -57,6 +66,16 @@ public class Sample_poem_Adapter extends RecyclerView.Adapter<Sample_poem_Adapte
             poem_title_view.setText(item.getPoem_name());
             poem_writer_view.setText(item.getEditor());
             poem_main_view.setText(item.getMain_text());
+
+            like = item.getLike();
+
+            if(like == true) {
+                Not_Like_btn.setVisibility(View.VISIBLE);
+                Like_btn.setVisibility(View.INVISIBLE);
+            } else {
+                Like_btn.setVisibility(View.VISIBLE);
+                Not_Like_btn.setVisibility(View.INVISIBLE);
+            }
         }
     }
 }
