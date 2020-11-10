@@ -46,17 +46,6 @@ public class Poem_view extends LinearLayout {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         view = inflater.inflate(R.layout.poem_view,this,true);
         poemServer = PoemServer.getPoemServer();
-
-
-        //if (v == heart_btn) {
-        //    heart_btn.setVisibility(View.VISIBLE);
-        //    heart_filled_btn.setVisibility(View.INVISIBLE);
-        //    like = true;
-        //} else if (v == heart_filled_btn) {
-        //    heart_filled_btn.setVisibility(View.VISIBLE);
-        //    heart_btn.setVisibility(View.INVISIBLE);
-        //    like = false;
-        //}
         poem_title_view = findViewById(R.id.poem_title);
         poem_writer_view = findViewById(R.id.poem_writer);
         poem_main_view = findViewById(R.id.poem_main);

@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -52,8 +51,8 @@ public class Sample_poem_Adapter extends RecyclerView.Adapter<Sample_poem_Adapte
             public void onClick(View view) {
                 if(!item.like){
                     item.like = true;
-                    holder.Ibtn_poemlike.setImageResource(R.drawable.heart_filled);
-                    holder.Ibtn_poemlike.setScaleType(ImageView.ScaleType.FIT_XY);
+                    holder.Ibtn_poemlike.setImageResource(R.drawable.heart_filled_drawable);
+                    //holder.Ibtn_poemlike.setScaleType(ImageView.ScaleType.FIT_XY);
                     poemServer.postLike(item.id, new Function0<Void>() {
                         @Override
                         public Void invoke() {
@@ -71,7 +70,7 @@ public class Sample_poem_Adapter extends RecyclerView.Adapter<Sample_poem_Adapte
                     });
                 }else{
                     item.like = false;
-                    holder.Ibtn_poemlike.setImageResource(R.drawable.heart);
+                    holder.Ibtn_poemlike.setImageResource(R.drawable.heart_drawable);
                     poemServer.deleteLike(item.id, new Function0<Void>() {
                         @Override
                         public Void invoke() {
@@ -137,9 +136,10 @@ public class Sample_poem_Adapter extends RecyclerView.Adapter<Sample_poem_Adapte
             poem_likenum_view.setText(item.getLikenum_text());
             if(item.like){
                 Ibtn_poemlike.setImageResource(R.drawable.heart_filled);
-                Ibtn_poemlike.setScaleType(ImageView.ScaleType.FIT_XY);
+                //Ibtn_poemlike.setScaleType(ImageView.ScaleType.FIT_XY);
             }else{
                 Ibtn_poemlike.setImageResource(R.drawable.heart);
+                //Ibtn_poemlike.setScaleType(ImageView.ScaleType.FIT_XY);
             }
         }
         void updateLikeNum(Poem item,int position){
