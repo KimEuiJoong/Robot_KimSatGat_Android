@@ -52,7 +52,6 @@ public class Sample_poem_Adapter extends RecyclerView.Adapter<Sample_poem_Adapte
                 if(!item.like){
                     item.like = true;
                     holder.Ibtn_poemlike.setImageResource(R.drawable.heart_filled_drawable);
-                    //holder.Ibtn_poemlike.setScaleType(ImageView.ScaleType.FIT_XY);
                     poemServer.postLike(item.id, new Function0<Void>() {
                         @Override
                         public Void invoke() {
@@ -64,7 +63,6 @@ public class Sample_poem_Adapter extends RecyclerView.Adapter<Sample_poem_Adapte
                                     return null;
                                 }
                             });
-                            //likelist_adapter.notifyItemChanged(item.id);
                             return null;
                         }
                     });
@@ -82,7 +80,6 @@ public class Sample_poem_Adapter extends RecyclerView.Adapter<Sample_poem_Adapte
                                     return null;
                                 }
                             });
-                            //likelist_adapter.notifyItemChanged(item.id);
                             return null;
                         }
                     });

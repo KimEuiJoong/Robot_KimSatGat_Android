@@ -6,12 +6,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.example.robot_kimsatgat_android.R;
+import com.example.robot_kimsatgat_android.SampleData.Poem;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvCommentData;
+import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvLikeData;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvPoemData;
 import com.example.robot_kimsatgat_android.Server.PoemServer;
 import com.example.robot_kimsatgat_android.UI.Poem_view;
@@ -20,6 +23,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
+import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 
 public class View_Main extends Fragment {
@@ -31,6 +35,8 @@ public class View_Main extends Fragment {
     int recom_poem_like_num;
     List<RecvCommentData> commentList;
     Poem_view main_poem;
+    ImageButton Ibtn_poemlike;
+    PoemServer poemServer;
 
     public View_Main() {
     }
@@ -50,73 +56,119 @@ public class View_Main extends Fragment {
     public void onViewCreated(View view,Bundle savedInstanceState){
 
 
-        //TextView commentWriterTv = findViewById(R.id.textview_comment_writer);
-        //TextView commentContentTv = findViewById(R.id.textview_comment_content);
         main_poem = view.findViewById(R.id.main_poem);
-
-        PoemServer poemServer = PoemServer.getPoemServer();
+        Ibtn_poemlike = main_poem.Ibtn_poemlike;
+        poemServer = PoemServer.getPoemServer();
         poemServer.recommendPoem(new Function1<RecvPoemData, Void>() {
             @Override
             public Void invoke(RecvPoemData recvPoemData) {
                 try {
-                    recommendedPoem = (RecvPoemData)recvPoemData.clone();
-                    main_poem.setPoem_title(recommendedPoem.title);
-                    main_poem.setPoem_writer(recommendedPoem.writer);
-                    main_poem.setPoem_main_view(recommendedPoem.content);
-                    main_poem.setPoem_likenum(Integer.toString(recommendedPoem.likenum));
-                    poemServer.getComments(recommendedPoem.id, new Function1<List<RecvCommentData>, Void>() {
+                    //recommendedPoem = (RecvPoemData)recvPoemData.clone();
+                    Poem item = new Poem(
+                            recvPoemData.id,
+                            recvPoemData.title,
+                            recvPoemData.writer,
+                            recvPoemData.content,
+                            recvPoemData.likenum,
+                            recvPoemData.like
+                            );
+                    main_poem.setPoem_title(item.getPoem_name());
+                    main_poem.setPoem_writer(item.getEditor());
+                    main_poem.setPoem_main_view(item.getMain_text());
+                    main_poem.setPoem_likenum(item.getLikenum_text());
+                    if(Ibtn_poemlike == null){
+                        Log.i(TAG,"ibtn null");
+                    }
+
+                    if(item.like){
+                        Ibtn_poemlike.setImageResource(R.drawable.heart_filled);
+                    }else{
+                        Ibtn_poemlike.setImageResource(R.drawable.heart);
+                    }
+                    Ibtn_poemlike.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public Void invoke(List<RecvCommentData> recvCommentData) {
-                            commentList = recvCommentData;
-                            Log.i(TAG,"getcommentinvoke:"+Integer.toString(commentList.size()));
-                            try {
-                                RecvCommentData cmt = commentList.get(0);
-                                //commentWriterTv.setText(cmt.writer);
-                                //commentContentTv.setText(cmt.content);
-                            }catch(Exception e){
-                                Log.e(TAG,e.getMessage());
+                        public void onClick(View view) {
+                            if(!item.like){
+                                item.like = true;
+                                Ibtn_poemlike.setImageResource(R.drawable.heart_filled_drawable);
+                                poemServer.postLike(item.id, new Function0<Void>() {
+                                    @Override
+                                    public Void invoke() {
+                                        poemServer.getLike(item.id, new Function1<RecvLikeData, Void>() {
+                                            @Override
+                                            public Void invoke(RecvLikeData recvLikeData) {
+                                                item.likenum = recvLikeData.likenum;
+                                                main_poem.setPoem_likenum(Integer.toString(item.likenum));
+                                                return null;
+                                            }
+                                        });
+                                        return null;
+                                    }
+                                });
+                            }else{
+                                item.like = false;
+                                Ibtn_poemlike.setImageResource(R.drawable.heart_drawable);
+                                poemServer.deleteLike(item.id, new Function0<Void>() {
+                                    @Override
+                                    public Void invoke() {
+                                        poemServer.getLike(item.id, new Function1<RecvLikeData, Void>() {
+                                            @Override
+                                            public Void invoke(RecvLikeData recvLikeData) {
+                                                item.likenum = recvLikeData.likenum;
+                                                main_poem.setPoem_likenum(Integer.toString(item.likenum));
+                                                return null;
+                                            }
+                                        });
+                                        return null;
+                                    }
+                                });
                             }
-                            return null;
                         }
                     });
+                    //ImageButton commentSendBtn = view.findViewById(R.id.comment_send);
+                    //TextView commentEditTv = view.findViewById(R.id.comment_edit);
+                    //commentSendBtn.setOnClickListener(v->{
+                    //    try {
+                    //        //postComment(댓글을 달 시의 번호(id), 댓글의 내용)
+                    //        poemServer.postComment(recommendedPoem.id, commentEditTv.getText().toString(), ()-> {
+                    //            //댓글을 단 후 시에 달린 댓글 목록을 새로 가져온다.
+                    //            poemServer.getComments(recommendedPoem.id,(recvCommentData)->{
+                    //                commentList = recvCommentData;
+                    //                Log.i(TAG,"getcommentinvoke:"+Integer.toString(commentList.size()));
+                    //                try {
+                    //                    RecvCommentData cmt = commentList.get(0);
+                    //                    //commentWriterTv.setText(cmt.writer);
+                    //                    //commentContentTv.setText(cmt.content);
+                    //                }catch(Exception e){
+                    //                    Log.e(TAG,e.getMessage());
+                    //                }
+                    //                return null;
+                    //            });
+                    //            return null;
+                    //        });
+                    //    }catch(Exception e){
+                    //        Log.e(TAG,e.getMessage());
+                    //    }
+                    //});
+                    //poemServer.getComments(recommendedPoem.id, new Function1<List<RecvCommentData>, Void>() {
+                    //    @Override
+                    //    public Void invoke(List<RecvCommentData> recvCommentData) {
+                    //        commentList = recvCommentData;
+                    //        Log.i(TAG,"getcommentinvoke:"+Integer.toString(commentList.size()));
+                    //        try {
+                    //            RecvCommentData cmt = commentList.get(0);
+                    //        }catch(Exception e){
+                    //            Log.e(TAG,e.getMessage());
+                    //        }
+                    //        return null;
+                    //    }
+                    //});
                 }catch(Exception e){
-                    Log.i(TAG,"poem clone failed");
+                    Log.e(TAG,e.getMessage());
                 }
                 return null;
             }
         });
-        //if(item.like){
-        //    Ibtn_poemlike.setImageResource(R.drawable.heart_filled);
-        //    Ibtn_poemlike.setScaleType(ImageView.ScaleType.FIT_XY);
-        //}else{
-        //    Ibtn_poemlike.setImageResource(R.drawable.heart);
-        //}
-        //ImageButton commentSendBtn = view.findViewById(R.id.comment_send);
-        //TextView commentEditTv = view.findViewById(R.id.comment_edit);
-
-        //commentSendBtn.setOnClickListener(v->{
-        //    try {
-        //        //postComment(댓글을 달 시의 번호(id), 댓글의 내용)
-        //        poemServer.postComment(recommendedPoem.id, commentEditTv.getText().toString(), ()-> {
-        //            //댓글을 단 후 시에 달린 댓글 목록을 새로 가져온다.
-        //            poemServer.getComments(recommendedPoem.id,(recvCommentData)->{
-        //                commentList = recvCommentData;
-        //                Log.i(TAG,"getcommentinvoke:"+Integer.toString(commentList.size()));
-        //                try {
-        //                    RecvCommentData cmt = commentList.get(0);
-        //                    //commentWriterTv.setText(cmt.writer);
-        //                    //commentContentTv.setText(cmt.content);
-        //                }catch(Exception e){
-        //                    Log.e(TAG,e.getMessage());
-        //                }
-        //                return null;
-        //            });
-        //            return null;
-        //        });
-        //    }catch(Exception e){
-        //        Log.e(TAG,e.getMessage());
-        //    }
-        //});
         FloatingActionButton fab = view.findViewById(R.id.poem_write);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

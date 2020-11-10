@@ -6,6 +6,7 @@ public class RecvPoemData implements Cloneable {
     public String writer;
     public String content;
     public int likenum;
+    public boolean like;
     @Override
     public Object clone() throws CloneNotSupportedException{
         return super.clone();

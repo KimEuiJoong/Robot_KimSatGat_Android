@@ -24,7 +24,10 @@ public class Poem_view extends LinearLayout {
     TextView poem_writer_view;
     TextView poem_main_view;
     TextView poem_likenum_view;
-    ImageButton Ibtn_poemlike;
+    public ImageButton Ibtn_poemlike;
+    //View.OnClickListener Ibtn_poemlike_listener;
+    //int Ibtn_poemlike_ImgResId;
+
     PoemServer poemServer;
     ImageButton comment_btn = (ImageButton) findViewById(R.id.comment_send);
     View view;
@@ -32,7 +35,6 @@ public class Poem_view extends LinearLayout {
 
     public Poem_view(Context context) {
         super(context);
-
         init(context);
     }
 
@@ -50,10 +52,19 @@ public class Poem_view extends LinearLayout {
         poem_writer_view = findViewById(R.id.poem_writer);
         poem_main_view = findViewById(R.id.poem_main);
         poem_likenum_view = findViewById(R.id.like_count);
+        Ibtn_poemlike = findViewById(R.id.likeIButton);
     }
 
     public void setPoem_title(String title) {poem_title_view.setText(title);}
     public void setPoem_writer(String writer) {poem_writer_view.setText(writer);}
     public void setPoem_main_view(String main) {poem_main_view.setText(main);}
     public void setPoem_likenum(String likenum){poem_likenum_view.setText(likenum);}
+    //public void setLikebtn_listener(View.OnClickListener listener){
+    //    Ibtn_poemlike_listener = listener;
+    //    //Ibtn_poemlike.setOnClickListener(listener);
+    //}
+    //public void setLikebtn_Image(int resId){
+    //    Ibtn_poemlike_ImgResId = resId;
+    //    //Ibtn_poemlike.setImageResource(resId);
+    //}
 }
