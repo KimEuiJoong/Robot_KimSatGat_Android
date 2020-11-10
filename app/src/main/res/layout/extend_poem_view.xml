@@ -57,27 +57,62 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp">
 
-                <ImageButton
-                    android:id="@+id/likeIButton"
+                <FrameLayout
+                    android:id="@+id/like_button_frame"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:adjustViewBounds="true"
-                    android:maxWidth="24dp"
-                    android:maxHeight="24dp"
-                    android:padding="0dp"
-                    android:scaleType="fitCenter"
-                    android:background="@android:color/transparent"
-                    app:srcCompat="@drawable/heart"
-                    />
+                    android:layout_marginRight="5dp"
+                    android:layout_gravity="center">
 
+                    <Button
+                        android:id="@+id/like_button"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/heart_drawable"
+                        android:focusableInTouchMode="true"
+                        android:padding="0dp"
+                        android:visibility="visible" />
+
+                    <Button
+                        android:id="@+id/not_like_button"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/heart_filled_drawable"
+                        android:focusableInTouchMode="true"
+                        android:padding="0dp"
+                        android:visibility="invisible" />
+                </FrameLayout>
                 <TextView
                     android:id="@+id/like_count"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="좋아요 수" />
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/comment_edit"
+                    android:layout_width="350dp"
+                    android:layout_height="wrap_content"
+                    android:hint="여기에 댓글을 씁니다." />
+
+                <ImageButton
+                    android:id="@+id/comment_send"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:srcCompat="@android:drawable/ic_menu_send" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="여기에 댓글 리스트가 보입니다." />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
