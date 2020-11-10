@@ -27,9 +27,6 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
 
-    Questionnaire1 Q1 = (Questionnaire1)Questionnaire1._Questionnaire1;
-    Questionnaire2 Q2 = (Questionnaire2)Questionnaire2._Questionnaire2;
-
     private DrawerLayout mDrawerLayout;
     private Context context = this;
     private FragmentManager supportFragmentManager;
@@ -46,8 +43,6 @@ public class MainActivity extends AppCompatActivity {
         GlobalApplication globalApplication = (GlobalApplication)getApplication();
         String user_name = globalApplication.getName();
         supportFragmentManager = getSupportFragmentManager();
-        Q1.finish();
-        Q2.finish();
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -55,8 +50,6 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setDisplayShowTitleEnabled(false); // 기존 title 지우기
         actionBar.setDisplayHomeAsUpEnabled(true); // 뒤로가기 버튼 만들기
         actionBar.setHomeAsUpIndicator(R.drawable.hamburger); //뒤로가기 버튼 이미지 지정
-
-
 
         //Sample_poem_Adapter adapter = new Sample_poem_Adapter();
         //NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -80,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
         mAppBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph())
                 .setOpenableLayout(mDrawerLayout)
                 .build();
+        //좋아요 버튼
+
 
         //ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
         //        this,mDrawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);

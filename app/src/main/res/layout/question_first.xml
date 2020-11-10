@@ -16,7 +16,7 @@
         <TextView
             android:id="@+id/first_question_text"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:text="지금 당신의 기분은 어떻습니까?"
             android:fontFamily="@font/sixtwofivesevenzero"
