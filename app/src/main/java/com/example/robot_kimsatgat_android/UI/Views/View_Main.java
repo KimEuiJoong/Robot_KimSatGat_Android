@@ -1,5 +1,6 @@
 package com.example.robot_kimsatgat_android.UI.Views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +15,8 @@ import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvCommentData;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvPoemData;
 import com.example.robot_kimsatgat_android.Server.PoemServer;
 import com.example.robot_kimsatgat_android.UI.Poem_view;
+import com.example.robot_kimsatgat_android.UI.WriteActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -114,13 +117,13 @@ public class View_Main extends Fragment {
         //        Log.e(TAG,e.getMessage());
         //    }
         //});
-        //FloatingActionButton fab = view.findViewById(R.id.poem_write);
-        //fab.setOnClickListener(new View.OnClickListener() {
-        //    @Override
-        //    public void onClick(View view) {
-        //        Intent intent = new Intent(getActivity(), WriteActivity.class);
-        //        startActivity(intent);
-        //    }
-        //});
+        FloatingActionButton fab = view.findViewById(R.id.poem_write);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), WriteActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

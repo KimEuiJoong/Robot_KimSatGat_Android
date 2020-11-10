@@ -32,6 +32,7 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/poem_write"
+        android:backgroundTint="#756A63"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/poem_view"
