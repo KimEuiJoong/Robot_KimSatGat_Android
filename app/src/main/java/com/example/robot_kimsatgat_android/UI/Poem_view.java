@@ -41,7 +41,6 @@ public class Poem_view extends LinearLayout {
     }
 
     private void init(Context context) {
-
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         view = inflater.inflate(R.layout.poem_view,this,true);
         poemServer = PoemServer.getPoemServer();
