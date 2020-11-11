@@ -22,7 +22,7 @@ public class ViewModelMain extends ViewModel {
     /**
      *  서버에서 데이터를 얻기위해 사용해야하는 클래스.
      *  사용법:
-     *      액티비티나 프래그먼트가
+     *      액티비티나 프래그먼트 안에서
      *      ViewModelMain viewModelMain = new ViewModelProvider(this).get(ViewModelMain.class);
      *      으로 뷰모델 인스턴스를 얻어준다.
      *
