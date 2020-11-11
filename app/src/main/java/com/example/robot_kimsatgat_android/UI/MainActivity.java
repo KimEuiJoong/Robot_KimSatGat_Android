@@ -40,10 +40,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
+        // kakao 정보 가져오기.
         GlobalApplication globalApplication = (GlobalApplication)getApplication();
         String user_name = globalApplication.getName();
         supportFragmentManager = getSupportFragmentManager();
 
+        // toolbar
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -60,29 +62,28 @@ public class MainActivity extends AppCompatActivity {
         //        .setOpenableLayout(drawer)
         //        .build();
 
+        // 추천 시 화면 설정, 네비게이션 뷰 설정
         NavHostFragment navHostFragment = (NavHostFragment) supportFragmentManager.findFragmentById(R.id.nav_host_fragment);
         NavController navController = navHostFragment.getNavController();
+
         NavigationView navView = findViewById(R.id.nav_view);
         NavigationUI.setupWithNavController(navView,navController);
 
+        // 네비게이션 뷰의 사용자 이름 설정
         View headerView = navView.getHeaderView(0);
         TextView drawerNameText = (TextView)headerView.findViewById(R.id.drawer_name_textView);
         drawerNameText.setText(user_name);
 
+        // 드로우어 레이아웃 설정. main.xml의 id = drawer_layout
         mDrawerLayout = findViewById(R.id.drawer_layout);
         mAppBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph())
                 .setOpenableLayout(mDrawerLayout)
                 .build();
-        //좋아요 버튼
-
 
         //ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
         //        this,mDrawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         //mDrawerLayout.addDrawerListener(toggle);
         //toggle.syncState();
-
-
-
     }
 
     @Override

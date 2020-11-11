@@ -14,7 +14,6 @@ import com.example.robot_kimsatgat_android.R;
 
 public class Questionnaire2 extends AppCompatActivity {
 
-
     RadioGroup positive_radioGroup;
     RadioGroup middle_radioGroup;
     RadioGroup negative_radioGroup;
@@ -55,6 +54,7 @@ public class Questionnaire2 extends AppCompatActivity {
                 finish();
             }
         });
+
         positive_radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     kakaoLogin();
                 }catch(Exception e){
+                    Toast.makeText(LoginActivity.this,"kakaoLoginError",Toast.LENGTH_SHORT).show();
                     Log.e(TAG,"kakaoLoginError");
                 }
             }
