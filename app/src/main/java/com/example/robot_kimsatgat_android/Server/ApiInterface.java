@@ -59,4 +59,6 @@ public interface ApiInterface {
 
     @GET("/poems/mylikelist")
     Call<ArrayList<RecvPoemBriefData>> getMyLikeList();
+    @GET("/poems/myrecommendlist")
+    Call<ArrayList<RecvPoemBriefData>> getMyRecommendList();
 }

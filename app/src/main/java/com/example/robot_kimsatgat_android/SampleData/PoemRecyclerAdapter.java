@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.robot_kimsatgat_android.R;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvLikeData;
 import com.example.robot_kimsatgat_android.Server.PoemServer;
-import com.example.robot_kimsatgat_android.ViewModels.ViewModel_Main;
+import com.example.robot_kimsatgat_android.ViewModels.ViewModelMain;
 
 import java.util.ArrayList;
 
@@ -23,7 +23,7 @@ import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 
 
-public class Sample_poem_Adapter extends RecyclerView.Adapter<Sample_poem_Adapter.ViewHolder>{
+public class PoemRecyclerAdapter extends RecyclerView.Adapter<PoemRecyclerAdapter.ViewHolder>{
     public ArrayList<Poem> items = new ArrayList<>();
     PoemServer poemServer = PoemServer.getPoemServer();
     @NonNull
@@ -105,7 +105,7 @@ public class Sample_poem_Adapter extends RecyclerView.Adapter<Sample_poem_Adapte
         TextView poem_main_view;
         TextView poem_likenum_view;
         View view;
-        ViewModel_Main viewModelMain;
+        ViewModelMain viewModelMain;
         ImageButton Ibtn_poemlike;
         FragmentActivity owner;
         Function1<Integer,Void> update;
@@ -119,7 +119,7 @@ public class Sample_poem_Adapter extends RecyclerView.Adapter<Sample_poem_Adapte
             poem_main_view = view.findViewById(R.id.poem_main);
             poem_likenum_view = view.findViewById(R.id.like_count);
             Ibtn_poemlike = itemView.findViewById(R.id.likeIButton);
-            viewModelMain = new ViewModelProvider(owner).get(ViewModel_Main.class);
+            viewModelMain = new ViewModelProvider(owner).get(ViewModelMain.class);
         }
 
         public void setItem(Poem item,int position)

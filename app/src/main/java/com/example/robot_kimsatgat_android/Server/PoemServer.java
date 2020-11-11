@@ -113,6 +113,21 @@ public class PoemServer {
             }
         });
     }
+    private SingleLiveEvent<List<RecvPoemBriefData>> myRecommendList = new SingleLiveEvent<>();
+    public SingleLiveEvent<List<RecvPoemBriefData>> getMyRecommendList(){
+        Call<ArrayList<RecvPoemBriefData>> call = api.getMyRecommendList();
+        call.enqueue(new Callback<ArrayList<RecvPoemBriefData>>() {
+            @Override
+            public void onResponse(Call<ArrayList<RecvPoemBriefData>> call, Response<ArrayList<RecvPoemBriefData>> response) {
+                myRecommendList.setValue(response.body());
+            }
+            @Override
+            public void onFailure(Call<ArrayList<RecvPoemBriefData>> call, Throwable t) {
+                Log.e(TAG,"getMyPoemList Failed");
+            }
+        });
+        return myRecommendList;
+    }
 
     private SingleLiveEvent<List<RecvPoemBriefData>> myPoemList = new SingleLiveEvent<>();
     public SingleLiveEvent<List<RecvPoemBriefData>> getMyPoemList(){
@@ -206,6 +221,7 @@ public class PoemServer {
             }
         });
     }
+
     private HashMap<Integer,SingleLiveEvent<RecvLikeData>> likeDatas = new HashMap<>();
     public SingleLiveEvent<RecvLikeData> getLike(int poem_id){
         if(!likeDatas.containsKey(poem_id)){

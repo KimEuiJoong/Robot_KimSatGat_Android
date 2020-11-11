@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true); // 뒤로가기 버튼 만들기
         actionBar.setHomeAsUpIndicator(R.drawable.hamburger); //뒤로가기 버튼 이미지 지정
 
-        //Sample_poem_Adapter adapter = new Sample_poem_Adapter();
+        //PoemRecyclerAdapter adapter = new PoemRecyclerAdapter();
         //NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
 
