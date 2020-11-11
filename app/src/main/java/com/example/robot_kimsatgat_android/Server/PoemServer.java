@@ -93,6 +93,25 @@ public class PoemServer {
             }
         });
     }
+
+    private HashMap<Integer,SingleLiveEvent<RecvPoemData>> poemDatas = new HashMap<>();
+    public SingleLiveEvent<RecvPoemData> getPoem(int poem_id){
+        if(!poemDatas.containsKey(poem_id)){
+            poemDatas.put(poem_id,new SingleLiveEvent<>());
+        }
+        Call<RecvPoemData> call = api.getPoem(poem_id);
+        call.enqueue(new Callback<RecvPoemData>(){
+            @Override
+            public void onResponse(Call<RecvPoemData> call, Response<RecvPoemData> response){
+                poemDatas.get(poem_id).setValue(response.body());
+            }
+            @Override
+            public void onFailure(Call<RecvPoemData> call, Throwable t){
+                Log.e(TAG,"getPoemFailed");
+            }
+        });
+        return poemDatas.get(poem_id);
+    }
     public void updatePoem(int poem_id){
 
     }
@@ -307,5 +326,4 @@ public class PoemServer {
             }
         });
     }
-
 }
