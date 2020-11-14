@@ -8,8 +8,9 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/poem_cardview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:cardBackgroundColor="#F7DFCF"
         app:cardCornerRadius="10dp"
         app:cardElevation="5dp"
@@ -18,7 +19,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
@@ -42,57 +43,53 @@
                 android:textSize="15dp"
                 android:text="시 작가" />
 
-            <TextView
-                android:id="@+id/poem_main"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nexonlv1gothicregular"
-                android:gravity="center"
-                android:text="시 내용"
-                android:textSize="18dp" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="15dp" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/poem_main"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nexonlv1gothicregular"
+                        android:gravity="center"
+                        android:text="시 내용"
+                        android:textSize="18dp" />
+                </LinearLayout>
+            </ScrollView>
+
+            <LinearLayout
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_marginBottom="10dp">
 
                 <ImageButton
                     android:id="@+id/likeIButton"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:adjustViewBounds="true"
                     android:background="@android:color/transparent"
-                    android:maxWidth="24dp"
-                    android:maxHeight="24dp"
-                    android:padding="0dp"
+                    android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/heart" />
 
                 <TextView
                     android:id="@+id/like_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="좋아요 수"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.988"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.6" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="13dp" />
+                    android:layout_marginLeft="7dp"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/nexonlv1gothicregular"
+                    android:text="좋아요 수" />
+            </LinearLayout>
 
         </LinearLayout>
 

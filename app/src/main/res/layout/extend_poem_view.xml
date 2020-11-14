@@ -40,56 +40,53 @@
                 android:textSize="15dp"
                 android:text="시 작가" />
 
-            <TextView
-                android:id="@+id/poem_main"
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:fontFamily="@font/nexonlv1gothicregular"
-                android:textSize="18dp"
-                android:text="시 내용" />
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/poem_main"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nexonlv1gothicregular"
+                        android:gravity="center"
+                        android:text="시 내용"
+                        android:textSize="18dp" />
+                </LinearLayout>
+            </ScrollView>
 
             <LinearLayout
-                android:id="@+id/like_layout"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center"
-                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp">
 
-                <FrameLayout
-                    android:id="@+id/like_button_frame"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:layout_gravity="center">
+                <ImageButton
+                    android:id="@+id/likeIButton"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/heart" />
 
-                    <Button
-                        android:id="@+id/like_button"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/heart_drawable"
-                        android:focusableInTouchMode="true"
-                        android:padding="0dp"
-                        android:visibility="visible" />
-
-                    <Button
-                        android:id="@+id/not_like_button"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/heart_filled_drawable"
-                        android:focusableInTouchMode="true"
-                        android:padding="0dp"
-                        android:visibility="invisible" />
-                </FrameLayout>
                 <TextView
                     android:id="@+id/like_count"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:layout_gravity="center"
                     android:text="좋아요 수" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
