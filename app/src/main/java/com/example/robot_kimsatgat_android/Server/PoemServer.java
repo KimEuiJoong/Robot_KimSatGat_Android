@@ -21,11 +21,14 @@ import kotlin.jvm.functions.Function1;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.http.Path;
 
 public class PoemServer {
     private static final String TAG = "PoemServer";
     ApiInterface api;
     private static PoemServer poemServer;
+    
+    //
     private PoemServer(){
         api = HttpClient.getRetrofit().create(ApiInterface.class);
     }
@@ -39,6 +42,7 @@ public class PoemServer {
         HttpClient.setToken(token);
     }
 
+    // 로그인
     public void Login(String idToken,String name){
         ReqLoginData reqLoginData = new ReqLoginData(idToken,name);
         Call<RecvLoginData> call = api.verifyLoginToken(reqLoginData);
@@ -56,6 +60,7 @@ public class PoemServer {
         });
     }
 
+    // 시 등록
     public void postPoem(String title,String content){
         postPoem(title, content, new Function0<Void>() {
             @Override
@@ -79,6 +84,8 @@ public class PoemServer {
             }
         });
     }
+
+    // 시 가져오기
     public void getPoem(int poem_id, Function1<RecvPoemData,Void> func){
         Call<RecvPoemData> call = api.getPoem(poem_id);
         call.enqueue(new Callback<RecvPoemData>(){
@@ -93,7 +100,6 @@ public class PoemServer {
             }
         });
     }
-
     private HashMap<Integer,SingleLiveEvent<RecvPoemData>> poemDatas = new HashMap<>();
     public SingleLiveEvent<RecvPoemData> getPoem(int poem_id){
         if(!poemDatas.containsKey(poem_id)){
@@ -112,12 +118,15 @@ public class PoemServer {
         });
         return poemDatas.get(poem_id);
     }
+    // 시 수정
     public void updatePoem(int poem_id){
 
     }
+    // 시 삭제
     public void deletePoem(int poem_id){
 
     }
+    // 추천 시 가져오기
     public void recommendPoem(Function1<RecvPoemData,Void> func){
         Call<RecvPoemData> call = api.recommendPoem();
         call.enqueue(new Callback<RecvPoemData>(){
@@ -148,6 +157,7 @@ public class PoemServer {
         return myRecommendList;
     }
 
+    // 내가 쓴 시 가져오기
     private SingleLiveEvent<List<RecvPoemBriefData>> myPoemList = new SingleLiveEvent<>();
     public SingleLiveEvent<List<RecvPoemBriefData>> getMyPoemList(){
         Call<ArrayList<RecvPoemBriefData>> call = api.getMyPoemList();
@@ -178,6 +188,7 @@ public class PoemServer {
     }
 
 
+    // 댓글 달기
     public void postComment(int poem_id, String content){
         postComment(poem_id, content, new Function0<Void>() {
             @Override
@@ -201,6 +212,25 @@ public class PoemServer {
             }
         });
     }
+
+    // 댓글 가져오기
+    private SingleLiveEvent<ArrayList<RecvCommentData>> myComments = new SingleLiveEvent<ArrayList<RecvCommentData>>();
+    public SingleLiveEvent<ArrayList<RecvCommentData>> getComments(int poem_id){
+        Call<ArrayList<RecvCommentData>> call = api.getComments(poem_id);
+        call.enqueue(new Callback<ArrayList<RecvCommentData>>() {
+            @Override
+            public void onResponse(Call<ArrayList<RecvCommentData>> call, Response<ArrayList<RecvCommentData>> response) {
+                myComments.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<RecvCommentData>> call, Throwable t) {
+                Log.e(TAG,"getComments Failed");
+            }
+
+        });
+        return myComments;
+    }
     public void getComments(int poem_id,Function1<List<RecvCommentData>,Void> func){
         Call<ArrayList<RecvCommentData>> call = api.getComments(poem_id);
         call.enqueue(new Callback<ArrayList<RecvCommentData>>() {
@@ -215,10 +245,32 @@ public class PoemServer {
             }
         });
     }
+
+    // 좋아요 가져오기
+    private HashMap<Integer,SingleLiveEvent<RecvLikeData>> likeDatas = new HashMap<>();
+    public SingleLiveEvent<RecvLikeData> getLike(int poem_id){
+        if(!likeDatas.containsKey(poem_id)){
+            likeDatas.put(poem_id,new SingleLiveEvent<>());
+        }
+        Call<RecvLikeData> call = api.getLike(poem_id);
+        call.enqueue(new Callback<RecvLikeData>() {
+            @Override
+            public void onResponse(Call<RecvLikeData> call, Response<RecvLikeData> response) {
+                likeDatas.get(poem_id).setValue(response.body());
+                Log.i(TAG, "got likenum, Auth:"+HttpClient.token);
+            }
+            @Override
+            public void onFailure(Call<RecvLikeData> call, Throwable t) {
+                Log.e(TAG, "getting likenum failed");
+            }
+        });
+        return likeDatas.get(poem_id);
+    }
     public void updateComment(int poem_id, int comment_id, String content){}
     public void deleteComment(int poem_id, int comment_id){}
 
-    public void postLike(int poem_id){
+    // 좋아요 누르기기
+   public void postLike(int poem_id){
         postLike(poem_id, new Function0<Void>() {
             @Override
             public Void invoke() {
@@ -241,25 +293,6 @@ public class PoemServer {
         });
     }
 
-    private HashMap<Integer,SingleLiveEvent<RecvLikeData>> likeDatas = new HashMap<>();
-    public SingleLiveEvent<RecvLikeData> getLike(int poem_id){
-        if(!likeDatas.containsKey(poem_id)){
-            likeDatas.put(poem_id,new SingleLiveEvent<>());
-        }
-        Call<RecvLikeData> call = api.getLike(poem_id);
-        call.enqueue(new Callback<RecvLikeData>() {
-            @Override
-            public void onResponse(Call<RecvLikeData> call, Response<RecvLikeData> response) {
-                likeDatas.get(poem_id).setValue(response.body());
-                Log.i(TAG, "got likenum, Auth:"+HttpClient.token);
-            }
-            @Override
-            public void onFailure(Call<RecvLikeData> call, Throwable t) {
-                Log.e(TAG, "getting likenum failed");
-            }
-        });
-        return likeDatas.get(poem_id);
-    }
     public void getLike(int poem_id,Function1<RecvLikeData,Void> func){
         Call<RecvLikeData> call = api.getLike(poem_id);
         call.enqueue(new Callback<RecvLikeData>() {
