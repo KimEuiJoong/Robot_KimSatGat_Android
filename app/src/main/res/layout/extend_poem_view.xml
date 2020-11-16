@@ -57,59 +57,57 @@
                         android:gravity="center"
                         android:text="시 내용"
                         android:textSize="18dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="10dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:id="@+id/likeIButton"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:adjustViewBounds="true"
+                            android:background="@android:color/transparent"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/heart" />
+
+                        <TextView
+                            android:id="@+id/like_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="7dp"
+                            android:text="좋아요 수" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/comment_edit"
+                            android:layout_width="350dp"
+                            android:layout_height="wrap_content"
+                            android:hint="여기에 댓글을 씁니다." />
+
+                        <ImageButton
+                            android:id="@+id/comment_send"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:srcCompat="@android:drawable/ic_menu_send" />
+                    </LinearLayout>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/comment_recyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
             </ScrollView>
-
-            <LinearLayout
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:layout_marginBottom="10dp">
-
-                <ImageButton
-                    android:id="@+id/likeIButton"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="center"
-                    android:background="@android:color/transparent"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/heart" />
-
-                <TextView
-                    android:id="@+id/like_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="7dp"
-                    android:layout_gravity="center"
-                    android:text="좋아요 수" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/comment_edit"
-                    android:layout_width="350dp"
-                    android:layout_height="wrap_content"
-                    android:hint="여기에 댓글을 씁니다." />
-
-                <ImageButton
-                    android:id="@+id/comment_send"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:srcCompat="@android:drawable/ic_menu_send" />
-            </LinearLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/comment_recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
