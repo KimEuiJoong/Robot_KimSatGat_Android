@@ -32,6 +32,7 @@ public class extend_Poem extends AppCompatActivity {
         commentArray[1] = "테스트 2";
         commentArray[2] = "테스트 3";
 
+
         comment1.setComment(commentArray[0]);
         comment2.setComment(commentArray[1]);
         comment3.setComment(commentArray[2]);
