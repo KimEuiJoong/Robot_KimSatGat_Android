@@ -8,6 +8,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
@@ -87,6 +88,15 @@ public class PoemRecyclerAdapter extends RecyclerView.Adapter<PoemRecyclerAdapte
                 Log.i("poemAdapter","clicked");
             }
         });
+
+        //view 눌렀을 때 큰 뷰 띄우기
+        holder.poem_cardview.setOnClickListener(new View.OnClickListener() {
+            Poem item = holder.poem;
+            @Override
+            public void onClick(View view) {
+                intent
+            }
+        });
     }
 
     @Override
@@ -104,6 +114,7 @@ public class PoemRecyclerAdapter extends RecyclerView.Adapter<PoemRecyclerAdapte
         TextView poem_writer_view;
         TextView poem_main_view;
         TextView poem_likenum_view;
+        CardView poem_cardview;
         View view;
         ViewModelMain viewModelMain;
         ImageButton Ibtn_poemlike;
@@ -114,6 +125,7 @@ public class PoemRecyclerAdapter extends RecyclerView.Adapter<PoemRecyclerAdapte
             super (itemView);
             view = itemView;
             owner = (FragmentActivity) view.getContext();
+            poem_cardview = view.findViewById(R.id.poem_cardview);
             poem_title_view = view.findViewById(R.id.poem_title);
             poem_writer_view = view.findViewById(R.id.poem_writer);
             poem_main_view = view.findViewById(R.id.poem_main);
