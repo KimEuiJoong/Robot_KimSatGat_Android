@@ -94,7 +94,6 @@ public class PoemRecyclerAdapter extends RecyclerView.Adapter<PoemRecyclerAdapte
             Poem item = holder.poem;
             @Override
             public void onClick(View view) {
-                intent
             }
         });
     }

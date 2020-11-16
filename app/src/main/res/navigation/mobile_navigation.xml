@@ -24,13 +24,25 @@
     <fragment
         android:id="@+id/nav_likelist"
         android:name="com.example.robot_kimsatgat_android.UI.Views.View_LikeList"
-        android:label="View_LikeList" />
+        android:label="View_LikeList" >
+        <action
+            android:id="@+id/action_nav_likelist_to_view_Main"
+            app:destination="@id/view_Main" />
+    </fragment>
     <fragment
         android:id="@+id/nav_mypoem"
         android:name="com.example.robot_kimsatgat_android.UI.Views.View_MyPoem"
-        android:label="View_MyPoem" />
+        android:label="View_MyPoem" >
+        <action
+            android:id="@+id/action_nav_mypoem_to_view_Main"
+            app:destination="@id/view_Main" />
+    </fragment>
     <fragment
         android:id="@+id/nav_suggestionlist"
         android:name="com.example.robot_kimsatgat_android.UI.Views.View_Suggested_Poem"
-        android:label="View_Suggested_Poem" />
+        android:label="View_Suggested_Poem" >
+        <action
+            android:id="@+id/action_nav_suggestionlist_to_view_Main"
+            app:destination="@id/view_Main" />
+    </fragment>
 </navigation>
