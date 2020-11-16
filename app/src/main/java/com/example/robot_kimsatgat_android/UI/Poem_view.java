@@ -21,7 +21,6 @@ public class Poem_view extends LinearLayout {
     public ImageButton Ibtn_poemlike;
     View view;
 
-
     public Poem_view(Context context) {
         super(context);
         init(context);
