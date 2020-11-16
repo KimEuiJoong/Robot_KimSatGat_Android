@@ -60,36 +60,37 @@
                         android:gravity="center"
                         android:text="시 내용"
                         android:textSize="18dp" />
+
+                    <LinearLayout
+                        android:layout_marginTop="15dp"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_marginBottom="10dp">
+
+                        <ImageButton
+                            android:id="@+id/likeIButton"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:background="@android:color/transparent"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/heart" />
+
+                        <TextView
+                            android:id="@+id/like_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="7dp"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/nexonlv1gothicregular"
+                            android:text="좋아요 수" />
+                    </LinearLayout>
+
                 </LinearLayout>
             </ScrollView>
-
-            <LinearLayout
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:layout_marginBottom="10dp">
-
-                <ImageButton
-                    android:id="@+id/likeIButton"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="center"
-                    android:background="@android:color/transparent"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/heart" />
-
-                <TextView
-                    android:id="@+id/like_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="7dp"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/nexonlv1gothicregular"
-                    android:text="좋아요 수" />
-            </LinearLayout>
 
         </LinearLayout>
 

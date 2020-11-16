@@ -5,9 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background_drawable"
-    >
-
-
+    android:id="@+id/layout_fragment_view_main">
 
     <LinearLayout
         android:id="@+id/poem_view"
@@ -34,16 +32,15 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/poem_write"
-        android:backgroundTint="#756A63"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/poem_view"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="26dp"
-        android:layout_marginRight="26dp"
-        android:layout_marginBottom="@dimen/fab_margin"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="13dp"
+        android:layout_marginRight="13dp"
+        android:layout_marginBottom="11dp"
+        android:backgroundTint="#756A63"
         android:contentDescription="TODO"
         app:srcCompat="@android:drawable/ic_menu_edit" />
 
