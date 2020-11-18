@@ -30,17 +30,25 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+
                 try {
                     kakaoLogin();
                 }catch(Exception e){
                     Toast.makeText(LoginActivity.this,"kakaoLoginError",Toast.LENGTH_SHORT).show();
                     Log.e(TAG,"kakaoLoginError");
                 }
+
             }
         });
     }
 
     private void kakaoLogin(){
+
+        Intent intent = new Intent(this, Questionnaire1.class);
+        startActivity(intent);
+        finish();
+
+        // 잠시
         GlobalApplication globalApplication = (GlobalApplication)getApplication();
         globalApplication.kakaoLogin(this, new Function0<Void>() {
             @Override
