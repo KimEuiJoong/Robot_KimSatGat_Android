@@ -1,6 +1,5 @@
 package com.example.robot_kimsatgat_android.UI;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,13 +13,14 @@ import com.example.robot_kimsatgat_android.R;
 
 public class Questionnaire1 extends AppCompatActivity {
 
-    int feelingcheck = 0;
+    int feelingcheck = -1;
     RadioGroup first_radioGroup;
     Button next_to_second_question_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.question_first);
 
         first_radioGroup = (RadioGroup) findViewById(R.id.RadioGroup_feeling);
@@ -30,10 +30,14 @@ public class Questionnaire1 extends AppCompatActivity {
         next_to_second_question_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Questionnaire1.this, Questionnaire2.class);
-                intent.putExtra("feelingcheck",feelingcheck);
-                startActivity(intent);
-                finish();
+                if (feelingcheck != -1){
+                    Intent intent = new Intent(Questionnaire1.this, Questionnaire2.class);
+                    intent.putExtra("feelingcheck",feelingcheck);
+                    startActivity(intent);
+                    finish();
+                }else{
+                    Toast.makeText(Questionnaire1.this,"적어도 하나는 선택해주세요",Toast.LENGTH_SHORT).show();
+                }
             }
         });
         first_radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

@@ -91,6 +91,7 @@ public class View_Main extends Fragment {
                             if(!item.like){
                                 item.like = true;
                                 Ibtn_poemlike.setImageResource(R.drawable.heart_filled_drawable);
+                                poemServer.postLikeFeedback();
                                 poemServer.postLike(item.id, new Function0<Void>() {
                                     @Override
                                     public Void invoke() {
@@ -108,6 +109,7 @@ public class View_Main extends Fragment {
                             }else{
                                 item.like = false;
                                 Ibtn_poemlike.setImageResource(R.drawable.heart_drawable);
+                                poemServer.deleteLikeFeedback();
                                 poemServer.deleteLike(item.id, new Function0<Void>() {
                                     @Override
                                     public Void invoke() {

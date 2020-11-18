@@ -10,6 +10,7 @@ import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvPoemData;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.ReqCommentData;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.ReqLoginData;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.ReqPoemData;
+import com.example.robot_kimsatgat_android.Server.ParamClasses.ReqSurveyData;
 import com.example.robot_kimsatgat_android.ViewModels.SingleLiveEvent;
 
 import java.util.ArrayList;
@@ -21,7 +22,6 @@ import kotlin.jvm.functions.Function1;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.Path;
 
 public class PoemServer {
     private static final String TAG = "PoemServer";
@@ -188,6 +188,65 @@ public class PoemServer {
     }
 
 
+    public void postSurvey(String feeling,Function0<Void> func){
+        ReqSurveyData reqSurveyData = new ReqSurveyData(feeling);
+        Call<Void> call = api.postSurvey(reqSurveyData);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                Log.i(TAG, "posted survey, Auth:"+HttpClient.token);
+                func.invoke();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.i(TAG, "posting survey failed, Auth:"+HttpClient.token);
+            }
+        });
+    }
+    public void postLikeFeedback(){
+        postLikeFeedback(new Function0<Void>() {
+            @Override
+            public Void invoke() {
+                return null;
+            }
+        });
+    }
+    public void postLikeFeedback(Function0<Void> func){
+        Call<Void> call = api.postLikeFeedback();
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                func.invoke();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
+    }
+    public void deleteLikeFeedback(){
+        deleteLikeFeedback(new Function0<Void>() {
+            @Override
+            public Void invoke() {
+                return null;
+            }
+        });
+    }
+    public void deleteLikeFeedback(Function0<Void> func){
+        Call<Void> call = api.deleteLikeFeedback();
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                func.invoke();
+            }
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
+    }
     // 댓글 달기
     public void postComment(int poem_id, String content){
         postComment(poem_id, content, new Function0<Void>() {

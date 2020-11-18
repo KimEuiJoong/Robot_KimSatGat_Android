@@ -8,6 +8,7 @@ import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvPoemData;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.ReqCommentData;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.ReqLoginData;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.ReqPoemData;
+import com.example.robot_kimsatgat_android.Server.ParamClasses.ReqSurveyData;
 
 import java.util.ArrayList;
 
@@ -59,7 +60,16 @@ public interface ApiInterface {
 
     @GET("/poems/mylikelist")
     Call<ArrayList<RecvPoemBriefData>> getMyLikeList();
+
     @GET("/poems/myrecommendlist")
     Call<ArrayList<RecvPoemBriefData>> getMyRecommendList();
 
+    @POST("/poems/survey")
+    Call<Void> postSurvey(@Body ReqSurveyData reqSurveyData);
+
+    @POST("/poems/likefeedback")
+    Call<Void> postLikeFeedback();
+
+    @DELETE("/poems/likefeedback")
+    Call<Void> deleteLikeFeedback();
 }

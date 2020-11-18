@@ -19,6 +19,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "RobotSatgat_Login";
 
+    //TODO : 하루에 설문조사 한번씩만 받기.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
