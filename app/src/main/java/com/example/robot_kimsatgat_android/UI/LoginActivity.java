@@ -1,5 +1,6 @@
 package com.example.robot_kimsatgat_android.UI;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,11 +12,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.robot_kimsatgat_android.GlobalApplication;
 import com.example.robot_kimsatgat_android.R;
+import com.example.robot_kimsatgat_android.SampleData.SharedPreferencesUtil;
 import com.example.robot_kimsatgat_android.Server.PoemServer;
 
 import kotlin.jvm.functions.Function0;
 
 public class LoginActivity extends AppCompatActivity {
+
+    Context mContext;
+    String key;
+    Boolean check;
 
     private static final String TAG = "RobotSatgat_Login";
 
@@ -23,6 +29,25 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+        /* 질문 했는지 안했는지 체크 */
+        mContext = getApplicationContext();
+        SharedPreferencesUtil pref = new SharedPreferencesUtil(mContext);
+        key = pref.setKey();
+        check = pref.getSharedBoolean(key);
+        //아래 있는 코드 처럼 트루면 메인으로 가고 아니면 질문으로 가게...
+
+        /*
+        if (check == true) {
+            Intent intent = new Intent (LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (check == false) {
+            Intent intent = new Intent(LoginActivity.this, Questionnaire1.class);
+            startActivity(intent);
+            finish();
+        }
+         */
+
         ImageButton loginButton = (ImageButton) findViewById(R.id.LoginButton);
         /* 스플래시 화면 후 자동 로그인*/
         kakaoLogin();

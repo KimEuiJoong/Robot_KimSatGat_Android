@@ -1,6 +1,6 @@
 package com.example.robot_kimsatgat_android.UI;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,17 +11,25 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.robot_kimsatgat_android.R;
+import com.example.robot_kimsatgat_android.SampleData.SharedPreferencesUtil;
 
 public class Questionnaire2 extends AppCompatActivity {
 
+    Context mContext;
     RadioGroup positive_radioGroup;
     RadioGroup middle_radioGroup;
     RadioGroup negative_radioGroup;
     Button submit_button;
+    String key;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question_second);
+
+        mContext = getApplicationContext();
+        SharedPreferencesUtil pref = new SharedPreferencesUtil(mContext);
+        key = pref.setKey();
 
         Intent intent = getIntent();
         int getfeel = intent.getExtras().getInt("feelingcheck");
@@ -49,6 +57,9 @@ public class Questionnaire2 extends AppCompatActivity {
         submit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //질문 했는지 체크하는 변수 true로 교체
+                pref.setSharedBoolean(key);
+
                 Intent intent = new Intent(Questionnaire2.this, MainActivity.class);
                 startActivity(intent);
                 finish();
