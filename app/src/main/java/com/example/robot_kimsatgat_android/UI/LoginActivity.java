@@ -48,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         }
          */
 
+
         ImageButton loginButton = (ImageButton) findViewById(R.id.LoginButton);
         /* 스플래시 화면 후 자동 로그인*/
         kakaoLogin();
