@@ -35,5 +35,12 @@ public class extendPoem_view extends Poem_view {
         poem_main_view = findViewById(R.id.poem_main);
         poem_likenum_view = findViewById(R.id.like_count);
         Ibtn_poemlike = findViewById(R.id.likeIButton);
+        comment_edit =findViewById(R.id.comment_edit);
+        comment_send =findViewById(R.id.comment_send);
+        comment_view =findViewById(R.id.comment_recyclerView);
     }
+
+//    public void getComment(String comment){}
+//    public void postComment(String comment){}
+
 }

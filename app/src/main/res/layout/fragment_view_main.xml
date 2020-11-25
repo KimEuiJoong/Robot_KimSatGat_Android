@@ -24,7 +24,7 @@
             android:textSize="32sp"
             android:textStyle="bold" />
 
-        <com.example.robot_kimsatgat_android.UI.Poem_view
+        <com.example.robot_kimsatgat_android.UI.extendPoem_view
             android:id="@+id/main_poem"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
