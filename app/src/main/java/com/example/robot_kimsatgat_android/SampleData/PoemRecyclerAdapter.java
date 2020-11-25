@@ -1,5 +1,7 @@
 package com.example.robot_kimsatgat_android.SampleData;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.robot_kimsatgat_android.R;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvLikeData;
 import com.example.robot_kimsatgat_android.Server.PoemServer;
+import com.example.robot_kimsatgat_android.UI.extend_Poem;
 import com.example.robot_kimsatgat_android.ViewModels.ViewModelMain;
 
 import java.util.ArrayList;
@@ -24,9 +27,12 @@ import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 
 
+
 public class PoemRecyclerAdapter extends RecyclerView.Adapter<PoemRecyclerAdapter.ViewHolder>{
     public ArrayList<Poem> items = new ArrayList<>();
     PoemServer poemServer = PoemServer.getPoemServer();
+    Context mContext;
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -94,6 +100,8 @@ public class PoemRecyclerAdapter extends RecyclerView.Adapter<PoemRecyclerAdapte
             Poem item = holder.poem;
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(mContext.getApplicationContext(), extend_Poem.class);
+                mContext.startActivity(intent);
             }
         });
     }

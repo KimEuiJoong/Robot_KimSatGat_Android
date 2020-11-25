@@ -40,6 +40,7 @@
         <activity android:name=".UI.Questionnaire1" />
         <activity android:name=".UI.Questionnaire2" />
         <activity android:name=".UI.WriteActivity"/>
+        <activity android:name=".UI.extend_Poem" />
 
 
 

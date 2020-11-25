@@ -30,8 +30,8 @@
 
     <ImageButton
         android:id="@+id/LoginButton"
-        android:layout_width="192dp"
-        android:layout_height="54dp"
+        android:layout_width="183dp"
+        android:layout_height="45dp"
         android:layout_gravity="center"
         android:background="@android:color/transparent"
         app:srcCompat="@drawable/kakao_login_medium_narrow" />
