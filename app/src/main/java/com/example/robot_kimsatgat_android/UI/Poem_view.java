@@ -16,14 +16,12 @@ import com.example.robot_kimsatgat_android.R;
 
 public class Poem_view extends LinearLayout {
 
-
     TextView poem_title_view;
     TextView poem_writer_view;
     TextView poem_main_view;
     TextView poem_likenum_view;
     View view;
     public ImageButton Ibtn_poemlike;
-
     public EditText comment_edit;
     public ImageButton Ibtn_commentsend;
     View comment_view;

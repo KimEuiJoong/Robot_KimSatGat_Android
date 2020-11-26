@@ -43,7 +43,6 @@ public class View_Main extends Fragment {
     List<RecvCommentData> commentList;
     Poem_view main_poem;
     ImageButton Ibtn_poemlike;
-    EditText Edit_comment;
     ImageButton Ibtn_commentsend;
     PoemServer poemServer;
 
@@ -67,7 +66,6 @@ public class View_Main extends Fragment {
         main_poem = view.findViewById(R.id.main_poem);
         Ibtn_poemlike = main_poem.Ibtn_poemlike;
         Ibtn_commentsend = main_poem.Ibtn_commentsend;
-        Edit_comment = main_poem.comment_edit;
 
         // poem
         poemServer = PoemServer.getPoemServer();
@@ -148,15 +146,18 @@ public class View_Main extends Fragment {
             }
         });
 
+        // comment
         Ibtn_commentsend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                poemServer.postComment(poem_id, Edit_comment.toString(), new Function0<Void>() {
+                poemServer.postComment(poem_id, main_poem.comment_edit.toString(), new Function0<Void>() {
                     @Override
                     public Void invoke() {
+                        Toast.makeText(getActivity(),main_poem.comment_edit.toString(), Toast.LENGTH_SHORT).show();
                         return null;
                     }
                 });
+                main_poem.comment_edit.setText("");
             }
         });
 
