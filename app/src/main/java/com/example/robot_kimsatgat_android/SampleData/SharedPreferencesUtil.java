@@ -29,11 +29,24 @@ public class SharedPreferencesUtil {
         editor.putBoolean(key,true);
         editor.commit();
     }
+    public void setSharedString(String key, String value){
+        pref = mContext.getSharedPreferences(Question_Check, Activity.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString(key,value);
+        editor.commit();
+    }
+    public String getSharedString(String key){
+        pref = mContext.getSharedPreferences(Question_Check, Activity.MODE_PRIVATE);
+        return pref.getString(key,null);
+    }
+    public boolean contains(String key){
+        pref = mContext.getSharedPreferences(Question_Check, Activity.MODE_PRIVATE);
+        return pref.contains(key);
+    }
 
     public String setKey () {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         String key = format.format(new Date());
-
         return key;
     }
 

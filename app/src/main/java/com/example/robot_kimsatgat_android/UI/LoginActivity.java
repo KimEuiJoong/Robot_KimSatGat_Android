@@ -30,26 +30,34 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+
         /* 질문 했는지 안했는지 체크 */
         mContext = getApplicationContext();
         SharedPreferencesUtil pref = new SharedPreferencesUtil(mContext);
-        key = pref.setKey();
-        check = pref.getSharedBoolean(key);
-        //아래 있는 코드 처럼 트루면 메인으로 가고 아니면 질문으로 가게...
 
+        String todayDate;
+        String latestDate;
+
+        todayDate = pref.setKey();
         /*
-        if (check == true) {
-            Intent intent = new Intent (LoginActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        } else if (check == false) {
-            Intent intent = new Intent(LoginActivity.this, Questionnaire1.class);
-            startActivity(intent);
-            finish();
-        }
+        check 가 true 일때 : 오늘은 설문조사를 했다
+        check 가 false 일때 : 오늘은 설문조사를 안했다
          */
-
-
+        if(!pref.contains("checked")){
+            Log.i(TAG,"no checked");
+            pref.setSharedString("checked",todayDate);
+            check = false;
+        }else{
+            latestDate = pref.getSharedString("checked");
+            Log.i(TAG, "latest:"+latestDate);
+            Log.i(TAG, "today:"+todayDate);
+            if(latestDate.equals(todayDate)){
+                check = true;
+            }else{
+                pref.setSharedString("checked",todayDate);
+                check = false;
+            }
+        }
         ImageButton loginButton = (ImageButton) findViewById(R.id.LoginButton);
         /* 스플래시 화면 후 자동 로그인*/
         kakaoLogin();
@@ -57,7 +65,6 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-
                 try {
                     kakaoLogin();
                 }catch(Exception e){
@@ -71,27 +78,44 @@ public class LoginActivity extends AppCompatActivity {
 
     private void kakaoLogin(){
 
-        Intent intent = new Intent(this, Questionnaire1.class);
-        startActivity(intent);
-        finish();
-
-        // 잠시
         GlobalApplication globalApplication = (GlobalApplication)getApplication();
         globalApplication.kakaoLogin(this, new Function0<Void>() {
             @Override
             public Void invoke() {
                 Log.i(TAG,globalApplication.getAccessToken());
                 PoemServer poemServer = PoemServer.getPoemServer();
-                poemServer.Login(globalApplication.getAccessToken(),globalApplication.getName());
-                loginFinished();
+                poemServer.Login(globalApplication.getAccessToken(), globalApplication.getName(), new Function0<Void>() {
+                    @Override
+                    public Void invoke() {
+                        loginFinished();
+                        return null;
+                    }
+                });
                 return null;
             }
         });
     }
 
-    private void loginFinished() { //update ui code here
-        Intent intent = new Intent(this, Questionnaire1.class);
-        startActivity(intent);
-        finish();
+    private void loginFinished() {
+        //update ui code here
+        //login 과정이 끝나고 난 후 어느 activity로 이동할 것인지 여기에 logic 작성을 해주면 됨.
+        //check : 오늘의 설문조사를 했는가?
+        try{
+            Log.i(TAG,check.toString());
+            if (check == true) {
+                Intent intent = new Intent (LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            } else if (check == false) {
+                Intent intent = new Intent(LoginActivity.this, Questionnaire1.class);
+                startActivity(intent);
+                finish();
+            }
+        }catch(Exception e){
+            Log.e(TAG,e.getMessage());
+        }
+        //Intent intent = new Intent(this, Questionnaire1.class);
+        //startActivity(intent);
+        //finish();
     }
 }

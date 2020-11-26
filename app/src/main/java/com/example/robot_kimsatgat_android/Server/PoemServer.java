@@ -59,6 +59,24 @@ public class PoemServer {
             }
         });
     }
+    // 로그인
+    public void Login(String idToken,String name,Function0<Void> func){
+        ReqLoginData reqLoginData = new ReqLoginData(idToken,name);
+        Call<RecvLoginData> call = api.verifyLoginToken(reqLoginData);
+        call.enqueue(new Callback<RecvLoginData>(){
+            @Override
+            public void onResponse(Call<RecvLoginData> call, Response<RecvLoginData> response){
+                Log.i(TAG, "LoginRes: "+response.body().toString());
+                String token = response.body().toString();
+                setToken("Token "+token);
+                func.invoke();
+            }
+            @Override
+            public void onFailure(Call<RecvLoginData> call, Throwable t){
+                Log.e(TAG,"onFailure");
+            }
+        });
+    }
 
     // 시 등록
     public void postPoem(String title,String content){
@@ -132,7 +150,7 @@ public class PoemServer {
         call.enqueue(new Callback<RecvPoemData>(){
             @Override
             public void onResponse(Call<RecvPoemData> call, Response<RecvPoemData> response){
-                Log.i(TAG, response.body().toString());
+                //Log.i(TAG, response.body().toString());
                 func.invoke(response.body());
             }
             @Override
