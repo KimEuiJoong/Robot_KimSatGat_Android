@@ -19,6 +19,7 @@ public class Poem_view extends LinearLayout {
     TextView poem_main_view;
     TextView poem_likenum_view;
     public ImageButton Ibtn_poemlike;
+    public ImageButton Ibtn_commentsend;
     View view;
 
     public Poem_view(Context context) {
@@ -43,4 +44,7 @@ public class Poem_view extends LinearLayout {
     public void setPoem_writer(String writer) {poem_writer_view.setText(writer);}
     public void setPoem_main_view(String main) {poem_main_view.setText(main);}
     public void setPoem_likenum(String likenum){poem_likenum_view.setText(likenum);}
+
+    public void getComment_text() {
+    }
 }

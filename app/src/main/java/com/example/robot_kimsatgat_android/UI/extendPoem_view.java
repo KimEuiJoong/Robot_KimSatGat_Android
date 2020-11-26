@@ -14,9 +14,7 @@ import com.example.robot_kimsatgat_android.R;
 
 public class extendPoem_view extends Poem_view {
     EditText comment_edit;
-    ImageButton comment_send;
     RecyclerView comment_view;
-    View view;
 
     public extendPoem_view(Context context) {
         super(context);
@@ -33,14 +31,16 @@ public class extendPoem_view extends Poem_view {
         poem_title_view = findViewById(R.id.poem_title);
         poem_writer_view = findViewById(R.id.poem_writer);
         poem_main_view = findViewById(R.id.poem_main);
+
         poem_likenum_view = findViewById(R.id.like_count);
         Ibtn_poemlike = findViewById(R.id.likeIButton);
+
         comment_edit =findViewById(R.id.comment_edit);
-        comment_send =findViewById(R.id.comment_send);
+        Ibtn_commentsend =findViewById(R.id.comment_send);
         comment_view =findViewById(R.id.comment_recyclerView);
     }
 
-//    public void getComment(String comment){}
-//    public void postComment(String comment){}
+    public void getComment(String comment){}
+    public void postComment(String comment){}
 
 }

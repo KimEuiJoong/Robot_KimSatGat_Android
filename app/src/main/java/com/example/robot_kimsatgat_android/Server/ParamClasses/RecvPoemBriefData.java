@@ -6,4 +6,5 @@ public class RecvPoemBriefData {
     public String writer;
     public int likenum;
     public boolean like;
+//    public String[] comment_list;
 }

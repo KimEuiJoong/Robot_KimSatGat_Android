@@ -7,7 +7,9 @@ public class Poem {
     public String poem_name;
     public Integer likenum;
     public boolean like;
+    public String comment;
 
+    // parameter String [] comment_list
     public Poem(int id,String poem_name, String editor, String main_text,int likenum,boolean like) {
         this.id = id;
         this.poem_name = poem_name;
@@ -15,6 +17,7 @@ public class Poem {
         this.main_text = main_text;
         this.likenum = likenum;
         this.like = like;
+        this.comment = comment;
     }
 
     public int getId(){return id;}
@@ -44,4 +47,6 @@ public class Poem {
     public boolean getLike(){return like;}
 
     public void setLike(boolean like){this.like= like;}
+
+    public String getComment_text(){return comment;}
 }

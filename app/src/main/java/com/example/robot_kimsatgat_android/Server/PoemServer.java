@@ -265,6 +265,7 @@ public class PoemServer {
             }
         });
     }
+
     // 댓글 달기
     public void postComment(int poem_id, String content){
         postComment(poem_id, content, new Function0<Void>() {
