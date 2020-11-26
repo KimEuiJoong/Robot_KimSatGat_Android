@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.robot_kimsatgat_android.R;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvLikeData;
 import com.example.robot_kimsatgat_android.Server.PoemServer;
-import com.example.robot_kimsatgat_android.UI.extend_Poem;
+import com.example.robot_kimsatgat_android.UI.Poem_view_drawerTest;
 import com.example.robot_kimsatgat_android.ViewModels.ViewModelMain;
 
 import java.util.ArrayList;
@@ -100,7 +100,7 @@ public class PoemRecyclerAdapter extends RecyclerView.Adapter<PoemRecyclerAdapte
             Poem item = holder.poem;
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext.getApplicationContext(), extend_Poem.class);
+                Intent intent = new Intent(mContext.getApplicationContext(), Poem_view_drawerTest.class);
                 mContext.startActivity(intent);
             }
         });

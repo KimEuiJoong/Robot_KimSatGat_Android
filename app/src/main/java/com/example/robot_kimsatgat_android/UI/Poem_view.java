@@ -1,9 +1,11 @@
 package com.example.robot_kimsatgat_android.UI;
 
 import android.content.Context;
+import android.media.Image;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,9 +20,12 @@ public class Poem_view extends LinearLayout {
     TextView poem_writer_view;
     TextView poem_main_view;
     TextView poem_likenum_view;
-    public ImageButton Ibtn_poemlike;
-    public ImageButton Ibtn_commentsend;
     View view;
+    public ImageButton Ibtn_poemlike;
+
+    EditText comment_edit;
+    public ImageButton Ibtn_commentsend;
+    View comment_view;
 
     public Poem_view(Context context) {
         super(context);
@@ -39,12 +44,17 @@ public class Poem_view extends LinearLayout {
         poem_main_view = findViewById(R.id.poem_main);
         poem_likenum_view = findViewById(R.id.like_count);
         Ibtn_poemlike = findViewById(R.id.likeIButton);
+
+        // 댓글 추가
+        comment_edit =findViewById(R.id.comment_edit);
+        Ibtn_commentsend =findViewById(R.id.comment_send);
+        comment_view = inflater.inflate(R.layout.comment_view,this,true);
     }
+
     public void setPoem_title(String title) {poem_title_view.setText(title);}
     public void setPoem_writer(String writer) {poem_writer_view.setText(writer);}
     public void setPoem_main_view(String main) {poem_main_view.setText(main);}
     public void setPoem_likenum(String likenum){poem_likenum_view.setText(likenum);}
+    public void setPoem_commentlist(){}
 
-    public void getComment_text() {
-    }
 }

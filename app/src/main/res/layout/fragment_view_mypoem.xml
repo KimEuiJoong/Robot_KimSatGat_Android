@@ -5,11 +5,11 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_mypoem">
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mypoem_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,7 +15,7 @@ import com.example.robot_kimsatgat_android.Server.PoemServer;
 import java.util.ArrayList;
 
 
-public class comment_Adapter extends RecyclerView.Adapter<comment_Adapter.ViewHolder> {
+public class Comment_Adapter extends RecyclerView.Adapter<Comment_Adapter.ViewHolder> {
     public ArrayList<Comment> items = new ArrayList<Comment>();
     PoemServer poemServer = PoemServer.getPoemServer();
     @NonNull

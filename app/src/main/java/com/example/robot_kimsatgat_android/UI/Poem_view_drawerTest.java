@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.robot_kimsatgat_android.R;
 import com.example.robot_kimsatgat_android.SampleData.Comment;
-import com.example.robot_kimsatgat_android.SampleData.comment_Adapter;
+import com.example.robot_kimsatgat_android.SampleData.Comment_Adapter;
 
-public class extend_Poem extends AppCompatActivity {
+public class Poem_view_drawerTest extends AppCompatActivity {
     RecyclerView comment_recycler_view;
-    comment_Adapter comment_adapter;
+    Comment_Adapter comment_adapter;
     TextView name;
     TextView writer;
     TextView main;
@@ -26,7 +26,7 @@ public class extend_Poem extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstaceState) {
         super.onCreate(savedInstaceState);
-        setContentView(R.layout.extend_poem_view);
+        setContentView(R.layout.poem_view);
 
         commentArray[0] = "테스트 1";
         commentArray[1] = "테스트 2";
@@ -45,7 +45,7 @@ public class extend_Poem extends AppCompatActivity {
         GridLayoutManager layoutManager = new GridLayoutManager(this,1);
         comment_recycler_view.setLayoutManager(layoutManager);
 
-        comment_adapter = new comment_Adapter();
+        comment_adapter = new Comment_Adapter();
 
         comment_adapter.setHasStableIds(true);
         comment_adapter.addComment(comment1);

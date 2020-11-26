@@ -57,7 +57,6 @@ public class View_Main extends Fragment {
     @Override
     public void onViewCreated(View view,Bundle savedInstanceState){
 
-
         main_poem = view.findViewById(R.id.main_poem);
         Ibtn_poemlike = main_poem.Ibtn_poemlike;
         Ibtn_commentsend = main_poem.Ibtn_commentsend;
@@ -75,7 +74,6 @@ public class View_Main extends Fragment {
                             recvPoemData.content,
                             recvPoemData.likenum,
                             recvPoemData.like
-//                            recvPoemData.comment
                             );
                     main_poem.setPoem_title(item.getPoem_name());
                     main_poem.setPoem_writer(item.getEditor());
@@ -156,6 +154,7 @@ public class View_Main extends Fragment {
                 return null;
             }
         });
+
         FloatingActionButton fab = view.findViewById(R.id.poem_write);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

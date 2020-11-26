@@ -24,7 +24,7 @@
             android:textSize="32sp"
             android:textStyle="bold" />
 
-        <com.example.robot_kimsatgat_android.UI.extendPoem_view
+        <com.example.robot_kimsatgat_android.UI.Poem_view
             android:id="@+id/main_poem"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -38,9 +38,9 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="13dp"
-        android:layout_marginRight="13dp"
-        android:layout_marginBottom="11dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginRight="11dp"
+        android:layout_marginBottom="58dp"
         android:backgroundTint="#756A63"
         android:contentDescription="TODO"
         app:srcCompat="@android:drawable/ic_menu_edit" />

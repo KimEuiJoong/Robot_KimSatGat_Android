@@ -13,4 +13,5 @@
         android:fontFamily="@font/nexonlv1gothicregular"
         android:background="@android:color/transparent"
         android:text="TextView" />
+
 </LinearLayout>
