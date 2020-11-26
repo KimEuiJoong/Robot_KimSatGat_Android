@@ -16,6 +16,7 @@ import com.example.robot_kimsatgat_android.R;
 
 public class Poem_view extends LinearLayout {
 
+
     TextView poem_title_view;
     TextView poem_writer_view;
     TextView poem_main_view;
@@ -23,7 +24,7 @@ public class Poem_view extends LinearLayout {
     View view;
     public ImageButton Ibtn_poemlike;
 
-    EditText comment_edit;
+    public EditText comment_edit;
     public ImageButton Ibtn_commentsend;
     View comment_view;
 
@@ -45,7 +46,7 @@ public class Poem_view extends LinearLayout {
         poem_likenum_view = findViewById(R.id.like_count);
         Ibtn_poemlike = findViewById(R.id.likeIButton);
 
-        // 댓글 추가
+        // comment
         comment_edit =findViewById(R.id.comment_edit);
         Ibtn_commentsend =findViewById(R.id.comment_send);
         comment_view = inflater.inflate(R.layout.comment_view,this,true);
@@ -55,6 +56,5 @@ public class Poem_view extends LinearLayout {
     public void setPoem_writer(String writer) {poem_writer_view.setText(writer);}
     public void setPoem_main_view(String main) {poem_main_view.setText(main);}
     public void setPoem_likenum(String likenum){poem_likenum_view.setText(likenum);}
-    public void setPoem_commentlist(){}
 
 }

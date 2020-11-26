@@ -93,6 +93,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/comment_view_background"
                         android:orientation="horizontal">
 
                         <EditText
@@ -113,6 +114,7 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/comment_recyclerView"
+                        android:background="@color/commentlist_view_background"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 

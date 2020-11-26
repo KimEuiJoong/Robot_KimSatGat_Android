@@ -6,19 +6,24 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.example.robot_kimsatgat_android.R;
+import com.example.robot_kimsatgat_android.SampleData.Comment;
 import com.example.robot_kimsatgat_android.SampleData.Poem;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvCommentData;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvLikeData;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvPoemData;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.ReqCommentData;
 import com.example.robot_kimsatgat_android.Server.PoemServer;
+import com.example.robot_kimsatgat_android.UI.MainActivity;
 import com.example.robot_kimsatgat_android.UI.Poem_view;
+import com.example.robot_kimsatgat_android.UI.Questionnaire1;
 import com.example.robot_kimsatgat_android.UI.WriteActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -34,9 +39,11 @@ public class View_Main extends Fragment {
 
     RecvPoemData recommendedPoem;
     int recom_poem_like_num;
+    int poem_id;
     List<RecvCommentData> commentList;
     Poem_view main_poem;
     ImageButton Ibtn_poemlike;
+    EditText Edit_comment;
     ImageButton Ibtn_commentsend;
     PoemServer poemServer;
 
@@ -60,7 +67,9 @@ public class View_Main extends Fragment {
         main_poem = view.findViewById(R.id.main_poem);
         Ibtn_poemlike = main_poem.Ibtn_poemlike;
         Ibtn_commentsend = main_poem.Ibtn_commentsend;
+        Edit_comment = main_poem.comment_edit;
 
+        // poem
         poemServer = PoemServer.getPoemServer();
         poemServer.recommendPoem(new Function1<RecvPoemData, Void>() {
             @Override
@@ -75,6 +84,7 @@ public class View_Main extends Fragment {
                             recvPoemData.likenum,
                             recvPoemData.like
                             );
+                    poem_id = item.id;
                     main_poem.setPoem_title(item.getPoem_name());
                     main_poem.setPoem_writer(item.getEditor());
                     main_poem.setPoem_main_view(item.getMain_text());
@@ -87,25 +97,6 @@ public class View_Main extends Fragment {
                     }else{
                         Ibtn_poemlike.setImageResource(R.drawable.heart);
                     }
-                    Ibtn_commentsend.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-//                            poemServer.postComment(item.id, new Function0<Void>() {
-//                                @Override
-//                                public Void invoke() {
-//                                    poemServer.postComment(item.id, new Function1<RecvCommentData,Void>() {
-//                                        @Override
-//                                        public Void invoke(RecvCommentData recvCommentData) {
-//                                            item.comment = recvCommentData.content;
-//                                            main_poem.getComment_text();
-//                                            return null;
-//                                        }
-//                                    });
-//                                    return null;
-//                                }
-//                            });
-                        }
-                    });
                     Ibtn_poemlike.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -152,8 +143,24 @@ public class View_Main extends Fragment {
                     Log.e(TAG,e.getMessage());
                 }
                 return null;
+
+
             }
         });
+
+        Ibtn_commentsend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                poemServer.postComment(poem_id, Edit_comment.toString(), new Function0<Void>() {
+                    @Override
+                    public Void invoke() {
+                        return null;
+                    }
+                });
+            }
+        });
+
+//        poemServer.getComments(poem_id,commentList);
 
         FloatingActionButton fab = view.findViewById(R.id.poem_write);
         fab.setOnClickListener(new View.OnClickListener() {
