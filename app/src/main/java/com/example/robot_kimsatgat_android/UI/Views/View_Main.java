@@ -150,10 +150,10 @@ public class View_Main extends Fragment {
         Ibtn_commentsend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                poemServer.postComment(poem_id, main_poem.comment_edit.toString(), new Function0<Void>() {
+                poemServer.postComment(poem_id, main_poem.comment_edit.getText().toString(), new Function0<Void>() {
                     @Override
                     public Void invoke() {
-                        Toast.makeText(getActivity(),main_poem.comment_edit.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(),main_poem.comment_edit.getText().toString(), Toast.LENGTH_SHORT).show();
                         return null;
                     }
                 });
@@ -161,7 +161,7 @@ public class View_Main extends Fragment {
             }
         });
 
-//        poemServer.getComments(poem_id,commentList);
+//        main_poem.commentlist = poemServer.getComments(poem_id);
 
         FloatingActionButton fab = view.findViewById(R.id.poem_write);
         fab.setOnClickListener(new View.OnClickListener() {

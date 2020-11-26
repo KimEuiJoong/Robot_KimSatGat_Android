@@ -13,6 +13,10 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 
 import com.example.robot_kimsatgat_android.R;
+import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvCommentData;
+import com.example.robot_kimsatgat_android.ViewModels.SingleLiveEvent;
+
+import java.util.ArrayList;
 
 public class Poem_view extends LinearLayout {
 

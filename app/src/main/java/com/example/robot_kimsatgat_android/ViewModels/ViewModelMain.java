@@ -60,6 +60,7 @@ public class ViewModelMain extends ViewModel {
         listCommandMap.put("MyPoemList", () -> poemServer.getMyPoemList());
         listCommandMap.put("LikeList", () -> poemServer.getMyLikeList());
         listCommandMap.put("MyRecommendList", () -> poemServer.getMyRecommendList());
+//        listCommandMap.put("Comments", () -> poemServer.getComments(poem_id));
     }
     public LiveData<List<RecvPoemBriefData>> getList(String ListName){
         if(!listCommandMap.containsKey(ListName)){
@@ -77,9 +78,5 @@ public class ViewModelMain extends ViewModel {
     public LiveData<List<RecvPoemBriefData>> getMyRecommendList(){ return poemServer.getMyRecommendList(); }
     public LiveData<RecvLikeData> getLikeNum(int poem_id) {return poemServer.getLike(poem_id);}
     public LiveData<RecvPoemData> getPoem(int poem_id) {return poemServer.getPoem(poem_id);}
-
-    public LiveData<ArrayList<RecvCommentData>> getCommentsList(int poem_id) {
-        return poemServer.getComments(poem_id);
-    }
 
 }
