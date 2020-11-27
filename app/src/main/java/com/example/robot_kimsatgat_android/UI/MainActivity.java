@@ -13,7 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
@@ -22,7 +24,14 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.robot_kimsatgat_android.GlobalApplication;
 import com.example.robot_kimsatgat_android.R;
+import com.example.robot_kimsatgat_android.UI.Views.CommentRecyclerFragment;
+import com.example.robot_kimsatgat_android.UI.Views.View_LikeList;
+import com.example.robot_kimsatgat_android.UI.Views.View_Main;
+import com.example.robot_kimsatgat_android.UI.Views.View_MyPoem;
+import com.example.robot_kimsatgat_android.UI.Views.View_Suggested_Poem;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,12 +48,20 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
 
+    // 프래그먼트 요소
+    public static CommentRecyclerFragment view_poem_withcomments_fragment;
+    public static View_Main view_poem_fragment;
+    public static View_Suggested_Poem view_suggested_poem_fragment;
+    public static View_LikeList view_likeList_fragment;
+    public static View_MyPoem view_mypoem_fragment;
+
     Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
 
         // kakao 정보 가져오기.
         GlobalApplication globalApplication = (GlobalApplication)getApplication();
@@ -59,14 +76,6 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true); // 뒤로가기 버튼 만들기
         actionBar.setHomeAsUpIndicator(R.drawable.hamburger); //뒤로가기 버튼 이미지 지정
 
-        //PoemRecyclerAdapter adapter = new PoemRecyclerAdapter();
-        //NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-
-
-        //mAppBarConfiguration = new AppBarConfiguration.Builder(
-        //        R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
-        //        .setOpenableLayout(drawer)
-        //        .build();
 
         // 추천 시 화면 설정, 네비게이션 뷰 설정
         NavHostFragment navHostFragment = (NavHostFragment) supportFragmentManager.findFragmentById(R.id.nav_host_fragment);
@@ -86,10 +95,24 @@ public class MainActivity extends AppCompatActivity {
                 .setOpenableLayout(mDrawerLayout)
                 .build();
 
-        //ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-        //        this,mDrawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
-        //mDrawerLayout.addDrawerListener(toggle);
-        //toggle.syncState();
+        // 프래그먼트 뒤로가기 기능 구현중...?
+        // 앞에 supportFragmentManager가 manager
+//        FragmentTransaction fragmentTransaction = supportFragmentManager.beginTransaction();
+//
+//        view_poem_fragment = new View_Main();
+//        view_poem_withcomments_fragment = new CommentRecyclerFragment();
+//
+//        view_suggested_poem_fragment = new View_Suggested_Poem();
+//        view_likeList_fragment = new View_LikeList();
+//        view_mypoem_fragment = new View_MyPoem();
+//
+//        fragmentTransaction.replace(R.id.nav_host_fragment, view_poem_withcomments_fragment);
+//        fragmentTransaction.addToBackStack(null);
+//
+//        // Commit the transaction
+//        fragmentTransaction.commit();
+
+
     }
 
     @Override

@@ -38,13 +38,8 @@ import kotlin.jvm.functions.Function1;
 public class View_Main extends Fragment {
 
     private static final String TAG = "mainFragment";
-
-    Toolbar toolbar;
-
-    RecvPoemData recommendedPoem;
-    int recom_poem_like_num;
     int poem_id;
-    List<RecvCommentData> commentList;
+
     Poem_view main_poem;
     ImageButton Ibtn_poemlike;
     ImageButton Ibtn_commentsend;
@@ -58,12 +53,13 @@ public class View_Main extends Fragment {
 
     private ViewModelMain viewModelMain;
 
-    public View_Main() {
-    }
+    public View_Main() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -169,8 +165,8 @@ public class View_Main extends Fragment {
         });
 
         viewModelMain = new ViewModelProvider(this).get(ViewModelMain.class);
-        // comment
 
+        // comment
         Ibtn_commentsend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

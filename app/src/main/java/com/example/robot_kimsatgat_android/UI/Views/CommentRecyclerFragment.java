@@ -45,17 +45,21 @@ public class CommentRecyclerFragment extends Fragment {
     ImageButton Ibtn_commentsend;
     PoemServer poemServer;
     TextView TV_commentEdit;
+
     public CommentRecyclerFragment(){
         animResId_comment = R.anim.layout_animation;
     }
+
     public CommentRecyclerFragment(int FragmentResId, int RecyclerResId,int AnimResId, String ListName){
         animResId_comment = AnimResId;
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         poem_id = getArguments().getInt("poem_id");
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -65,6 +69,7 @@ public class CommentRecyclerFragment extends Fragment {
          */
         return inflater.inflate(R.layout.fragment_view_detail, container, false);
     }
+
     @Override
     public void onViewCreated(View view,Bundle savedInstanceState){
         super.onViewCreated(view,savedInstanceState);
