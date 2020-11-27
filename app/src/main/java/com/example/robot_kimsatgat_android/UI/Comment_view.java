@@ -17,8 +17,6 @@ public class Comment_view extends LinearLayout {
     TextView writer_TV;
     TextView content_TV;
     View view;
-    public EditText comment_edit;
-    View comment_view;
 
     public Comment_view(Context context) {
         super(context);
@@ -30,10 +28,12 @@ public class Comment_view extends LinearLayout {
     }
 
     private void init(Context context) {
+
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         view = inflater.inflate(R.layout.comment_view,this,true);
         writer_TV = findViewById(R.id.poem_writer);
         content_TV = findViewById(R.id.poem_title);
+
     }
 
     public void setWriter(String writer) {writer_TV.setText(writer);}

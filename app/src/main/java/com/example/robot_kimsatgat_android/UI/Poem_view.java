@@ -21,9 +21,6 @@ public class Poem_view extends LinearLayout {
     TextView poem_likenum_view;
     View view;
     public ImageButton Ibtn_poemlike;
-    public EditText comment_edit;
-    public ImageButton Ibtn_commentsend;
-    View comment_view;
 
     public Poem_view(Context context) {
         super(context);
@@ -35,6 +32,7 @@ public class Poem_view extends LinearLayout {
     }
 
     private void init(Context context) {
+
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         view = inflater.inflate(R.layout.poem_view,this,true);
         poem_title_view = findViewById(R.id.poem_title);
@@ -43,10 +41,6 @@ public class Poem_view extends LinearLayout {
         poem_likenum_view = findViewById(R.id.like_count);
         Ibtn_poemlike = findViewById(R.id.likeIButton);
 
-        // comment
-        //comment_edit =findViewById(R.id.comment_edit);
-        //Ibtn_commentsend =findViewById(R.id.comment_send);
-        //comment_view = inflater.inflate(R.layout.comment_view,this,true);
     }
 
     public void setPoem_title(String title) {poem_title_view.setText(title);}
