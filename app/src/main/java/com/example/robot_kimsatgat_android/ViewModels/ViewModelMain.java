@@ -18,6 +18,7 @@ import java.util.Map;
 
 interface getListCommand{
     LiveData<List<RecvPoemBriefData>> run();
+    LiveData<ArrayList<RecvCommentData>> run_comment();
 }
 
 public class ViewModelMain extends ViewModel {
@@ -60,7 +61,7 @@ public class ViewModelMain extends ViewModel {
         listCommandMap.put("MyPoemList", () -> poemServer.getMyPoemList());
         listCommandMap.put("LikeList", () -> poemServer.getMyLikeList());
         listCommandMap.put("MyRecommendList", () -> poemServer.getMyRecommendList());
-//        listCommandMap.put("Comments", () -> poemServer.getComments(poem_id));
+        listCommandMap.put("Comments", () -> poemServer.getComments(poem_id);
     }
     public LiveData<List<RecvPoemBriefData>> getList(String ListName){
         if(!listCommandMap.containsKey(ListName)){
@@ -69,6 +70,15 @@ public class ViewModelMain extends ViewModel {
         }
         return listCommandMap.get(ListName).run();
     }
+    public LiveData<ArrayList<RecvCommentData>> getList_comments(int poem_id)  {
+        if(!listCommandMap.containsKey(poem_id)){
+            Log.e(TAG,"ListName " + poem_id + "not Exists");
+            return null;
+        }
+        return listCommandMap.get(poem_id).run_comment();
+    }
+
+
     public LiveData<List<RecvPoemBriefData>> getMyPoemList(){
         return poemServer.getMyPoemList();
     }
@@ -78,5 +88,6 @@ public class ViewModelMain extends ViewModel {
     public LiveData<List<RecvPoemBriefData>> getMyRecommendList(){ return poemServer.getMyRecommendList(); }
     public LiveData<RecvLikeData> getLikeNum(int poem_id) {return poemServer.getLike(poem_id);}
     public LiveData<RecvPoemData> getPoem(int poem_id) {return poemServer.getPoem(poem_id);}
+    public LiveData<ArrayList<RecvCommentData>> getComment(int poem_id)  { return poemServer.getComments(poem_id);}
 
 }

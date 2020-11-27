@@ -72,14 +72,14 @@ public abstract class CommentRecyclerFragment extends Fragment {
         commentRecyclerView.setAdapter(commentRecyclerAdapter);
 
         viewModelMain_comment = new ViewModelProvider(this).get(ViewModelMain.class);
-//        viewModelMain_comment.getList(listName_comment).observe(getViewLifecycleOwner(), CommentList -> {
-//            commentRecyclerView.setLayoutAnimation(animation_comment);
-//                    for(RecvCommentData commentData : CommentList){
-//                        commentRecyclerAdapter.addComment(new Comment(commentData.comment_id,commentData.content));
-//                    }
-//                    commentRecyclerAdapter.notifyDataSetChanged();
-//                }
-//        );
+        viewModelMain_comment.getList_comments(poem_id).observe(getViewLifecycleOwner(), CommentList -> {
+            commentRecyclerView.setLayoutAnimation(animation_comment);
+                    for(RecvCommentData commentData : CommentList){
+                        commentRecyclerAdapter.addComment(new Comment(commentData.comment_id,commentData.content));
+                    }
+                    commentRecyclerAdapter.notifyDataSetChanged();
+                }
+        );
     }
 
 }
