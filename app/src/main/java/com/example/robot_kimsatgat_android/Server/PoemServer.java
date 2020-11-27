@@ -292,8 +292,8 @@ public class PoemServer {
     }
 
     // 댓글 가져오기
-    private SingleLiveEvent<ArrayList<RecvCommentData>> myComments = new SingleLiveEvent<ArrayList<RecvCommentData>>();
-    public SingleLiveEvent<ArrayList<RecvCommentData>> getComments(int poem_id){
+    private SingleLiveEvent<List<RecvCommentData>> myComments = new SingleLiveEvent<>();
+    public SingleLiveEvent<List<RecvCommentData>> getComments(int poem_id){
         Call<ArrayList<RecvCommentData>> call = api.getComments(poem_id);
         call.enqueue(new Callback<ArrayList<RecvCommentData>>() {
             @Override

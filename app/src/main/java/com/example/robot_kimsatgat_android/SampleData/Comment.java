@@ -1,18 +1,25 @@
 package com.example.robot_kimsatgat_android.SampleData;
 
 public class Comment {
-    public Integer poem_id;
-    public String comment;
 
-    public Comment(int poem_id,String comment)
+    public Integer comment_id;
+    public String writer;
+    public String content;
+
+    public Comment(int comment_id,String writer,String content)
     {
-        this.poem_id=poem_id;
-        this.comment=comment;
+        this.comment_id=comment_id;
+        this.writer=writer;
+        this.content=content;
     }
 
-    public int getPoem_id() { return poem_id; }
+    public int getComment_id() { return comment_id; }
 
-    public String getComment() { return comment; }
 
-    public void setComment(String comment) { this.comment = comment; }
+    public String getWriter() { return writer; }
+    public String getContent() { return content; }
+
+
+    public void setWriter(String content) { this.content = content; }
+    public void setContent(String content) { this.content = content; }
 }

@@ -6,25 +6,28 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.ImageButton;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.robot_kimsatgat_android.R;
 import com.example.robot_kimsatgat_android.SampleData.Comment;
+import com.example.robot_kimsatgat_android.SampleData.Comment_Adapter;
 import com.example.robot_kimsatgat_android.SampleData.Poem;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvCommentData;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvLikeData;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvPoemData;
-import com.example.robot_kimsatgat_android.Server.ParamClasses.ReqCommentData;
 import com.example.robot_kimsatgat_android.Server.PoemServer;
-import com.example.robot_kimsatgat_android.UI.MainActivity;
 import com.example.robot_kimsatgat_android.UI.Poem_view;
-import com.example.robot_kimsatgat_android.UI.Questionnaire1;
 import com.example.robot_kimsatgat_android.UI.WriteActivity;
+import com.example.robot_kimsatgat_android.ViewModels.ViewModelMain;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -35,6 +38,7 @@ import kotlin.jvm.functions.Function1;
 public class View_Main extends Fragment {
 
     private static final String TAG = "mainFragment";
+
     Toolbar toolbar;
 
     RecvPoemData recommendedPoem;
@@ -44,7 +48,15 @@ public class View_Main extends Fragment {
     Poem_view main_poem;
     ImageButton Ibtn_poemlike;
     ImageButton Ibtn_commentsend;
+    TextView TV_commentEdit;
     PoemServer poemServer;
+
+    RecyclerView commentRecyclerView;
+    Comment_Adapter commentRecyclerAdapter;
+    GridLayoutManager layoutManager_comment;
+    LayoutAnimationController animation_comment;
+
+    private ViewModelMain viewModelMain;
 
     public View_Main() {
     }
@@ -63,9 +75,18 @@ public class View_Main extends Fragment {
     @Override
     public void onViewCreated(View view,Bundle savedInstanceState){
 
+        commentRecyclerAdapter = new Comment_Adapter();
+        commentRecyclerAdapter.setHasStableIds(true);
+        animation_comment = AnimationUtils.loadLayoutAnimation(getActivity(),R.anim.layout_animation);
+        layoutManager_comment = new GridLayoutManager(getActivity(),1);
+        commentRecyclerView = view.findViewById(R.id.comment_recyclerView);
+        commentRecyclerView.setLayoutManager(layoutManager_comment);
+        commentRecyclerView.setAdapter(commentRecyclerAdapter);
+
         main_poem = view.findViewById(R.id.main_poem);
         Ibtn_poemlike = main_poem.Ibtn_poemlike;
-        Ibtn_commentsend = main_poem.Ibtn_commentsend;
+        Ibtn_commentsend = view.findViewById(R.id.comment_send);
+        TV_commentEdit = view.findViewById(R.id.comment_edit);
 
         // poem
         poemServer = PoemServer.getPoemServer();
@@ -83,6 +104,7 @@ public class View_Main extends Fragment {
                             recvPoemData.like
                             );
                     poem_id = item.id;
+                    getComments();
                     main_poem.setPoem_title(item.getPoem_name());
                     main_poem.setPoem_writer(item.getEditor());
                     main_poem.setPoem_main_view(item.getMain_text());
@@ -146,18 +168,21 @@ public class View_Main extends Fragment {
             }
         });
 
+        viewModelMain = new ViewModelProvider(this).get(ViewModelMain.class);
         // comment
+
         Ibtn_commentsend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                poemServer.postComment(poem_id, main_poem.comment_edit.getText().toString(), new Function0<Void>() {
+                poemServer.postComment(poem_id, TV_commentEdit.getText().toString(), new Function0<Void>() {
                     @Override
                     public Void invoke() {
-                        Toast.makeText(getActivity(),main_poem.comment_edit.getText().toString(), Toast.LENGTH_SHORT).show();
+                        getComments();
+                        //Toast.makeText(getActivity(),TV_commentEdit.getText().toString(), Toast.LENGTH_SHORT).show();
                         return null;
                     }
                 });
-                main_poem.comment_edit.setText("");
+                TV_commentEdit.setText("");
             }
         });
 
@@ -171,5 +196,16 @@ public class View_Main extends Fragment {
                 startActivity(intent);
             }
         });
+    }
+    private void getComments(){
+        viewModelMain.getComments(poem_id).observe(getViewLifecycleOwner(), CommentList -> {
+                    commentRecyclerView.setLayoutAnimation(animation_comment);
+                    for(RecvCommentData commentData : CommentList){
+                        commentRecyclerAdapter.addComment(new Comment(commentData.id,commentData.writer,commentData.content));
+                        Log.i(TAG,Integer.toString(commentData.id) + " "+ commentData.writer + " " + commentData.content);
+                    }
+                    commentRecyclerAdapter.notifyDataSetChanged();
+                }
+        );
     }
 }

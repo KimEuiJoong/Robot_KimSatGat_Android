@@ -45,4 +45,8 @@
             android:id="@+id/action_nav_suggestionlist_to_view_Main"
             app:destination="@id/view_Main" />
     </fragment>
+    <fragment
+        android:id="@+id/commentRecyclerFragment"
+        android:name="com.example.robot_kimsatgat_android.UI.Views.CommentRecyclerFragment"
+        android:label="CommentRecyclerFragment" /><action android:id="@+id/action_global_commentRecyclerFragment" app:destination="@id/commentRecyclerFragment"/>
 </navigation>

@@ -1,7 +1,7 @@
 package com.example.robot_kimsatgat_android.SampleData;
 
 import android.content.Context;
-import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,12 +13,12 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.robot_kimsatgat_android.R;
 import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvLikeData;
 import com.example.robot_kimsatgat_android.Server.PoemServer;
-import com.example.robot_kimsatgat_android.UI.Poem_view_drawerTest;
 import com.example.robot_kimsatgat_android.ViewModels.ViewModelMain;
 
 import java.util.ArrayList;
@@ -46,6 +46,11 @@ public class PoemRecyclerAdapter extends RecyclerView.Adapter<PoemRecyclerAdapte
     @Override
     public long getItemId(int position){
         return items.get(position).id;
+    }
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView){
+        super.onAttachedToRecyclerView(recyclerView);
+        mContext = recyclerView.getContext();
     }
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
@@ -95,13 +100,15 @@ public class PoemRecyclerAdapter extends RecyclerView.Adapter<PoemRecyclerAdapte
             }
         });
 
+
         //view 눌렀을 때 큰 뷰 띄우기
         holder.poem_cardview.setOnClickListener(new View.OnClickListener() {
             Poem item = holder.poem;
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext.getApplicationContext(), Poem_view_drawerTest.class);
-                mContext.startActivity(intent);
+                Bundle bundle = new Bundle();
+                bundle.putInt("poem_id",item.id);
+                Navigation.findNavController(view).navigate(R.id.action_global_commentRecyclerFragment,bundle);
             }
         });
     }

@@ -1,7 +1,6 @@
 package com.example.robot_kimsatgat_android.UI;
 
 import android.content.Context;
-import android.media.Image;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +12,6 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 
 import com.example.robot_kimsatgat_android.R;
-import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvCommentData;
-import com.example.robot_kimsatgat_android.ViewModels.SingleLiveEvent;
-
-import java.util.ArrayList;
 
 public class Poem_view extends LinearLayout {
 
@@ -49,9 +44,9 @@ public class Poem_view extends LinearLayout {
         Ibtn_poemlike = findViewById(R.id.likeIButton);
 
         // comment
-        comment_edit =findViewById(R.id.comment_edit);
-        Ibtn_commentsend =findViewById(R.id.comment_send);
-        comment_view = inflater.inflate(R.layout.comment_view,this,true);
+        //comment_edit =findViewById(R.id.comment_edit);
+        //Ibtn_commentsend =findViewById(R.id.comment_send);
+        //comment_view = inflater.inflate(R.layout.comment_view,this,true);
     }
 
     public void setPoem_title(String title) {poem_title_view.setText(title);}

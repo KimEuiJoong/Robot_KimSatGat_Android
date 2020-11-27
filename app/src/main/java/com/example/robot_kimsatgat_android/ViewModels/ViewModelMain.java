@@ -11,15 +11,27 @@ import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvPoemBriefData
 import com.example.robot_kimsatgat_android.Server.ParamClasses.RecvPoemData;
 import com.example.robot_kimsatgat_android.Server.PoemServer;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 interface getListCommand{
+    /*
+    poemList용 Command Interface
+     */
     LiveData<List<RecvPoemBriefData>> run();
-    LiveData<ArrayList<RecvCommentData>> run_comment();
+    /*
+    command interface에 메서드가 2개 이상이면 rambda식을 사용하지 못함
+     */
+    //LiveData<ArrayList<RecvCommentData>> run_comment();
 }
+interface  getCommentListCommand{
+    /*
+    commentList용 Command Interface
+     */
+    LiveData<List<RecvCommentData>> run(int poem_id);
+}
+
 
 public class ViewModelMain extends ViewModel {
     /**
@@ -55,13 +67,16 @@ public class ViewModelMain extends ViewModel {
     private static final String TAG = "ViewModelMain";
     private PoemServer poemServer;
     private Map<String,getListCommand> listCommandMap;
+    private Map<String,getCommentListCommand> commentListCommandMap;
     public ViewModelMain(){
         poemServer = PoemServer.getPoemServer();
         listCommandMap = new HashMap<>();
+        commentListCommandMap = new HashMap<>();
         listCommandMap.put("MyPoemList", () -> poemServer.getMyPoemList());
         listCommandMap.put("LikeList", () -> poemServer.getMyLikeList());
         listCommandMap.put("MyRecommendList", () -> poemServer.getMyRecommendList());
-        listCommandMap.put("Comments", () -> poemServer.getComments(poem_id);
+        commentListCommandMap.put("Comments",(poem_id) -> poemServer.getComments(poem_id));
+        //listCommandMap.put("Comments", () -> poemServer.getComments(poem_id);
     }
     public LiveData<List<RecvPoemBriefData>> getList(String ListName){
         if(!listCommandMap.containsKey(ListName)){
@@ -70,15 +85,13 @@ public class ViewModelMain extends ViewModel {
         }
         return listCommandMap.get(ListName).run();
     }
-    public LiveData<ArrayList<RecvCommentData>> getList_comments(int poem_id)  {
-        if(!listCommandMap.containsKey(poem_id)){
+    public LiveData<List<RecvCommentData>> getList_comments(int poem_id)  {
+        if(!commentListCommandMap.containsKey(poem_id)){
             Log.e(TAG,"ListName " + poem_id + "not Exists");
             return null;
         }
-        return listCommandMap.get(poem_id).run_comment();
+        return commentListCommandMap.get("Comments").run(poem_id);
     }
-
-
     public LiveData<List<RecvPoemBriefData>> getMyPoemList(){
         return poemServer.getMyPoemList();
     }
@@ -88,6 +101,6 @@ public class ViewModelMain extends ViewModel {
     public LiveData<List<RecvPoemBriefData>> getMyRecommendList(){ return poemServer.getMyRecommendList(); }
     public LiveData<RecvLikeData> getLikeNum(int poem_id) {return poemServer.getLike(poem_id);}
     public LiveData<RecvPoemData> getPoem(int poem_id) {return poemServer.getPoem(poem_id);}
-    public LiveData<ArrayList<RecvCommentData>> getComment(int poem_id)  { return poemServer.getComments(poem_id);}
+    public LiveData<List<RecvCommentData>> getComments(int poem_id)  { return poemServer.getComments(poem_id);}
 
 }

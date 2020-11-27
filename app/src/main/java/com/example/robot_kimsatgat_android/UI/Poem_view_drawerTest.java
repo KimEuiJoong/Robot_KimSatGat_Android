@@ -4,10 +4,8 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.robot_kimsatgat_android.R;
 import com.example.robot_kimsatgat_android.SampleData.Comment;
 import com.example.robot_kimsatgat_android.SampleData.Comment_Adapter;
 
@@ -26,19 +24,23 @@ public class Poem_view_drawerTest extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstaceState) {
         super.onCreate(savedInstaceState);
+        /*
         setContentView(R.layout.poem_view);
 
         commentArray[0] = "테스트 1";
         commentArray[1] = "테스트 2";
         commentArray[2] = "테스트 3";
+        comment1 = new Comment(1,commentArray[0]);
+        comment1 = new Comment(2,commentArray[1]);
+        comment1 = new Comment(3,commentArray[2]);
 
 
-        comment1.setComment(commentArray[0]);
-        comment2.setComment(commentArray[1]);
-        comment3.setComment(commentArray[2]);
+        //comment1.setComment(commentArray[0]);
+        //comment2.setComment(commentArray[1]);
+        //comment3.setComment(commentArray[2]);
 
-        name = findViewById(R.id.poem_title);
-        writer = findViewById(R.id.poem_writer);
+        name = findViewById(R.id.comment_content);
+        writer = findViewById(R.id.comment_writer);
         main = findViewById(R.id.poem_main);
 
         comment_recycler_view = findViewById(R.id.comment_recyclerView);
@@ -57,5 +59,7 @@ public class Poem_view_drawerTest extends AppCompatActivity {
         name.setText("테스트");
         writer.setText("테스트");
         main.setText("테스트");
+
+         */
     }
 }

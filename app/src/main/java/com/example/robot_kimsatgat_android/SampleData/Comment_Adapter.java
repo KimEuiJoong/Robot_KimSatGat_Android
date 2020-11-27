@@ -16,7 +16,8 @@ import java.util.ArrayList;
 
 
 public class Comment_Adapter extends RecyclerView.Adapter<Comment_Adapter.ViewHolder> {
-    public ArrayList<Comment> items = new ArrayList<Comment>();
+    private static final String TAG = "Comment_Adapter";
+    public ArrayList<Comment> items = new ArrayList<>();
     PoemServer poemServer = PoemServer.getPoemServer();
     @NonNull
     @Override
@@ -30,27 +31,53 @@ public class Comment_Adapter extends RecyclerView.Adapter<Comment_Adapter.ViewHo
     }
 
     @Override
-    public long getItemId(int position) { return items.get(position).poem_id; }
+    public long getItemId(int position) {
+        try {
+            if(items == null){
+                Log.i(TAG,"item list is null");
+            }
+            if(items.get(position) == null){
+                Log.i(TAG,"item is null");
+            }
+            return items.get(position).comment_id;
+        }catch(Exception e){
+            Log.i(TAG,e.getMessage());
+            return 0;
+        }
+
+    }
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Comment item = items.get(position);
+        holder.setItem(item,position);
     }
     @Override
     public int getItemCount() { return items.size(); }
 
-    public void addComment(Comment item) { items.add(item); }
+    public void addComment(Comment item) {
+        for(Comment comment :items){
+            if(comment.comment_id == item.comment_id){
+                return;
+            }
+        }
+        items.add(item);
+    }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView comment;
+        TextView writer_TV;
+        TextView content_TV;
 
         public ViewHolder (View itemView)
         {
             super (itemView);
-            comment = itemView.findViewById(R.id.comment);
+            writer_TV = itemView.findViewById(R.id.comment_writer);
+            content_TV = itemView.findViewById(R.id.comment_content);
         }
 
         public void setItem(Comment item, int position) {
-            comment.setText(item.getComment());
+            writer_TV.setText(item.getWriter());
+            content_TV.setText(item.getContent());
+            Log.i(TAG,"msg" + item.getContent());
         }
     }
 }

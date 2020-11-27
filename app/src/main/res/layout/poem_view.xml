@@ -58,7 +58,6 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nexonlv1gothicregular"
                         android:gravity="center"
-                        android:text="시 내용"
                         android:textSize="18dp" />
 
                     <LinearLayout
@@ -94,29 +93,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/comment_view_background"
-                        android:orientation="horizontal">
-
-                        <EditText
-                            android:id="@+id/comment_edit"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight ="9"
-                            android:hint="여기에 댓글을 씁니다." />
-
-                        <ImageButton
-                            android:id="@+id/comment_send"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@android:drawable/ic_menu_send" />
-
-                    </LinearLayout>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/comment_recyclerView"
-                        android:background="@color/commentlist_view_background"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:orientation="horizontal"/>
 
                 </LinearLayout>
             </ScrollView>

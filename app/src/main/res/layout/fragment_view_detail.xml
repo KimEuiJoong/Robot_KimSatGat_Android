@@ -16,26 +16,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <LinearLayout
-                android:id="@+id/poem_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-                <TextView
-                    android:id="@+id/textView_poem"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/humanarmy"
-                    android:gravity="center"
-                    android:text="추천된 시는 다음과 같습니다!"
-                    android:textSize="32sp"
-                    android:textStyle="bold" />
-
-                <include layout="@layout/poem_detail"></include>
-
-            </LinearLayout>
+            <include layout="@layout/poem_detail"></include>
         </LinearLayout>
     </ScrollView>
 
