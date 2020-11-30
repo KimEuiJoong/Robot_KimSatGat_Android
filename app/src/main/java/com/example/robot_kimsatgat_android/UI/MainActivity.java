@@ -1,5 +1,6 @@
 package com.example.robot_kimsatgat_android.UI;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
@@ -36,24 +38,16 @@ import java.util.Stack;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-
+    private Toast toast;
     private DrawerLayout mDrawerLayout;
     private Context context = this;
-    private FragmentManager supportFragmentManager;
+
+    public FragmentManager supportFragmentManager;
 
     // 마지막으로 뒤로가기 버튼을 눌렀던 시간 저장
     private long backKeyPressedTime = 0;
-    // 첫 번째 뒤로가기 버튼을 누를때 표시
-    private Toast toast;
 
     private AppBarConfiguration mAppBarConfiguration;
-
-    // 프래그먼트 요소
-    public static CommentRecyclerFragment view_poem_withcomments_fragment;
-    public static View_Main view_poem_fragment;
-    public static View_Suggested_Poem view_suggested_poem_fragment;
-    public static View_LikeList view_likeList_fragment;
-    public static View_MyPoem view_mypoem_fragment;
 
     Toolbar toolbar;
 
@@ -94,26 +88,8 @@ public class MainActivity extends AppCompatActivity {
         mAppBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph())
                 .setOpenableLayout(mDrawerLayout)
                 .build();
-
-        // 프래그먼트 뒤로가기 기능 구현중...?
-        // 앞에 supportFragmentManager가 manager
-//        FragmentTransaction fragmentTransaction = supportFragmentManager.beginTransaction();
-//
-//        view_poem_fragment = new View_Main();
-//        view_poem_withcomments_fragment = new CommentRecyclerFragment();
-//
-//        view_suggested_poem_fragment = new View_Suggested_Poem();
-//        view_likeList_fragment = new View_LikeList();
-//        view_mypoem_fragment = new View_MyPoem();
-//
-//        fragmentTransaction.replace(R.id.nav_host_fragment, view_poem_withcomments_fragment);
-//        fragmentTransaction.addToBackStack(null);
-//
-//        // Commit the transaction
-//        fragmentTransaction.commit();
-
-
     }
+
 
     @Override
     public void onBackPressed() {
