@@ -16,15 +16,4 @@ public class View_LikeList extends PoemRecyclerFragment {
         super(R.layout.fragment_view_likelist, R.id.likelist_recyclerView,"LikeList");
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState);
-
-        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.addToBackStack(null);
-
-    }
-
-
 }

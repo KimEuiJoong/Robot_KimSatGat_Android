@@ -35,22 +35,19 @@
 
                 <include layout="@layout/poem_detail"></include>
 
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/poem_write"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:backgroundTint="#756A63"
+                    android:contentDescription="TODO"
+                    app:srcCompat="@android:drawable/ic_menu_edit" />
+
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/poem_write"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginBottom="113dp"
-        android:backgroundTint="#756A63"
-        android:contentDescription="TODO"
-        app:srcCompat="@android:drawable/ic_menu_edit" />
+
 
 </RelativeLayout>

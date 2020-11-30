@@ -57,7 +57,6 @@ public class View_Main extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
 
     }
