@@ -5,6 +5,10 @@
     android:background="@drawable/write_background2"
     android:orientation="vertical">
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="19dp" />
+
     <TextView
         android:id="@+id/textView_poemwrite_title"
         android:layout_width="match_parent"
@@ -15,189 +19,208 @@
         android:textSize="48sp"
         android:textStyle="bold" />
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-        <EditText
-            android:id="@+id/editText_edit_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="25dp"
-            android:ems="10"
-            android:gravity="start|top"
-            android:hint="여기에 시 제목을 입력하세요"
-            android:inputType="textMultiLine" />
-
-        <EditText
-            android:id="@+id/editText_edit_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="25dp"
-            android:ems="10"
-            android:gravity="start|top"
-            android:hint="여기에 시 내용를 입력하세요"
-            android:inputType="textMultiLine"
-            android:layout_marginTop="10dp"/>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="25dp"
-            android:hint="시의 분위기를 체크해주세요(3개)"/>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <CheckBox
-                android:id="@+id/checkBox1"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="기쁨" />
-            <CheckBox
-                android:id="@+id/checkBox2"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="즐거움" />
-            <CheckBox
-                android:id="@+id/checkBox3"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:text="사랑1\n(연인)" />
-
-            <CheckBox
-                android:id="@+id/checkBox4"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:text="사랑2\n(가족)" />
-
-        </LinearLayout>
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+                android:orientation="vertical">
 
-                <CheckBox
-                    android:id="@+id/checkBox5"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
+                <EditText
+                    android:id="@+id/editText_edit_title"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="희망" />
-                <CheckBox
-                    android:id="@+id/checkBox6"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="활기" />
-                <CheckBox
-                    android:id="@+id/checkBox7"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="순수" />
+                    android:layout_gravity="center"
+                    android:ems="10"
+                    android:gravity="center_horizontal|top"
+                    android:hint="시 제목"
+                    android:inputType="textMultiLine"
+                    android:textSize="25dp" />
 
-                <CheckBox
-                    android:id="@+id/checkBox8"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
+                <EditText
+                    android:id="@+id/editText_edit_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="잔잔" />
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:gravity="start|top"
+                    android:hint="여기에 시 내용를 입력하세요"
+                    android:inputType="textMultiLine"
+                    android:textSize="25dp" />
 
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:hint="시의 분위기를 체크해주세요(3개)"
+                    android:textSize="25dp" />
+
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="체크박스를 비워두시면 자동으로 시의 분위기를 파악해드립니다." />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/checkBox1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="기쁨" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="즐거움" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox3"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:text="사랑1\n(연인)" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox4"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:text="사랑2\n(가족)" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/checkBox5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="희망" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="활기" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox7"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="순수" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox8"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="잔잔" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/checkBox9"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="슬픔" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox10"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="의지" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox11"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:text="그리움1\n(연인)" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox12"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:text="그리움2\n(고향)" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/checkBox13"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="무심" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox14"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="고독" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox15"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="불안" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox16"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="성찰" />
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_poem_save"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/sealingwax" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <CheckBox
-                    android:id="@+id/checkBox9"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="슬픔" />
-                <CheckBox
-                    android:id="@+id/checkBox10"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="의지" />
-                <CheckBox
-                    android:id="@+id/checkBox11"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:text="그리움1\n(연인)" />
-
-                <CheckBox
-                    android:id="@+id/checkBox12"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:text="그리움2\n(고향)" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <CheckBox
-                    android:id="@+id/checkBox13"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="무심" />
-                <CheckBox
-                    android:id="@+id/checkBox14"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="고독" />
-                <CheckBox
-                    android:id="@+id/checkBox15"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="불안" />
-
-                <CheckBox
-                    android:id="@+id/checkBox16"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="성찰" />
-
-            </LinearLayout>
-
-            <Button
-            android:id="@+id/btn_poem_save"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:layout_gravity="center"
-            android:background="@drawable/sealingwax"/>
-        </LinearLayout>
-
-    </ScrollView>
-
+        </ScrollView>
+    </LinearLayout>
 
 
 </LinearLayout>

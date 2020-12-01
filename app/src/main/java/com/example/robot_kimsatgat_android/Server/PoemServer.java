@@ -79,16 +79,16 @@ public class PoemServer {
     }
 
     // 시 등록
-    public void postPoem(String title,String content){
-        postPoem(title, content, new Function0<Void>() {
+    public void postPoem(String title,String content,ArrayList<String> tags){
+        postPoem(title, content,tags, new Function0<Void>() {
             @Override
             public Void invoke() {
                 return null;
             }
         });
     }
-    public void postPoem(String title,String content,Function0<Void> func){
-        ReqPoemData reqPoemData = new ReqPoemData(title,content);
+    public void postPoem(String title,String content,ArrayList<String> tags,Function0<Void> func){
+        ReqPoemData reqPoemData = new ReqPoemData(title,content,tags);
         Call<Void> call = api.postPoem(reqPoemData);
         call.enqueue(new Callback<Void>(){
             @Override

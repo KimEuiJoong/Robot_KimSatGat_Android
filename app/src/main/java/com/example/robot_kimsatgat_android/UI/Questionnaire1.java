@@ -43,14 +43,17 @@ public class Questionnaire1 extends AppCompatActivity {
         first_radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
+                /*
+                    이거 토스트 꼭 띄워줘야됨?
+                 */
                 if(checkedId==R.id.positive) {
-                    Toast.makeText(Questionnaire1.this,"positive",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(Questionnaire1.this,"긍정적",Toast.LENGTH_SHORT).show();
                     feelingcheck = 0;
                 } else if(checkedId==R.id.middle_way) {
-                    Toast.makeText(Questionnaire1.this,"middle",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(Questionnaire1.this,"중립적",Toast.LENGTH_SHORT).show();
                     feelingcheck = 1;
                 } else if(checkedId==R.id.negative) {
-                    Toast.makeText(Questionnaire1.this,"negative",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(Questionnaire1.this,"부정적",Toast.LENGTH_SHORT).show();
                     feelingcheck = 2;
                 }
             }

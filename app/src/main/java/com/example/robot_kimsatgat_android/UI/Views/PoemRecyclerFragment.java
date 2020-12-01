@@ -91,7 +91,7 @@ public abstract class PoemRecyclerFragment extends Fragment {
         viewModelMain.getList(listName).observe(getViewLifecycleOwner(), PoemList -> {
             poemRecyclerView.setLayoutAnimation(animation);
                for(RecvPoemBriefData poemBriefData : PoemList){
-                   poemRecyclerAdapter.addPoem(new Poem(poemBriefData.id,poemBriefData.title,poemBriefData.writer,"내용",poemBriefData.likenum,poemBriefData.like));
+                   poemRecyclerAdapter.addPoem(new Poem(poemBriefData.id,poemBriefData.title,poemBriefData.writer,"",poemBriefData.likenum,poemBriefData.like));
                }
                poemRecyclerAdapter.notifyDataSetChanged();
             }
