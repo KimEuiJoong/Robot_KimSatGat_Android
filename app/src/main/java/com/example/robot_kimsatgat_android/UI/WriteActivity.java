@@ -54,7 +54,7 @@ public class WriteActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v){
                     tag_checked_num = 0;
-                    for(int i = 0;i<15;i++){
+                    for(int i = 0;i<16;i++){
                         if(cbList.get(i).isChecked()){
                             tag_checked_num++;
                         }
@@ -82,7 +82,7 @@ public class WriteActivity extends AppCompatActivity {
                     Toast.makeText(WriteActivity.this, "태그를 3개 골라주세요.", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                for(int i = 0;i<15;i++){
+                for(int i = 0;i<16;i++){
                     if(cbList.get(i).isChecked()){
                         checkedTags.add(tagList[i]);
                     }
