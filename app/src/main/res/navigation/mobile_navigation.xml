@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/view_Main"
-        android:name="com.example.robot_kimsatgat_android.UI.Views.View_Main"
+        android:name="com.RKS.robot_kimsatgat_android.UI.Views.View_Main"
         android:label="View_Main" >
         <action
             android:id="@+id/action_view_Main_to_view_LikeList"
@@ -23,7 +23,7 @@
     </fragment>
     <fragment
         android:id="@+id/nav_likelist"
-        android:name="com.example.robot_kimsatgat_android.UI.Views.View_LikeList"
+        android:name="com.RKS.robot_kimsatgat_android.UI.Views.View_LikeList"
         android:label="View_LikeList" >
         <action
             android:id="@+id/action_nav_likelist_to_view_Main"
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/nav_mypoem"
-        android:name="com.example.robot_kimsatgat_android.UI.Views.View_MyPoem"
+        android:name="com.RKS.robot_kimsatgat_android.UI.Views.View_MyPoem"
         android:label="View_MyPoem" >
         <action
             android:id="@+id/action_nav_mypoem_to_view_Main"
@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/nav_suggestionlist"
-        android:name="com.example.robot_kimsatgat_android.UI.Views.View_Suggested_Poem"
+        android:name="com.RKS.robot_kimsatgat_android.UI.Views.View_Suggested_Poem"
         android:label="View_Suggested_Poem" >
         <action
             android:id="@+id/action_nav_suggestionlist_to_view_Main"
@@ -47,7 +47,7 @@
     </fragment>
     <fragment
         android:id="@+id/commentRecyclerFragment"
-        android:name="com.example.robot_kimsatgat_android.UI.Views.CommentRecyclerFragment"
+        android:name="com.RKS.robot_kimsatgat_android.UI.Views.CommentRecyclerFragment"
         android:label="CommentRecyclerFragment" />
     <action android:id="@+id/action_global_commentRecyclerFragment"
         app:destination="@id/commentRecyclerFragment"/>
