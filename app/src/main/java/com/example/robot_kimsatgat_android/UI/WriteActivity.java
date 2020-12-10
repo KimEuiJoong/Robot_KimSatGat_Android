@@ -78,7 +78,7 @@ public class WriteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ArrayList<String> checkedTags = new ArrayList<>();
-                if(tag_checked_num < 3){
+                if(tag_checked_num < 3 && tag_checked_num != 0){
                     Toast.makeText(WriteActivity.this, "태그를 3개 골라주세요.", Toast.LENGTH_SHORT).show();
                     return;
                 }
