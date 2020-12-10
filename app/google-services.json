@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:74668536554:android:93cec8e04a7a132f2b1d93",
         "android_client_info": {
-          "package_name": "com.example.robot_kimsatgat_android"
+          "package_name": "com.RKS.robot_kimsatgat_android"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "74668536554-t5s6f20tisbkbqonbnnsrhk2t622ubct.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.robot_kimsatgat_android",
+            "package_name": "com.RKS.robot_kimsatgat_android",
             "certificate_hash": "48343611e0249a61d1ca5b47837c0800db8796af"
           }
         },
